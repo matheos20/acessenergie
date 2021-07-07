@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    h2 {
+        text-align: center;
+        padding: 30px;
+        margin: 10px;
+    }
+
+    .info {
+        margin: 25px;
+    }
+
+    .access {
+        margin: 25px;
+    }
+
+    .liste {
+        margin: 25px;
+    }
+
+    ul li {
+        list-style-type: '- ';
+    }
+
+    .presente {
+        margin: 25px;
+    }
+
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    table.center {
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+    }
+
+    p {
+        font: 1em;
+    }
+
+    .p1 {
+        line-height: 1em;
+    }
+
+    .p2,
+    p3,
+    p4 {
+        line-height: 1em;
+    }
+
+</style>
+
+<body>
+        <h2>AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)</h2>
+        <div class="w3-container"></div>
+        <div class="info">
+            <p class="p1">L’entreprise:<b>{{ entreprise }}</p>
+            <p class="p2">Sous le SIREN: <b>{{ siren }}</b></p>
+            <p class="p3">Ayant son siège à</p>
+            <p class="p4">et <b>représentée</b> par : {{ nom }} FONCTION: <b>{{ fonction }}</b>, <b>dûment habilité(e) à cet effet,</b> titulaire de contrat(s) unique(s) pour la fourniture d’électricité pour le(s) site(s) de consommation mentionné(s) dans
+                le tableau en annexe,
+            </p>
+        </div>
+        <h4 style="margin: 25px;">AUTORISE</h4>
+        <div class="access">
+            <p>ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L4OURAILLE 76940 LA MAILLERAYE SUR
+                SEINE, et
+                <b>représentée par</b> M. DIAKITE Hamidou, dûment <b>habilité(s) à cet effet, à demander et recevoir directement de la part du :
+                    Gestionnaire de réseaux public de distribution d’électricité (ENEDIS)</b> société anonyme à directoire et à conseil de surveillance,
+                au capital de 270 037 000 euros, immatriculée au Registre du Commerce et des Sociétés de Nanterre, sous le numéro 444 608 442, dont le siège social est situé Tour ENEDIS 34, Place
+                des Corolles 92079 PARIS LA DEFENSE cedex
+            </p>
+        </div>
+
+            <p style="margin: 25px;"><b>Les données de consommation disponibles cochées dans la liste ci-dessous, pour le(s) PDL dont la liste est annexée à la
+        présente autorisation :</b></p>
+        <div class="liste">
+            <form>
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
+                <label for="vehicle1"> la puissance souscrite en cours programmée dans le compteur</label><br>
+                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
+                <label for="vehicle2"> la formule tarifaire d’acheminement en cours</label><br>
+                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                <label for="vehicle3"> le type de compteur</label><br>
+                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
+                <label for="vehicle3"> la courbe de charge</label>
+            </form>
+        </div>
+        <div class="presente">
+                <p>La présente autorisation est nominative, ne peut être cédée et est valable et consultable douze mois après la date de
+                    signature du présent document.
+                </p>
+                <p>Toute cession, à titre gratuit ou onéreux, de tout ou partie de ces données transmises par Enedis à ce tiers en
+                    application de la présente autorisation est interdite
+                </p>
+            <p style="margin-left: 800px;text-decoration: underline" class="underline">signature </p>
+            <p style="margin-left: 800px">{{ nom }}</p>
+        </div>
+            <p style=" text-align: center"><b>« Pour le(s) PDL dont la liste est annexée à la présente autorisation : »</b></p>
+    
+</body>
+
+</html>

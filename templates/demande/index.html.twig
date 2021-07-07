@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client index{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">
+    <div class="container mt-5">
+        <h1>demande des opinions</h1>
+        <table class="table table-bordered mt-5">
+            <thead>
+            <tr>
+                <th>Raison sociale </th>
+                <th>Siren</th>
+                <th>Adresse du siège </th>
+                <th>Nom du Signataire </th>
+                <th>Fonction</th>
+                <th>Adresse mail </th>
+                <th>actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for client in clients %}
+                <tr>
+                    <td>{{ client.socialReason }}</td>
+                    <td>{{ client.mermaid }}</td>
+                    <td>{{ client.address }}</td>
+                    <td>{{ client.nameOfSignatory }}</td>
+                    <td>{{ client.function }}</td>
+                    <td>{{ client.mail }}</td>
+                    <td>
+                        <a href="{{ path('Ajout_demande', {'id': client.id}) }}"><i style="color: darkgreen" class="fa fa-eye" aria-hidden="true"></i>envoyer demande</a>
+
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="8">Aucun enregistrement trouvé</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

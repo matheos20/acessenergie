@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gaz{% endblock %}
+
+{% block body %}
+    <h1>Gaz</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gaz.id }}</td>
+            </tr>
+            <tr>
+                <th>PCE1</th>
+                <td>{{ gaz.PCE1 }}</td>
+            </tr>
+            <tr>
+                <th>PCE2</th>
+                <td>{{ gaz.PCE2 }}</td>
+            </tr>
+            <tr>
+                <th>PCE3</th>
+                <td>{{ gaz.PCE3 }}</td>
+            </tr>
+            <tr>
+                <th>PCE4</th>
+                <td>{{ gaz.PCE4 }}</td>
+            </tr>
+            <tr>
+                <th>PCE5</th>
+                <td>{{ gaz.PCE5 }}</td>
+            </tr>
+            <tr>
+                <th>PCE6</th>
+                <td>{{ gaz.PCE6 }}</td>
+            </tr>
+            <tr>
+                <th>PCE7</th>
+                <td>{{ gaz.PCE7 }}</td>
+            </tr>
+            <tr>
+                <th>PCE8</th>
+                <td>{{ gaz.PCE8 }}</td>
+            </tr>
+            <tr>
+                <th>PCE9</th>
+                <td>{{ gaz.PCE9 }}</td>
+            </tr>
+            <tr>
+                <th>PCE10</th>
+                <td>{{ gaz.PCE10 }}</td>
+            </tr>
+            <tr>
+                <th>PCE11</th>
+                <td>{{ gaz.PCE11 }}</td>
+            </tr>
+            <tr>
+                <th>PCE12</th>
+                <td>{{ gaz.PCE12 }}</td>
+            </tr>
+            <tr>
+                <th>PCE13</th>
+                <td>{{ gaz.PCE13 }}</td>
+            </tr>
+            <tr>
+                <th>PCE14</th>
+                <td>{{ gaz.PCE14 }}</td>
+            </tr>
+            <tr>
+                <th>PCE15</th>
+                <td>{{ gaz.PCE15 }}</td>
+            </tr>
+            <tr>
+                <th>PCE16</th>
+                <td>{{ gaz.PCE16 }}</td>
+            </tr>
+            <tr>
+                <th>PCE17</th>
+                <td>{{ gaz.PCE17 }}</td>
+            </tr>
+            <tr>
+                <th>PCE18</th>
+                <td>{{ gaz.PCE18 }}</td>
+            </tr>
+            <tr>
+                <th>PCE19</th>
+                <td>{{ gaz.PCE19 }}</td>
+            </tr>
+            <tr>
+                <th>PCE20</th>
+                <td>{{ gaz.PCE20 }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('gaz_index') }}">back to list</a>
+
+    <a href="{{ path('gaz_edit', {'id': gaz.id}) }}">edit</a>
+
+    {{ include('gaz/_delete_form.html.twig') }}
+{% endblock %}

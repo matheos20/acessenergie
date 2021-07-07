@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">
+    <div class="container">
+        <div class="titre">Connexion</div>
+
+            <div class="formcontact">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('security_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+
+                <form action="{{ path('security_login') }}" method="post">
+                    <div class="form-group" id="ad1">
+                         <label for="Email1"></label>
+                         <input placeholder="Adresse email..." required name="_username" type="text" class="form-control" id="Email1">
+                    </div>
+                    <div class="form-group" id="ad2">
+                        <label for="Password1"></label>
+                        <input placeholder="Mot de passe..." required name="_password" type="password" class="form-control" id="Password1">
+                    </div>
+                    <div class="form-group" style="text-align: center;align-items: center;display:flex;">
+
+                        <button type="submit" class="btn btn-success md-4" style="margin-left: 200px">Connexion</button>
+                   </div>
+
+               </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

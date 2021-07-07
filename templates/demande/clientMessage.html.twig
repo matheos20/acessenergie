@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        *::before,
+        *::after {
+            margin: 25px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        p {margin: 25px;
+        }
+        .logo {
+            text-align: center;
+
+        }
+        .btn {
+            border-radius: 2%;
+            text-align: center;
+            margin: 5px auto;
+            width: 50px;
+            padding: 5px;
+            color: brown;
+        }
+        .phrase1{
+            margin: 35px;
+        }
+
+        .phrase3 {
+            background-color: #F2F3F4;
+            margin: 10px auto;
+            padding-left: 5px;
+        }
+    </style>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script scr="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+<div class="container mt-5">
+    <div class="logo">
+        <img src="{{ asset('image/logo.png') }}" type="">
+    </div>
+
+    <p>Bonjour Mr <b>{{ nom }}</b></p>
+    <p>En application du code de l’énergie, ACCESS ENERGIES doit obtenir votre autorisation,
+        pour pouvoir accéder à vos données techniques et historiques de consommation auprès des
+        gestionnaires de distribution
+    </p>
+    <div class="phrase1">
+        <p>
+            Ces données sont nécessaires pour vous proposer un prix optimisé et adapté à votre profil de
+            consommation.
+        </p>
+
+        <p>
+            Cette autorisation sera valable pour 12 mois
+        </p>
+
+        <p>
+            Nous vous invitons à nous faire part de votre autorisation :
+        </p>
+    </div>
+    <div class="btn">
+   
+        
+        <a href="{{ absolute_url(path('Email_demandee', {'id' : id_client,'gaz': id_gaz,'electric': id_electric, 'gazplus':gazplus20, 'electriciteplus':electricplus20} )) }}" style="padding:1rem 2rem;background:yellow;color:white;">J’autorise</a>
+
+        
+    </div>
+    <div class="phrase2">
+        <p>
+            ACCESS ENERGIES à accéder aux données techniques (profil, tarif d'acheminement, capacité journalière
+            en gaz, puissance en électricité) et historiques de consommation du (es) point(s) de livraison dont
+            je suis le consommateur final ou le représentant et reconnais avoir communiqué directement, en
+            complément,
+            mes données personnelles de contact et coordonnées.
+        </p>
+
+        <p>
+            Votre Responsable Commercial se tient à votre disposition pour répondre à toutes vos questions sur
+            ce sujet
+        </p>
+    </div>
+    <div class="container">
+        <div class="phrase3">
+            <fieldset>
+                <i>
+                    Pour le recueil de votre autorisation d'accès aux données techniques et de consommation de
+                    vos établissements, les données utilisées sont celles que vous nous avez directement
+                    communiquées et autorisés à enregistrer et conserver dans nos bases à des fins de relation
+                    commerciale et de gestion des contrats.
+                </i> <br>
+
+                <i>
+                    Conformément à la réglementation applicable, vous pouvez demander l'accès, la rectification
+                    ou l'effacement de vos données. Vous disposez également d'un droit d'opposition, de
+                    limitation et de portabilité de vos données et pouvez exercer l'ensemble de ces droits.
+                </i>
+            </fieldset>
+
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

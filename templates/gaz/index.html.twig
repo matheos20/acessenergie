@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gaz index{% endblock %}
+
+{% block body %}
+    <h1>Gaz index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>PCE1</th>
+                <th>PCE2</th>
+                <th>PCE3</th>
+                <th>PCE4</th>
+                <th>PCE5</th>
+                <th>PCE6</th>
+                <th>PCE7</th>
+                <th>PCE8</th>
+                <th>PCE9</th>
+                <th>PCE10</th>
+                <th>PCE11</th>
+                <th>PCE12</th>
+                <th>PCE13</th>
+                <th>PCE14</th>
+                <th>PCE15</th>
+                <th>PCE16</th>
+                <th>PCE17</th>
+                <th>PCE18</th>
+                <th>PCE19</th>
+                <th>PCE20</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for gaz in gazs %}
+            <tr>
+                <td>{{ gaz.id }}</td>
+                <td>{{ gaz.PCE1 }}</td>
+                <td>{{ gaz.PCE2 }}</td>
+                <td>{{ gaz.PCE3 }}</td>
+                <td>{{ gaz.PCE4 }}</td>
+                <td>{{ gaz.PCE5 }}</td>
+                <td>{{ gaz.PCE6 }}</td>
+                <td>{{ gaz.PCE7 }}</td>
+                <td>{{ gaz.PCE8 }}</td>
+                <td>{{ gaz.PCE9 }}</td>
+                <td>{{ gaz.PCE10 }}</td>
+                <td>{{ gaz.PCE11 }}</td>
+                <td>{{ gaz.PCE12 }}</td>
+                <td>{{ gaz.PCE13 }}</td>
+                <td>{{ gaz.PCE14 }}</td>
+                <td>{{ gaz.PCE15 }}</td>
+                <td>{{ gaz.PCE16 }}</td>
+                <td>{{ gaz.PCE17 }}</td>
+                <td>{{ gaz.PCE18 }}</td>
+                <td>{{ gaz.PCE19 }}</td>
+                <td>{{ gaz.PCE20 }}</td>
+                <td>
+                    <a href="{{ path('gaz_show', {'id': gaz.id}) }}">show</a>
+                    <a href="{{ path('gaz_edit', {'id': gaz.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="22">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('gaz_new') }}">Create new</a>
+{% endblock %}

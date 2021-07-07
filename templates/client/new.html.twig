@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client{% endblock %}
+
+{% block body %}
+
+    <div class="container  mt-5">
+        <h1 style="text-align: center">Nouveau Client</h1>
+        <a class="btn btn-success" href="{{ path('client_index') }}">Retour à liste</a>
+        <div class="text-center mt-4 ">
+            {{ include('client/_form.html.twig') }}
+        </div>
+
+    <div>
+{% endblock %}

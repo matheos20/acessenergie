@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">
+
+    <div class="container">
+            <div class="titre">Inscription</div>
+                    <div class="formcontact">
+
+                        {{form_start(form)}}
+
+                        <div class="form-group">
+                            <label for="nom">Nom</label>
+                            {{form_widget(form.username, {'label':'Nom d\utilisateur','attr':{'placeholder': 'votre nom...','class':'form-control'}})}}
+                        </div>
+                        <div class="form-group">
+                            <label for="Email1">Adresse mail</label>
+                            {{form_widget(form.email,{'label':'Adresse mail','attr':{'placeholder':'votre Adresse mail...','class':'form-control'}})}}
+                        </div>
+                        <div class="form-group">
+                            <label for="Password1">Mot de passe</label>
+                            {{form_widget(form.password,{'label':'mot de passe','attr':{'placeholder':'votre mot de passe...','class':'form-control'}})}}
+                        </div>
+                        <div class="form-group">
+                            <label for="Password1">Confirmer</label>
+                            {{form_widget(form.confirm_password,{'label':'confirmation mot de passe','attr':{'placeholder':'repeter votre mot de passe','class':'form-control'}})}}
+                    </div>
+                    <div class="form-group" style="text-align: center">
+                        <button type="submit" class="btn btn-primary">Inscription</button>
+                    </div>
+                    {{form_end(form)}}
+            </div>
+    </div>
+
+{% endblock %}

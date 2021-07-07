@@ -1,0 +1,130 @@
+
+h1{
+    text-align: center;
+
+}
+
+.inscrption{
+    font-size: 18px;
+    margin-right: 2rem;
+    font-weight: bold;
+    color:#77797c;
+}
+.login{
+    font-size: 18px;
+    margin-right: 3rem;
+    font-weight: bold;
+    color:#77797c;
+}
+.login:hover{
+    font-size: 18px;
+    margin-right: 3rem;
+    font-weight: bold;
+    color: rgb(3, 80, 57);
+}
+.form-control {
+    display: block;
+    width: 100% !important;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.inscrption:hover{
+    font-size: 18px;
+    margin-right: 2rem;
+    font-weight: bold;
+    color:  rgb(3, 80, 57);
+}
+.formcontact{
+    margin: 30px 200px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #0d7526 !important;
+    border-color: #0d7526 !important;
+}
+.formcontact{
+    border-radius:3%;
+    border: 1px solid #ced4da;
+    padding-left: 7rem;
+    padding-top:4rem;
+    padding-bottom: 4rem;
+    padding-right:7rem;
+}
+.titre{
+    text-align:center;
+    font-size: 22px;
+    font-weight:900;
+    margin: 30px 200px;
+}
+@media screen and (max-width: 900px) {
+    .formcontact {
+         border-radius: 0%;
+		border: 0px solid #ced4da;
+		padding: 0;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .form-control {
+		width: 150% !important;
+    display: block;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	
+}
+}
+@media screen and (max-width: 600px) {
+    .form-control {
+		width: 260% !important;
+    display: block;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	margin-left: -8rem;
+}
+}
+
+@media screen and (max-width: 500px) {
+    .form-control {
+		width: 500% !important;
+    display: block;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+	margin-left: -8rem;
+}
+}

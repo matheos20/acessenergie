@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Client{% endblock %}
+
+{% block body %}
+
+    <style>
+    </style>
+
+    <div class="container mt-5">
+        <h1>Edit Client</h1>
+        <div class="update mt-4">
+            <a class="btn btn-success" href="{{ path('client_index') }}" style="margin-left: 15px">Retour à liste</a>
+            <div style="margin: 20px">
+                {{ include('client/_form.html.twig', {'button_label': 'Editer'}) }}
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

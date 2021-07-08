@@ -147,14 +147,8 @@ class DemandeController extends AbstractController
             $em->persist($electric);
             $em->flush();
         }
-        $email = (new Email());
         $email = (new Email())
-            ->from('sandinho10herios@gmail.com')
             ->to($client->getMail())
-            //->cc('cc@example.com')
-            //->bcc('bcc@example.com')
-            //->replyTo('fabien@example.com')
-            //->priority(Email::PRIORITY_HIGH)
             ->subject('Demande d\'autorisation')
             ->html($this->renderView('demande/clientMessage.html.twig',[
                             'nom' => $client->getNameOfSignatory(),
@@ -169,46 +163,8 @@ class DemandeController extends AbstractController
                             'id_electric' => ($electric !== null) ? $electric->getId() : 0
                        ])
             );
-        $mailer->send($email);
+            $mailer->send($email);
 
-//        $mj = new \Mailjet\Client('4bb23ab13bf97d45b8a20429b73bd983','2fc34f53d406022f6c964562bb84bb1b',true,['version' => 'v3.1']);
-//            $mj->addRequestOption('verify' , false);
-//            $body = [
-//                'Messages' => [
-//                    [
-//                        'From' => [
-//                            'Email' => "sandinho10herios@gmail.com",
-//                            'Name' => "Access Energie"
-//                        ],
-//                        'To' => [
-//                            [
-//                                'Email' => $client->getMail(),
-//                                'Name' => $client->getNameOfSignatory()
-//                            ]
-//                        ],
-//                        'Subject' => "Greetings from Mailjet.",
-//                        'TextPart' => "My first Mailjet email",
-//                        'HTMLPart'=> $this->renderView('demande/clientMessage.html.twig',[
-//                            'nom' => $client->getNameOfSignatory(),
-//                            'email' => $client->getMail(),
-//                            'entreprise' => $client->getmermaid(),
-//                            'siren' => $client->getSocialReason(),
-//                            'fonction' => $client->getFunction(),
-//                            'gazplus20' => $gaz20 ,
-//                            'electricplus20' =>$electric20,
-//                            'id_client' => $client->getId(),
-//                            'id_gaz' => ($gaz !== null) ? $gaz->getId() : 0,
-//                            'id_electric' => ($electric !== null) ? $electric->getId() : 0
-//                        ])
-//
-//                    ]
-//                ]
-//            ];
-//            $response = $mj->post(Resources::$Email, ['body' => $body]);
-//            $response->success();
-//            $response->getData();
-//
-//
        return $this->redirectToRoute('client_index');
     }
     /** Reponse client click j'autorise

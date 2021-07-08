@@ -5,6 +5,9 @@
 {% block body %}
 
     <style>
+        h1{
+            font-family: Courier New, monospace;
+        }
         .show{
             display: flex;
             align-items: center;
@@ -38,7 +41,7 @@
     </style>
 
     <div class="container mt-5">
-        <h1>Demande autorisation</h1>
+        <h1>DEMANDE D'AUTORISATIONS</h1>
         <a style="right: " class="btn btn-success" href="{{ path('client_index') }}">Retour à liste</a>
         <table class="table table-bordered mt-4">
             <thead>
@@ -66,7 +69,7 @@
         <form action="{{ path('Email_demande') }}" method="post">
             <input type="text" name="id_client" hidden value="{{ client.id }}">
             <div>
-                <h4 class="mt-4 text-center">choisier le périmètre du client</h4>
+                <h3 class="mt-4 text-center">Choisie le périmètre du client</h3>
                 <div class="form-check form-check-inline mt-4 text-center">
                     <input class="form-check-input" type="checkbox" name="gaz" id="gaz" value="gaz">
                     <img src="{{ asset('image/gaz.png') }}" class="mr-1" width="40" alt="">
@@ -79,7 +82,7 @@
                 </div>
             </div>
             <div class="jumbotron mt-2 electrique text-center">
-                <h2>ELECTRIQUE</h2>
+                <h4>ELECTRIQUE</h4>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="electric1" id="electric1" value="- DE 20 ELECTRIQUE">
                     <label class="form-check-label" for="inlineCheckbox1">- DE 20 COMPTEURS</label>
@@ -90,7 +93,7 @@
                 </div>
             </div>
             <div class="jumbotron mt-2 gaz text-center">
-                <h2>GAZ NATUREL</h2>
+                <h4>GAZ NATUREL</h4>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="gaz1" id="gaz1" value="- DE 20 GAZ">
                     <label class="form-check-label" for="inlineCheckbox1">- DE 20 COMPTEURS</label>
@@ -101,10 +104,10 @@
                 </div>
             </div>
             <div class="table table-gaz mt-4">
-                <h4 class="text-center">Perimetre du client</h4>
+                <h4 class="text-center">périmètre du client</h4>
                 <table class="table table-bordered " id="table">
                     <tr>
-                        <th colspan="5" class="text-center">Perimetre gaz naturel</th>
+                        <th colspan="5" class="text-center"> périmètre  gaz naturel</th>
                     </tr>
                     <tr>
                         <tr><td rowspan="2">
@@ -193,10 +196,10 @@
                 </table>
             </div>
             <div class="table table-electric mt-4">
-                <h4 class="text-center mt-4">Perimetre du client</h4>
+                <h4 class="text-center mt-4">périmètre du client</h4>
                 <table class="table table-bordered mt-4">
                     <tr>
-                        <th colspan="5" class="text-center">Perimetre electrique</th>
+                        <th colspan="5" class="text-center"> périmètre  electrique</th>
                     </tr>
                     <tr>
                     <tr><td rowspan="2">

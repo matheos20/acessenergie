@@ -38,6 +38,104 @@
         .pce{
             display: none;
         }
+        .Pdl+20{
+           display: none; 
+        }
+
+
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        table caption {
+            font-size: 1.5em;
+            margin: .5em 0 .75em;
+        }
+
+        table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: .35em;
+        }
+
+        table th,
+        table td, input,label,.form-control {
+            padding: .625em;
+            text-align: center;
+
+        }
+
+        table th, input,label,.form-control {
+            font-size: .85em;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+
+        }
+        input{
+            padding: .625em;
+            text-align: center;
+        }
+
+        @media screen and (max-width: 600px) {
+            table {
+                border: 0;
+            }
+
+            table caption {
+                font-size: 1.3em;
+            }
+
+            table thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+
+            table tr {
+                border-bottom: 3px solid #ddd;
+                display: block;
+                margin-bottom: .625em;
+            }
+
+            table td,input,label,.form-control {
+                border-bottom: 1px solid #ddd;
+                display: block;
+                font-size: .8em;
+                text-align: right;
+            }
+            input{
+                border-bottom: 1px solid #ddd;
+                display: block;
+                font-size: .8em;
+                text-align: right;
+            }
+
+            table td::before {
+                /*
+                * aria-label has no advantage, it won't be read inside a table
+                content: attr(aria-label);
+                */
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            table td:last-child {
+                border-bottom: 0;
+            }
+        }
+
     </style>
 
     <div class="container mt-5">
@@ -46,22 +144,22 @@
         <table class="table table-bordered mt-4">
             <thead>
             <tr>
-                <th>Raison sociale </th>
-                <th>Siren</th>
-                <th>Adresse du siège </th>
-                <th>Nom du Signataire </th>
-                <th>Fonction</th>
-                <th>Adresse mail </th>
+                <th scope="col" class="align-middle">Raison sociale </th>
+                <th scope="col" class="align-middle">Siren </th>
+                <th scope="col" class="align-middle">Adresse du siège </th>
+                <th scope="col" class="align-middle">Nom du Signataire </th>
+                <th scope="col" class="align-middle">Fonction</th>
+                <th scope="col" class="align-middle" style="width: 28%">Adresse mail </th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>{{ client.socialReason }}</td>
-                <td>{{ client.mermaid }}</td>
-                <td>{{ client.address }}</td>
-                <td>{{ client.nameOfSignatory }}</td>
-                <td>{{ client.function }}</td>
-                <td>{{ client.mail }}</td>
+                <td data-label=Raison_sociale>{{ client.socialReason }}</td>
+                <td data-label=Siren>{{ client.mermaid }}</td>
+                <td data-label=Adresse_du_siège>{{ client.address }}</td>
+                <td data-label=Nom_du_Signataire>{{ client.nameOfSignatory }}</td>
+                <td data-label=Fonction>{{ client.function }}</td>
+                <td data-label=Adresse_mail>{{ client.mail }}</td>
             </tr>
             </tbody>
         </table>
@@ -69,7 +167,7 @@
         <form action="{{ path('Email_demande') }}" method="post">
             <input type="text" name="id_client" hidden value="{{ client.id }}">
             <div>
-                <h3 class="mt-4 text-center">Choisie le périmètre du client</h3>
+                <h3 class="mt-4 text-center">Détermination de périmètre du client</h3>
                 <div class="form-check form-check-inline mt-4 text-center">
                     <input class="form-check-input" type="checkbox" name="gaz" id="gaz" value="gaz">
                     <img src="{{ asset('image/gaz.png') }}" class="mr-1" width="40" alt="">
@@ -78,11 +176,11 @@
                 <div class="form-check form-check-inline text-center">
                     <input class="form-check-input" type="checkbox" name="electrique" id="electrique" value="electrique">
                     <img src="{{ asset('image/elec.png') }}" class="mr-1" width="40" alt="">
-                    <label class="form-check-label" for="inlineCheckbox1">ELECTRIQUE</label>
+                    <label class="form-check-label" for="inlineCheckbox1">ELECTRICITE</label>
                 </div>
             </div>
             <div class="jumbotron mt-2 electrique text-center">
-                <h4>ELECTRIQUE</h4>
+                <h4>ELECTRICITE</h4>
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" name="electric1" id="electric1" value="- DE 20 ELECTRIQUE">
                     <label class="form-check-label" for="inlineCheckbox1">- DE 20 COMPTEURS</label>
@@ -104,11 +202,10 @@
                 </div>
             </div>
             <div class="table table-gaz mt-4">
-                <h4 class="text-center">périmètre du client</h4>
                 <table class="table table-bordered " id="table">
-                    <tr>
-                        <th colspan="5" class="text-center"> périmètre  gaz naturel</th>
-                    </tr>
+
+                        <h5 colspan="5" class="text-center"> périmètre-gaz naturel</h5>
+
                     <tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE1</label>
@@ -196,11 +293,8 @@
                 </table>
             </div>
             <div class="table table-electric mt-4">
-                <h4 class="text-center mt-4">périmètre du client</h4>
                 <table class="table table-bordered mt-4">
-                    <tr>
-                        <th colspan="5" class="text-center"> périmètre  electrique</th>
-                    </tr>
+                        <h5 colspan="5" class="text-center"> périmètre-électricité</h5>
                     <tr>
                     <tr><td rowspan="2">
 							<label for="disabledTextInput" class="form-label">PDL1</label>

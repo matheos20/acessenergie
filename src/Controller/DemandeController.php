@@ -170,7 +170,7 @@ class DemandeController extends AbstractController
     /** Reponse client click j'autorise
      * @Route("/email/response/", name="Email_demandee",methods={"GET","POST"})
      */
-    public function RenvoyerMail(Request $request,ClientRepository $clientRepository,GazRepository $gazRepository,ElectriciteRepository $electriciteRepository){
+    public function RenvoyerMail(Request $request,ClientRepository $clientRepository,GazRepository $gazRepository,ElectriciteRepository $electriciteRepository, MailerInterface $mailer){
        
         $idgaz = $request->query->get('gaz');
         $idCli = $request->query->get('id');
@@ -182,24 +182,10 @@ class DemandeController extends AbstractController
             $gaz = $gazRepository->find($idgaz);
             if ($gaz !== null) {
                 $client = $gaz->getClient();
-                $mj = new \Mailjet\Client('4bb23ab13bf97d45b8a20429b73bd983', '2fc34f53d406022f6c964562bb84bb1b', true, ['version' => 'v3.1']);
-                $mj->addRequestOption('verify', false);
-                $body = [
-                    'Messages' => [
-                        [
-                            'From' => [
-                                'Email' => "sandinho10herios@gmail.com",
-                                'Name' => "Access Energie"
-                            ],
-                            'To' => [
-                                [
-                                    'Email' => $client->getMail(),
-                                    'Name' => $client->getNameOfSignatory()
-                                ]
-                            ],
-                            'Subject' => "Greetings from Mailjet.",
-                            'TextPart' => "My first Mailjet email",
-                            'HTMLPart' => $this->renderView('demande/gazMessage.html.twig', [
+                 $email = (new Email())
+                    ->to($client->getMail())
+                    ->subject('Demande d\'autorisation') 
+                    ->html($this->renderView('demande/gazMessage.html.twig', [
                                 'nom' => $client->getNameOfSignatory(),
                                 'email' => $client->getMail(),
                                 'entreprise' => $client->getmermaid(),
@@ -227,13 +213,10 @@ class DemandeController extends AbstractController
                                 "PCE20" => $gaz->getPCE20(),
                             ])
 
-                        ]
-                    ]
-                ];
-                $response = $mj->post(Resources::$Email, ['body' => $body]);
-                $response->success();
-                $response->getData();
-                if ($response->success() == true) {
+                    );
+                $mailer->send($email);
+               
+                if ($mailer->send($email) == true) {
                     $client->setValider(true);
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($client);
@@ -245,24 +228,10 @@ class DemandeController extends AbstractController
             $electric = $electriciteRepository->find($idelectric);
             if ($electric !== null) {
                 $client = $electric->getClient();
-                $mj = new \Mailjet\Client('4bb23ab13bf97d45b8a20429b73bd983', '2fc34f53d406022f6c964562bb84bb1b', true, ['version' => 'v3.1']);
-                $mj->addRequestOption('verify', false);
-                $body = [
-                        'Messages' => [
-                            [
-                                'From' => [
-                                    'Email' => "sandinho10herios@gmail.com",
-                                    'Name' => "Access Energie"
-                                ],
-                                'To' => [
-                                    [
-                                        'Email' => "morianthes04herbin@gmail.com",
-                                        'Name' => "theos"
-                                    ]
-                                ],
-                                'Subject' => "Greetings from Mailjet.",
-                                'TextPart' => "My first Mailjet email",
-                                'HTMLPart' => $this->renderView('demande/electriciteMessage.html.twig', [
+                 $email = (new Email())
+                    ->to($client->getMail())
+                    ->subject('Demande d\'autorisation')  
+                    ->html($this->renderView('demande/electriciteMessage.html.twig', [
                                     'nom' => $client->getNameOfSignatory(),
                                     'email' => $client->getMail(),
                                     'entreprise' => $client->getmermaid(),
@@ -289,15 +258,10 @@ class DemandeController extends AbstractController
                                     "PDL19" => $electric->getPDL19(),
                                     "PDL20" => $electric->getPDL20(),
                                 ])
+                    );
+                $mailer->send($email);
 
-                            ]
-                        ]
-                    ];
-                $response = $mj->post(Resources::$Email, ['body' => $body]);
-                $response->success();
-                $response->getData();
-
-                if ($response->success() == true) {
+                if ($mailer->send($email) == true) {
                     $client->setValider(true);
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($client);
@@ -307,24 +271,10 @@ class DemandeController extends AbstractController
         
                 if ($gaz20 == "+ DE 20 GAZ") {
                     $client = $gaz->getClient();
-                    $mj = new \Mailjet\Client('4bb23ab13bf97d45b8a20429b73bd983', '2fc34f53d406022f6c964562bb84bb1b', true, ['version' => 'v3.1']);
-                    $mj->addRequestOption('verify', false);
-                    $body = [
-                        'Messages' => [
-                            [
-                                'From' => [
-                                    'Email' => "sandinho10herios@gmail.com",
-                                    'Name' => "Access Energie"
-                                ],
-                                'To' => [
-                                    [
-                                        'Email' => $client->getMail(),
-                                        'Name' => $client->getNameOfSignatory()
-                                    ]
-                                ],
-                                'Subject' => "Greetings from Mailjet.",
-                                'TextPart' => "My first Mailjet email",
-                                'HTMLPart' => $this->renderView('demande/gazplus20Message.html.twig', [
+                    $email = (new Email())
+                    ->to($client->getMail())
+                    ->subject('Demande d\'autorisation')  
+                    ->html($this->renderView('demande/gazplus20Message.html.twig', [
                                     'nom' => $client->getNameOfSignatory(),
                                     'email' => $client->getMail(),
                                     'entreprise' => $client->getmermaid(),
@@ -332,80 +282,63 @@ class DemandeController extends AbstractController
                                     'fonction' => $client->getFunction(),
                                 ])
 
-                            ]
-                        ]
-                    ];
-                    $response = $mj->post(Resources::$Email, ['body' => $body]);
-                    $response->success();
-                    $response->getData();
-                    if ($response->success() == true) {
+                    );
+                $mailer->send($email);
+                    
+                    if ($mailer->send($email) == true) {
                         $client->setValider(true);
                         $em = $this->getDoctrine()->getManager();
                         $em->persist($client);
                         $em->flush();
                     }
                 }
-                if ($gaz20 == "+ DE 20 GAZ") {
-                    $client = $gaz->getClient();
-                   // $client = $electric->getClient();
-                    $mj = new \Mailjet\Client('4bb23ab13bf97d45b8a20429b73bd983', '2fc34f53d406022f6c964562bb84bb1b', true, ['version' => 'v3.1']);
-                    $mj->addRequestOption('verify', false);
-                    $body = [
-                        'Messages' => [
-                            [
-                                'From' => [
-                                    'Email' => "sandinho10herios@gmail.com",
-                                    'Name' => "Access Energie"
-                                ],
-                                'To' => [
-                                    [
-                                        'Email' => $client->getMail(),
-                                        'Name' => $client->getNameOfSignatory()
-                                    ]
-                                ],
-                                'Subject' => "Greetings from Mailjet.",
-                                'TextPart' => "My first Mailjet email",
-                                'HTMLPart' => $this->renderView('demande/gazplus20Message.html.twig', [
-                                    'nom' => $client->getNameOfSignatory(),
-                                    'email' => $client->getMail(),
-                                    'entreprise' => $client->getmermaid(),
-                                    'siren' => $client->getSocialReason(),
-                                    'fonction' => $client->getFunction(),
-                                ])
+                // if ($gaz20 == "+ DE 20 GAZ") {
+                //     $client = $gaz->getClient();
+                //    // $client = $electric->getClient();
+                //     $mj = new \Mailjet\Client('4bb23ab13bf97d45b8a20429b73bd983', '2fc34f53d406022f6c964562bb84bb1b', true, ['version' => 'v3.1']);
+                //     $mj->addRequestOption('verify', false);
+                //     $body = [
+                //         'Messages' => [
+                //             [
+                //                 'From' => [
+                //                     'Email' => "sandinho10herios@gmail.com",
+                //                     'Name' => "Access Energie"
+                //                 ],
+                //                 'To' => [
+                //                     [
+                //                         'Email' => $client->getMail(),
+                //                         'Name' => $client->getNameOfSignatory()
+                //                     ]
+                //                 ],
+                //                 'Subject' => "Greetings from Mailjet.",
+                //                 'TextPart' => "My first Mailjet email",
+                //                 'HTMLPart' => $this->renderView('demande/gazplus20Message.html.twig', [
+                //                     'nom' => $client->getNameOfSignatory(),
+                //                     'email' => $client->getMail(),
+                //                     'entreprise' => $client->getmermaid(),
+                //                     'siren' => $client->getSocialReason(),
+                //                     'fonction' => $client->getFunction(),
+                //                 ])
 
-                            ]
-                        ]
-                    ];
-                    $response = $mj->post(Resources::$Email, ['body' => $body]);
-                    $response->success();
-                    $response->getData();
-                    if ($response->success() == true) {
-                        $client->setValider(true);
-                        $em = $this->getDoctrine()->getManager();
-                        $em->persist($client);
-                        $em->flush();
-                    }
-                }
+                //             ]
+                //         ]
+                //     ];
+                //     $response = $mj->post(Resources::$Email, ['body' => $body]);
+                //     $response->success();
+                //     $response->getData();
+                //     if ($response->success() == true) {
+                //         $client->setValider(true);
+                //         $em = $this->getDoctrine()->getManager();
+                //         $em->persist($client);
+                //         $em->flush();
+                //  }
+               // }
             if ($electricite20 == "+ DE 20 ELECTRIQUE") {
                 $client = $electric->getClient();
-                $mj = new \Mailjet\Client('4bb23ab13bf97d45b8a20429b73bd983', '2fc34f53d406022f6c964562bb84bb1b', true, ['version' => 'v3.1']);
-                $mj->addRequestOption('verify', false);
-                $body = [
-                    'Messages' => [
-                        [
-                            'From' => [
-                                'Email' => "sandinho10herios@gmail.com",
-                                'Name' => "Access Energie"
-                            ],
-                            'To' => [
-                                [
-                                    'Email' => $client->getMail(),
-                                    'Name' => $client->getNameOfSignatory()
-                                ]
-                            ],
-                            'Subject' => "Greetings from Mailjet.",
-                            'TextPart' => "My first Mailjet email",
-                            'HTMLPart' => $this->renderView('demande/gazplus20Message.html.twig', [
+                $email = (new Email())
+                    ->to($client->getMail())
+                    ->subject('Demande d\'autorisation') 
+                    ->html($this->renderView('demande/electriciteplus20Message.html.twig', [
                                 'nom' => $client->getNameOfSignatory(),
                                 'email' => $client->getMail(),
                                 'entreprise' => $client->getmermaid(),
@@ -413,13 +346,10 @@ class DemandeController extends AbstractController
                                 'fonction' => $client->getFunction(),
                             ])
 
-                        ]
-                    ]
-                ];
-                $response = $mj->post(Resources::$Email, ['body' => $body]);
-                $response->success();
-                $response->getData();
-                if ($response->success() == true) {
+                    );
+                $mailer->send($email);
+                
+                if ($mailer->send($email) == true) {
                     $client->setValider(true);
                     $em = $this->getDoctrine()->getManager();
                     $em->persist($client);

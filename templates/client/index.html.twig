@@ -3,33 +3,117 @@
 {% block title %}Client{% endblock %}
 
 {% block body %}
+    <style>
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        table caption {
+            font-size: 1.5em;
+            margin: .5em 0 .75em;
+        }
+
+        table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: .35em;
+        }
+
+        table th,
+        table td {
+            padding: .625em;
+            text-align: center;
+
+        }
+
+        table th {
+            font-size: .85em;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        @media screen and (max-width: 600px) {
+            table {
+                border: 0;
+            }
+
+            table caption {
+                font-size: 1.3em;
+            }
+
+            table thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+
+            table tr {
+                border-bottom: 3px solid #ddd;
+                display: block;
+                margin-bottom: .625em;
+            }
+
+            table td {
+                border-bottom: 1px solid #ddd;
+                display: block;
+                font-size: .8em;
+                text-align: right;
+            }
+
+            table td::before {
+                /*
+                * aria-label has no advantage, it won't be read inside a table
+                content: attr(aria-label);
+                */
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            table td:last-child {
+                border-bottom: 0;
+            }
+        }
+
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">
-            <div class="container mt-5"  style="max-width: 1325px;">
+            <div class="container mt-5">
                 <h1>Listes des Clients</h1>
-                    <a class="btn btn-success" href="{{ path('client_new') }}" style="margin-left: 0px;">Nouveau Client</a>
-                        <table class="table table-bordered mt-5" style="margin: 10px">
+                    <a class="btn btn-success mt-4 mb-4" href="{{ path('client_new') }}" style="margin-left: 0px;">Nouveau Client</a>
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Raison sociale </th>
-                                    <th>Siren</th>
-                                    <th>Adresse du siège </th>
-                                    <th>Nom du Signataire </th>
-                                    <th>Fonction</th>
-                                    <th>Adresse mail </th>
-                                    <th>actions</th>
+                                    <th scope="col" class="align-middle">Raison sociale </th>
+                                    <th scope="col" class="align-middle">Siren </th>
+                                    <th scope="col" class="align-middle">Adresse du siège </th>
+                                    <th scope="col" class="align-middle">Nom du Signataire </th>
+                                    <th scope="col" class="align-middle">Fonction</th>
+                                    <th scope="col" class="align-middle" style="width: 28%">Adresse mail </th>
+                                    <th scope="col" class="align-middle" style="width: 19%">actions</th>
                                 </tr>
                             </thead>
                             <tbody>
                             {% for client in clients %}
                                 <tr>
-                                    <td>{{ client.socialReason }}</td>
-                                    <td>{{ client.mermaid }}</td>
-                                    <td>{{ client.address }}</td>
-                                    <td>{{ client.nameOfSignatory }}</td>
-                                    <td>{{ client.function }}</td>
-                                    <td>{{ client.mail }}</td>
-                                    <td>
+                                    <td data-label=Raison_sociale>{{ client.socialReason }}</td>
+                                    <td data-label=Siren>{{ client.mermaid }}</td>
+                                    <td data-label=Adresse_du_siège>{{ client.address }}</td>
+                                    <td data-label=Nom_du_Signataire>{{ client.nameOfSignatory }}</td>
+                                    <td data-label=Fonction>{{ client.function }}</td>
+                                    <td data-label=Adresse_mail>{{ client.mail }}</td>
+                                    <td data-label=actions>
                                         <a href="{{ path('client_show', {'id': client.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{ path('client_edit', {'id': client.id}) }}"><i style="color: yellow;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <a href="{{ path('Ajout_demande', {'id': client.id}) }}"><i style="color: blue;padding-left:20px" class="fal fa-paper-plane" aria-hidden="true"></i></a>

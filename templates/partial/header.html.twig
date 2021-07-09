@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html>
-	<head>
-			<meta name="viewport" content="width=device-width, initial-scale=1">
-		<style>
+<style>
 		body {
   margin: 0;
   font-family: 'Montserrat', sans-serif;
@@ -13,7 +9,7 @@ header {
 }
 .container {
   padding: 0 20px;
-  max-width: 1208px;
+
   margin: 0 auto;
 }
 .logo-box {
@@ -38,7 +34,7 @@ ul {
 nav li {
   display: inline-block;
   margin-left: 25px;
-  height: 93pxpx;
+  height: 93px;
   line-height: 70px;
   transition: .5s linear;
 }
@@ -82,28 +78,31 @@ nav li {
 nav li:hover {background: rgba(0,0,0,.1);}
 nav a:after {content: none;}
 }
-		</style>
-	</head>
-<body>
+    .nav-header a {
+        text-decoration: none;
+    }
+    .nav-header a:hover {
+        color: #868686;
+    }
+</style>
+
 <header>
-  <div class="container">
+  <div class="container d-md-flex justify-content-between">
     <div class="logo-box">
       <a href="/">
         <img src="{{ asset('image/logo.png') }}">
       </a>
     </div>
-    <nav>
+    <nav class="nav-header">
     	{% if not app.user %}
 	    	<ul>
 		      <li><a href="{{ path('security_registration') }}">Inscription</a></li>
 		      <li><a href="{{ path('security_login') }}">Connexion</a></li>
-		{% else %}  
-		      <li><a href="{{ path('client_index') }}" style="margin-left: 560px;">Client</a></li>
+		{% else %}
+		      <li><a href="{{ path('client_index') }}">Client</a></li>
 		      <li> <a href="{{ path('security_logout') }}">Deconnexion</a></li>
       	{% endif %}
    			</ul>
   </nav>
   </div>
 </header>
-</body>
-</html>

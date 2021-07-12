@@ -175,17 +175,7 @@
                     <label class="form-check-label" for="inlineCheckbox1">ELECTRICITE</label>
                 </div>
             </div>
-            <div class="jumbotron mt-2 electrique text-center">
-                <h4>ELECTRICITE</h4>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" name="electric1" id="electric1" value="- DE 20 ELECTRIQUE">
-                    <label class="form-check-label" for="inlineCheckbox1">- DE 20 COMPTEURS</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox"  name="electric2" id="electric2" value="+ DE 20 ELECTRIQUE">
-                    <label class="form-check-label" for="inlineCheckbox1">+ DE 20 COMPTEURS</label>
-                </div>
-            </div>
+            
             <div class="jumbotron mt-2 gaz text-center">
                 <h4>GAZ NATUREL</h4>
                 <div class="form-check form-check-inline">
@@ -196,8 +186,7 @@
                     <input class="form-check-input" type="checkbox" name="gaz2" id="gaz2" value="+ DE 20 GAZ">
                     <label class="form-check-label" for="inlineCheckbox1">+ DE 20 COMPTEURS</label>
                 </div>
-            </div>
-            <div class="table table-gaz mt-4 gaz1">
+                <div class="table table-gaz mt-4 gaz1">
             <h5 colspan="5" class="text-center"> périmètre-gaz naturel</h5>
                 <table class="table table-bordered ">
                     <tr>
@@ -289,7 +278,20 @@
             <div class="plus20 gaz2">
             <p id="plus20">Pour le(s) PCE dont la liste est annexée à la présente autorisation</p>
             </div>
-            <div class="table table-electric mt-4 electric1">
+            </div>
+            
+
+            <div class="jumbotron mt-2 electrique text-center">
+                <h4>ELECTRICITE</h4>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="electric1" id="electric1" value="- DE 20 ELECTRIQUE">
+                    <label class="form-check-label" for="inlineCheckbox1">- DE 20 COMPTEURS</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox"  name="electric2" id="electric2" value="+ DE 20 ELECTRIQUE">
+                    <label class="form-check-label" for="inlineCheckbox1">+ DE 20 COMPTEURS</label>
+                </div>
+                <div class="table table-electric mt-4 electric1">
                 <table class="table table-bordered mt-4">
                         <h5 colspan="5" class="text-center"> périmètre-électricité</h5>
                     <tr>
@@ -382,6 +384,8 @@
             <div class="plus20 electric2">
             <p id="plus20">Pour le(s) PDL dont la liste est annexée à la présente autorisation </p>
             </div>
+            </div>
+            
             <div class="show">
                 <button type="submit" class="btn btn-primary">Envoyez la demande</button>
             </div>

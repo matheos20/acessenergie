@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Client{% endblock %}
+
+{% block body %}
+    <style>
+        table {
+            border: 1px solid #ccc;
+            border-collapse: collapse;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        table caption {
+            font-size: 1.5em;
+            margin: .5em 0 .75em;
+        }
+
+        table tr {
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            padding: .35em;
+        }
+
+        table th,
+        table td {
+            padding: .625em;
+            text-align: center;
+
+        }
+
+        table th {
+            font-size: .85em;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        @media screen and (max-width: 600px) {
+            table {
+                border: 0;
+            }
+
+            table caption {
+                font-size: 1.3em;
+            }
+
+            table thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+
+            table tr {
+                border-bottom: 3px solid #ddd;
+                display: block;
+                margin-bottom: .625em;
+            }
+
+            table td {
+                border-bottom: 1px solid #ddd;
+                display: block;
+                font-size: .8em;
+                text-align: right;
+            }
+
+            table td::before {
+                /*
+                * aria-label has no advantage, it won't be read inside a table
+                content: attr(aria-label);
+                */
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            table td:last-child {
+                border-bottom: 0;
+            }
+        }
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">
+            <div class="container mt-5">
+                <h1>Listes des Clients</h1>
+                function:  {{ client.function }}
+                mermaid : {{ client.mermaid }} 
+                address:  {{ client.address }} 
+                mail:  {{ client.mail }} 
+                 social_reason:  {{ client.social_reason }}
+                 name_of_signatory:  {{ client.name_of_signatory }}
+               
+
+                   {% for gaz in gazs %}  
+                   pc1: {{gaz.PCE1}}
+                   pc2: {{gaz.PCE2}}
+                   pc3: {{gaz.PCE3}}
+                   pc4: {{gaz.PCE4}}
+                   pc5: {{gaz.PCE5}}
+                   pc6: {{gaz.PCE6}}
+                   pc7: {{gaz.PCE7}}
+                   pc8: {{gaz.PCE8}}
+                   pc9: {{gaz.PCE9}}
+                   pc10 {{gaz.PCE10}}
+                   pc11 {{gaz.PCE11}}
+                   pc12 {{gaz.PCE12}}
+                   pc13 {{gaz.PCE13}}
+                   pc14 {{gaz.PCE14}}
+                   pc15 {{gaz.PCE15}}
+                   pc16 {{gaz.PCE16}}
+                   pc17 {{gaz.PCE17}}
+                   pc18 {{gaz.PCE18}}
+                   pc19 {{gaz.PCE19}}
+                   pc20 {{gaz.PCE20}}
+
+{%endfor%}
+            </div>
+{% endblock %}

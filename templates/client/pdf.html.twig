@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>
+            Document
+        </title>
+        <style>
+    h2 {
+        text-align: center;
+        padding: 30px;
+        margin: 10px;
+    }
+
+    .info {
+        margin: 25px;
+    }
+
+    .access {
+        margin: 25px;
+    }
+
+    .liste {
+        margin: 25px;
+    }
+
+   
+
+    .presente {
+        margin: 25px;
+    }
+
+   
+
+    table.center {
+        margin-left: auto;
+        margin-right: auto;
+        width: 500px;
+    }
+
+    p {
+        font: 1em;
+    }
+</style>
+    </head>
+    <body>
+        {% include "client/gazPdf.html.twig" with gazs %}
+        {% include "client/electricitePdf.html.twig" with electrics %}
+        {% include "client/electricitePlus20Pdf.html.twig" with electreicite %}
+
+
+
+    </body>
+</html>

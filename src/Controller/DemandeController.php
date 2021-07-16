@@ -164,7 +164,7 @@ class DemandeController extends AbstractController
                        ])
             );
             $mailer->send($email);
-
+        
        return $this->redirectToRoute('client_index');
     }
     /** Reponse client click j'autorise
@@ -215,7 +215,6 @@ class DemandeController extends AbstractController
 
                     );
                 $mailer->send($email);
-               
                 if ($mailer->send($email) == true) {
                     $client->setValider(true);
                     $em = $this->getDoctrine()->getManager();
@@ -292,47 +291,7 @@ class DemandeController extends AbstractController
                         $em->flush();
                     }
                 }
-                // if ($gaz20 == "+ DE 20 GAZ") {
-                //     $client = $gaz->getClient();
-                //    // $client = $electric->getClient();
-                //     $mj = new \Mailjet\Client('4bb23ab13bf97d45b8a20429b73bd983', '2fc34f53d406022f6c964562bb84bb1b', true, ['version' => 'v3.1']);
-                //     $mj->addRequestOption('verify', false);
-                //     $body = [
-                //         'Messages' => [
-                //             [
-                //                 'From' => [
-                //                     'Email' => "sandinho10herios@gmail.com",
-                //                     'Name' => "Access Energie"
-                //                 ],
-                //                 'To' => [
-                //                     [
-                //                         'Email' => $client->getMail(),
-                //                         'Name' => $client->getNameOfSignatory()
-                //                     ]
-                //                 ],
-                //                 'Subject' => "Greetings from Mailjet.",
-                //                 'TextPart' => "My first Mailjet email",
-                //                 'HTMLPart' => $this->renderView('demande/gazplus20Message.html.twig', [
-                //                     'nom' => $client->getNameOfSignatory(),
-                //                     'email' => $client->getMail(),
-                //                     'entreprise' => $client->getmermaid(),
-                //                     'siren' => $client->getSocialReason(),
-                //                     'fonction' => $client->getFunction(),
-                //                 ])
-
-                //             ]
-                //         ]
-                //     ];
-                //     $response = $mj->post(Resources::$Email, ['body' => $body]);
-                //     $response->success();
-                //     $response->getData();
-                //     if ($response->success() == true) {
-                //         $client->setValider(true);
-                //         $em = $this->getDoctrine()->getManager();
-                //         $em->persist($client);
-                //         $em->flush();
-                //  }
-               // }
+               
             if ($electricite20 == "+ DE 20 ELECTRIQUE") {
                 $client = $electric->getClient();
                 $email = (new Email())
@@ -361,8 +320,5 @@ class DemandeController extends AbstractController
         
         return $this->render('demande/message.html.twig');
         
-       // return $this->addFlash('succes', 'Votre autorisation à bien était prise en compte et nous vous en remercions.
-//Une copie de cette autorisation, vient de vous être transmise par mail');
-
     }
 }

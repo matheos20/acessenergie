@@ -1,76 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    h2 {
-        text-align: center;
-        padding: 30px;
-        margin: 10px;
-    }
-
-    .info {
-        margin: 25px;
-    }
-
-    .access {
-        margin: 25px;
-    }
-
-    .liste {
-        margin: 25px;
-    }
-
-    ul li {
-        list-style-type: '- ';
-    }
-
-    .presente {
-        margin: 25px;
-    }
-
-    table,
-    th,
-    td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-
-    table.center {
-        margin-left: auto;
-        margin-right: auto;
-        width: 500px;
-    }
-
-    p {
-        font: 1em;
-    }
-
-    .p1 {
-        line-height: 1em;
-    }
-
-    .p2,
-    p3,
-    p4 {
-        line-height: 1em;
-    }
-
-</style>
-
+{% if electrics is not empty %}
 <d>
         <h2>AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)</h2>
         <div class="w3-container">
         <div class="info">
-            <p class="p1">L’entreprise:<b>{{ entreprise }}</p>
-            <p class="p2">Sous le SIREN: <b>{{ siren }}</b></p>
+            <p class="p1">L’entreprise:<b>{{ client.mermaid }}</p>
+            <p class="p2">Sous le SIREN: <b>{{ client.SocialReason }}</b></p>
             <p class="p3">Ayant son siège à</p>
-            <p class="p4">et <b>représentée</b> par : {{ nom }} FONCTION: <b>{{ fonction }}</b>, <b>dûment habilité(e) à cet effet,</b> titulaire de contrat(s) unique(s) pour la fourniture d’électricité pour le(s) site(s) de consommation mentionné(s) dans
+            <p class="p4">et <b>représentée</b> par : {{ client.NameOfSignatory }} FONCTION: <b>{{ client.function }}</b>, <b>dûment habilité(e) à cet effet,</b> titulaire de contrat(s) unique(s) pour la fourniture d’électricité pour le(s) site(s) de consommation mentionné(s) dans
                 le tableau en annexe,
             </p>
         </div>
@@ -89,13 +25,13 @@
         présente autorisation :</b></p>
         <div class="liste">
             <form>
-                <input type="checkbox" id="vehicle1" name="vehicle1" checked>
+                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
                 <label for="vehicle1"> la puissance souscrite en cours programmée dans le compteur</label><br>
-                <input type="checkbox" id="vehicle2" name="vehicle2" checked>
+                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
                 <label for="vehicle2"> la formule tarifaire d’acheminement en cours</label><br>
-                <input type="checkbox" id="vehicle3" name="vehicle3" checked>
+                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
                 <label for="vehicle3"> le type de compteur</label><br>
-                <input type="checkbox" id="vehicle3" name="vehicle3" checked>
+                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
                 <label for="vehicle3"> la courbe de charge</label>
             </form>
         </div>
@@ -107,73 +43,76 @@
                     application de la présente autorisation est interdite
                 </p>
             <p style="margin-left: 800px;text-decoration: underline" class="underline">signature </p>
-            <p style="margin-left: 800px">{{ nom }}</p>
+            <p style="margin-left: 800px">{{ client.NameOfSignatory }}</p>
         </div>
 
         <h3 style="text-align: center;">Annexe : Liste des PDL concernés</h3>
 
-        <table class="center" class="table table-striped" style="border: 1px solid black;">
+        <table class="center" class="table-striped" style="border: 1px solid black;">
+        {% for electric in electrics %} 
             <tr>
-                <td rowspan="2"> PDL1: {{ PDL1 }}</td>
+                <td rowspan="2"> PDL1: {{ electric.PDL1 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL2: {{ PDL2 }}</td>
+                <td rowspan="2"> PDL2: {{ electric.PDL2 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL3: {{ PDL3 }}</td>
+                <td rowspan="2"> PDL3: {{ electric.PDL3 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL4: {{ PDL4 }}</td>
+                <td rowspan="2"> PDL4: {{ electric.PDL4 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL5: {{ PDL5 }}</td>
+                <td rowspan="2"> PDL5: {{ electric.PDL5 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL6: {{ PDL6 }}</td>
+                <td rowspan="2"> PDL6: {{ electric.PDL6 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL7: {{ PDL7 }}</td>
+                <td rowspan="2"> PDL7: {{ electric.PDL7 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL7: {{ PDL8 }}</td>
+                <td rowspan="2"> PDL7: {{ electric.PDL8 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL9: {{ PDL9 }}</td>
+                <td rowspan="2"> PDL9: {{ electric.PDL9 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL10:{{ PDL10 }}</td>
+                <td rowspan="2"> PDL10:{{ electric.PDL10 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL11:{{ PDL11 }}</td>
+                <td rowspan="2"> PDL11:{{ electric.PDL11 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL12:{{ PDL12 }}</td>
+                <td rowspan="2"> PDL12:{{ electric.PDL12 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL13:{{ PDL13 }}</td>
+                <td rowspan="2"> PDL13:{{ electric.PDL13 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL14:{{ PDL14 }}</td>
+                <td rowspan="2"> PDL14:{{ electric.PDL14 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL15:{{ PDL15 }}</td>
+                <td rowspan="2"> PDL15:{{ electric.PDL15 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL16:{{ PDL16 }}</td>
+                <td rowspan="2"> PDL16:{{ electric.PDL16 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL17:{{ PDL17 }}</td>
+                <td rowspan="2"> PDL17:{{ electric.PDL17 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL18:{{ PDL18 }}</td>
+                <td rowspan="2"> PDL18:{{ electric.PDL18 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL19:{{ PDL19 }}</td>
+                <td rowspan="2"> PDL19:{{ electric.PDL19 }}</td>
             </tr>
             <tr>
-                <td rowspan="2"> PDL20:{{ PDL20 }}</td>
+                <td rowspan="2"> PDL20:{{ electric.PDL20 }}</td>
             </tr>
+            {%endfor%}
         </table>
+        
         </div>
-</body>
-</html>
+        {% endif %}
+

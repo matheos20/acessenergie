@@ -3,14 +3,21 @@
 namespace App\Controller;
 
 use App\Entity\Client;
+
+use App\Form\ClientRechercheType;
 use App\Form\ClientType;
+use App\Form\Request\ClientRecherche;
 use App\Repository\ClientRepository;
+use App\Repository\ElectricitePlus20Repository;
+use App\Repository\ElectriciteRepository;
+use App\Repository\GazRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-
+use Dompdf\Dompdf;
+use Dompdf\Options;
 
 
 
@@ -20,13 +27,58 @@ class ClientController extends AbstractController
      * @Route("/", name="client_index")
      */
     public function index(ClientRepository $clientRepository,PaginatorInterface $paginator,Request $request): Response
-    {
-        $cli = $clientRepository->findAll();
-        $client = $paginator->paginate($cli, $request->query->getInt('page', 1),7
-        );
+    {  
+         $recherche = new ClientRecherche();
+        $form = $this->createForm(ClientRechercheType::class,$recherche);
+        $form ->handleRequest($request);
+        $searchQuery = $clientRepository->findBySocialResion($recherche->getSocialReason()? $recherche->getSocialReason():"");
+       
+
         return $this->render('client/index.html.twig', [
-            'clients' => $client,
+            'clients' => $paginator->paginate($searchQuery, $request->query->getInt('page', 1), 20),
+            'form' => $form->createView()
         ]);
+    }
+    /**
+     * @Route("/clientpdf/{id}", name="client_pdf")
+     */
+    public function renderpdf(Client $id, Request $request, ClientRepository $clientRepository, GazRepository $gazRepository, ElectriciteRepository $electriciteRepository, ElectricitePlus20Repository $electricPlus20)
+    {
+
+        $client = $clientRepository->find($id);
+        $gaz = $gazRepository->findBy(['client'=>$id]);
+        $electric = $electriciteRepository->findBy(['client'=>$id]);
+        $electricitePlus20 = $electricPlus20->findBy(['client' => $id]);
+        
+        // Configure Dompdf according to your needs
+        $pdfOptions = new Options();
+        $pdfOptions->set('defaultFont', 'Arial');
+
+        // Instantiate Dompdf with our options
+        $dompdf = new Dompdf($pdfOptions);
+
+        // Retrieve the HTML generated in our twig file
+        $html = $this->renderView('client/pdf.html.twig', [
+            'client' => $client,
+            'gazs' => $gaz,
+            'electrics' => $electric,
+            'electreicite' => $electricitePlus20
+        ]);
+
+        // Load HTML to Dompdf
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation 'portrait' or 'portrait'
+        $dompdf->setPaper('A4', 'portrait');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser (force download)
+        $dompdf->stream("mypdf.pdf", [
+            "Attachment" => true
+        ]);
+        dd($dompdf);
     }
 
     /**
@@ -86,7 +138,7 @@ class ClientController extends AbstractController
      * @Route("client/delete/{id}", name="client_delete")
      */
     public function delete(Request $request, Client $client): Response
-    {
+    { 
         if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($client);

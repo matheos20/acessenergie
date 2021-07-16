@@ -84,15 +84,63 @@
             table td:last-child {
                 border-bottom: 0;
             }
+ 
         }
+        input[type="text"]#client_recherche_social_reason {
+ margin-left: 429px;
+    /* text-align: right; */
+    width: 231px
+}
+input[type="text"]#client_recherche_social_reason.form-control {
+    /* display: block; */
+        margin: 6px;
+   /* width: 5px;*/
+    margin-left: 227px;
+     /*width: 30% !important; */
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+     font-weight: 400; 
+     line-height: 1.5; 
+     color: #495057; 
+    background-color: #fff; 
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.recherche{
+   /* margin:-58px; */
+   margin: -63px;
+    margin-left: 148%;
+}
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">
             <div class="container mt-5">
-                <h1>Listes des Clients</h1>
-                    <a class="btn btn-success mt-4 mb-4" href="{{ path('client_new') }}" style="margin-left: 0px;">Nouveau Client</a>
-                        <table class="table table-bordered">
+<h1 style="margin: 50px">
+    Listes des Clients
+</h1>
+
+                    
+<div style="display: inline-flex;height: 38px; margin: 0px;">
+    
+    
+                <a class="btn btn-success" href="{{ path('client_new') }}" style="margin-left: 29px;">Nouveau Client</a>
+                    {{ form_start(form) }}
+                    {{ form_row(form.social_reason) }}   
+<button class="btn btn-primary recherche" type="submit">
+    
+    rechercher
+</button>
+
+                    {{form_end(form)}}
+            </div>
+
+<table class="table table-bordered" style="margin: 48px; margin-left: 0">
+    
+    
                             <thead>
                                 <tr>
                                     <th scope="col" class="align-middle">Raison sociale </th>
@@ -101,7 +149,7 @@
                                     <th scope="col" class="align-middle">Nom du Signataire </th>
                                     <th scope="col" class="align-middle">Fonction</th>
                                     <th scope="col" class="align-middle" style="width: 28%">Adresse mail </th>
-                                    <th scope="col" class="align-middle" style="width: 19%">actions</th>
+                                    <th scope="col" class="align-middle" style="width: 22%">actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -121,6 +169,7 @@
                                         {% if client.valider == true  %}
                                             <a ><i style="color: green;padding-left:20px" class="fa fa-check" aria-hidden="true"></i></a>
                                             {% endif %}
+                                            <a href="{{ path('client_pdf', {'id': client.id}) }}">pdf</a>
                                     </td>
                                 </tr>
                             {% else %}

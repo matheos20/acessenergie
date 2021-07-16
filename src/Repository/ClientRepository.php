@@ -18,6 +18,15 @@ class ClientRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Client::class);
     }
+    public function findBySocialResion(?string $term){
+         return $this->createQueryBuilder('c')
+            ->andWhere('c.social_reason like :val')
+            ->setParameter('val', "%{$term}%")
+            ->orderBy('c.id', 'ASC')
+            ->getQuery();
+            
+           
+    }
 
     // /**
     //  * @return Client[] Returns an array of Client objects

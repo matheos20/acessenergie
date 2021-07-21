@@ -47,4 +47,24 @@ class ElectriciteRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @param int $clientId
+     * @param string $token
+     * @return int|mixed|string|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findLastByClient(int $clientId, string $token)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.client = :clientId')
+            ->andWhere('e.tokenToConfirmAuthorization = :token')
+            ->andWhere('e.isAlreadyAuthorized IS NULL OR e.isAlreadyAuthorized = 0')
+            ->setParameter('clientId', $clientId)
+            ->setParameter('token', $token)
+            ->setMaxResults(1)
+            ->orderBy('e.id', 'desc')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

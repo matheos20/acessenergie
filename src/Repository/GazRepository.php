@@ -47,4 +47,24 @@ class GazRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /***
+     * @param int $clientId
+     * @param string $token
+     * @return int|mixed|string|null
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function findLastByClient(int $clientId, string $token)
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.client = :clientId')
+            ->andWhere('g.tokenToConfirmAuthorization = :token')
+            ->andWhere('g.isAlreadyAuthorized IS NULL OR g.isAlreadyAuthorized = 0')
+            ->setParameter('clientId', $clientId)
+            ->setParameter('token', $token)
+            ->setMaxResults(1)
+            ->orderBy('g.id', 'desc')
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }

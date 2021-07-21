@@ -27,6 +27,16 @@ class GazPlus20
      */
     private $client;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isAlreadyAuthorized;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $tokenToConfirmAuthorization;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,4 +65,41 @@ class GazPlus20
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIsAlreadyAuthorized()
+    {
+        return $this->isAlreadyAuthorized;
+    }
+
+    /**
+     * @param mixed $isAlreadyAuthorized
+     * @return GazPlus20
+     */
+    public function setIsAlreadyAuthorized($isAlreadyAuthorized)
+    {
+        $this->isAlreadyAuthorized = $isAlreadyAuthorized;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenToConfirmAuthorization()
+    {
+        return $this->tokenToConfirmAuthorization;
+    }
+
+    /**
+     * @param mixed $tokenToConfirmAuthorization
+     * @return GazPlus20
+     */
+    public function setTokenToConfirmAuthorization($tokenToConfirmAuthorization)
+    {
+        $this->tokenToConfirmAuthorization = $tokenToConfirmAuthorization;
+        return $this;
+    }
+
 }

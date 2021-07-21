@@ -120,9 +120,19 @@ class Electricite
     private $PDL20;
 
     /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isAlreadyAuthorized;
+
+    /**
      * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="electricite")
      */
     private $client;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $tokenToConfirmAuthorization;
 
     public function __construct()
     {
@@ -385,5 +395,42 @@ class Electricite
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIsAlreadyAuthorized()
+    {
+        return $this->isAlreadyAuthorized;
+    }
+
+    /**
+     * @param mixed $isAlreadyAuthorized
+     * @return Electricite
+     */
+    public function setIsAlreadyAuthorized($isAlreadyAuthorized)
+    {
+        $this->isAlreadyAuthorized = $isAlreadyAuthorized;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenToConfirmAuthorization()
+    {
+        return $this->tokenToConfirmAuthorization;
+    }
+
+    /**
+     * @param mixed $tokenToConfirmAuthorization
+     * @return Electricite
+     */
+    public function setTokenToConfirmAuthorization($tokenToConfirmAuthorization)
+    {
+        $this->tokenToConfirmAuthorization = $tokenToConfirmAuthorization;
+        return $this;
+    }
+
 
 }

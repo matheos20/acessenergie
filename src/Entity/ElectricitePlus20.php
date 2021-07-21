@@ -27,6 +27,16 @@ class ElectricitePlus20
      */
     private $client;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isAlreadyAuthorized;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $tokenToConfirmAuthorization;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -55,4 +65,42 @@ class ElectricitePlus20
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIsAlreadyAuthorized()
+    {
+        return $this->isAlreadyAuthorized;
+    }
+
+    /**
+     * @param mixed $isAlreadyAuthorized
+     * @return ElectricitePlus20
+     */
+    public function setIsAlreadyAuthorized($isAlreadyAuthorized)
+    {
+        $this->isAlreadyAuthorized = $isAlreadyAuthorized;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenToConfirmAuthorization()
+    {
+        return $this->tokenToConfirmAuthorization;
+    }
+
+    /**
+     * @param mixed $tokenToConfirmAuthorization
+     * @return ElectricitePlus20
+     */
+    public function setTokenToConfirmAuthorization($tokenToConfirmAuthorization)
+    {
+        $this->tokenToConfirmAuthorization = $tokenToConfirmAuthorization;
+        return $this;
+    }
+
+
 }

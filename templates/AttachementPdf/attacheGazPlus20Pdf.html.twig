@@ -57,10 +57,10 @@
         <div class="w3-container">
             <div class="info">
 
-                <p class="p1">L’entreprise: <b>{{ client.mermaid }}</b></p>
-                <p class="p2">Sous le SIREN: <b>{{ client.getSocialReason() }}</b></p>
+                <p class="p1">L’entreprise: <b>{{ client.mermaid }} </b></p>
+                <p class="p2">Sous le SIREN: <b>{{ client.getSocialReason() }} </b></p>
                 <p class="p3">Ayant son siège à</p>
-                <p class="p4">et représentée par : <b>{{ client.getNameOfSignatory() }}</b> FONCTION: <b>{{ client.function }}</b>,dûment habilité(e) à cet effet,
+                <p class="p4">et représentée par : <b>{{ client.getNameOfSignatory() }} </b> FONCTION: <b>{{ client.function }} </b>,dûment habilité(e) à cet effet,
                     titulaire de contrat(s) unique(s) pour la fourniture de gaz naturel pour le(s) site(s)
                     de consommation mentionné(s) dans le tableau en annexe,
                 </p>
@@ -85,7 +85,6 @@
                     <li>Le type de profil</li>
                 </ul>
             </div>
-        
             <div class="presente">
                 <p>La présente autorisation est nominative,
                     ne peut être cédée et est valable et consultable douze mois après la date designature du présent document.
@@ -94,74 +93,12 @@
                     application de la présente autorisation est interdite.
                 </p>
                 <p style="margin-left: 800px;text-decoration: underline" class="underline">signature </p>
-                <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }}</p>
+                <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }} </p>
             </div>
 
         <h3 style="text-align: center;">Annexe : Liste des PCE concernés</h3>
-
-        <table align="center" class="table-striped" style="border: 1px solid black;">
-                <tr>
-                    <td rowspan="2">PCE1: {{ value.PCE1 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE2: {{ value.PCE2 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE3: {{ value.PCE3 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE4: {{ value.PCE4 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE5: {{ value.PCE5 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE6: {{ value.PCE6}}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE7: {{ value.PCE7 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE8: {{ value.PCE8 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE9: {{ value.PCE9 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE10:{{ value.PCE10 }} </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE11:{{ value.PCE11 }} </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE12:{{ value.PCE12 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE13:{{ value.PCE13 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE14:{{ value.PCE14 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE15:{{ value.PCE15 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE16:{{ value.PCE16 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE17:{{ value.PCE17 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE18:{{ value.PCE18 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE19:{{ value.PCE19 }}</td>
-                </tr>
-                <tr>
-                    <td rowspan="2">PCE20:{{ value.PCE20 }}</td>
-                </tr>
-
-        </table>
+            <p style=" text-align: center"><b>{{ value.gazplus20 }}
+                </b></p>
         </div>
 </body>
 </html>

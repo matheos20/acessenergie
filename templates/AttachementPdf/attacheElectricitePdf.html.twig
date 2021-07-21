@@ -1,12 +1,11 @@
-{% if electreicite is not empty %}  
 <div>
         <h2>AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)</h2>
         <div class="w3-container">
         <div class="info">
             <p class="p1">L’entreprise:<b>{{ client.mermaid }}</p>
-            <p class="p2">Sous le SIREN: <b>{{ client.SocialReason }}</b></p>
+            <p class="p2">Sous le SIREN: <b>{{ client.getSocialReason() }}</b></p>
             <p class="p3">Ayant son siège à</p>
-            <p class="p4">et <b>représentée</b> par : {{ client.NameOfSignatory }} FONCTION: <b>{{ client.function }}</b>, <b>dûment habilité(e) à cet effet,</b> titulaire de contrat(s) unique(s) pour la fourniture d’électricité pour le(s) site(s) de consommation mentionné(s) dans
+            <p class="p4">et <b>représentée</b> par : {{ client.getNameOfSignatory() }} FONCTION: <b>{{ client.function }}</b>, <b>dûment habilité(e) à cet effet,</b> titulaire de contrat(s) unique(s) pour la fourniture d’électricité pour le(s) site(s) de consommation mentionné(s) dans
                 le tableau en annexe,
             </p>
         </div>
@@ -43,21 +42,74 @@
                     application de la présente autorisation est interdite
                 </p>
             <p style="margin-left: 800px;text-decoration: underline" class="underline">signature </p>
-            <p style="margin-left: 800px">{{ client.NameOfSignatory }}</p>
+            <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }}</p>
         </div>
 
         <h3 style="text-align: center;">Annexe : Liste des PDL concernés</h3>
-{% for electricitePlus20 in electreicite %}
-    
-<p style=" text-align: center">
 
-    
-    <b>
-        {{electricitePlus20.electriciteplus20}}
-    </b>
-</p>
-
-{% endfor %}
-
+        <table class="center" class="table-striped" style="border: 1px solid black;">
+            <tr>
+                <td rowspan="2"> PDL1: {{ value.PDL1 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL2: {{ value.PDL2 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL3: {{ value.PDL3 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL4: {{ value.PDL4 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL5: {{ value.PDL5 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL6: {{ value.PDL6 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL7: {{ value.PDL7 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL7: {{ value.PDL8 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL9: {{ value.PDL9 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL10:{{ value.PDL10 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL11:{{ value.PDL11 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL12:{{ value.PDL12 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL13:{{ value.PDL13 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL14:{{ value.PDL14 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL15:{{ value.PDL15 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL16:{{ value.PDL16 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL17:{{ value.PDL17 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL18:{{ value.PDL18 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL19:{{ value.PDL19 }}</td>
+            </tr>
+            <tr>
+                <td rowspan="2"> PDL20:{{ value.PDL20 }}</td>
+            </tr>
+        </table>
+        
         </div>
-{% endif %}
+</div>
+

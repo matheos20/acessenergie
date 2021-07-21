@@ -10,7 +10,9 @@ use App\Form\Request\ClientRecherche;
 use App\Repository\ClientRepository;
 use App\Repository\ElectricitePlus20Repository;
 use App\Repository\ElectriciteRepository;
+use App\Repository\GazPlus20Repository;
 use App\Repository\GazRepository;
+use DateTime;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -42,13 +44,15 @@ class ClientController extends AbstractController
     /**
      * @Route("/clientpdf/{id}", name="client_pdf")
      */
-    public function renderpdf(Client $id, Request $request, ClientRepository $clientRepository, GazRepository $gazRepository, ElectriciteRepository $electriciteRepository, ElectricitePlus20Repository $electricPlus20)
+    public function renderpdf(Client $id, Request $request, ClientRepository $clientRepository, GazRepository $gazRepository, ElectriciteRepository $electriciteRepository, ElectricitePlus20Repository $electricPlus20,GazPlus20Repository $gazplus20)
     {
 
         $client = $clientRepository->find($id);
         $gaz = $gazRepository->findBy(['client'=>$id]);
         $electric = $electriciteRepository->findBy(['client'=>$id]);
-        $electricitePlus20 = $electricPlus20->findBy(['client' => $id]);
+        $electricitePlus = $electricPlus20->findBy(['client' => $id]);
+        $gazPlus = $gazplus20 ->findBy(['client' => $id]);
+
         
         // Configure Dompdf according to your needs
         $pdfOptions = new Options();
@@ -58,11 +62,14 @@ class ClientController extends AbstractController
         $dompdf = new Dompdf($pdfOptions);
 
         // Retrieve the HTML generated in our twig file
-        $html = $this->renderView('client/pdf.html.twig', [
+        $html = $this->renderView('FilePdf/pdf.html.twig', [
             'client' => $client,
             'gazs' => $gaz,
             'electrics' => $electric,
-            'electreicite' => $electricitePlus20
+            'electreicite' => $electricitePlus,
+            'gazz' => $gazPlus
+            //dd($electricitePlus),
+
         ]);
 
         // Load HTML to Dompdf
@@ -72,7 +79,7 @@ class ClientController extends AbstractController
         $dompdf->setPaper('A4', 'portrait');
 
         // Render the HTML as PDF
-        $dompdf->render();
+        @$dompdf->render();
 
         // Output the generated PDF to Browser (force download)
         $dompdf->stream("mypdf.pdf", [
@@ -137,14 +144,42 @@ class ClientController extends AbstractController
     /**
      * @Route("client/delete/{id}", name="client_delete")
      */
-    public function delete(Request $request, Client $client): Response
+    public function delete(Request $request, Client $client, ElectriciteRepository $electriciteRepository,GazRepository $gazRepository,ElectricitePlus20Repository $electricPlus20,GazPlus20Repository $gazPlus20): Response
     { 
-        if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->request->get('_token'))) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->remove($client);
-            $entityManager->flush();
+        $electirqs = $electriciteRepository->findBy(['client' => $client->getId()]);
+        $gazs =$gazRepository->findBy(['client' => $client->getId()]);
+        $electirqplus = $electricPlus20->findBy(['client' => $client->getId()]);
+        $gazplus = $gazPlus20->findBy(['client' => $client->getId()]);
+                                
+
+       
+        $entityManager = $this->getDoctrine()->getManager();
+
+        foreach ($gazs as $gaz) {
+            $entityManager->remove($gaz);
         }
 
+        foreach($electirqs as $electirq){
+            $entityManager->remove($electirq);  
+        }
+
+        foreach ($electirqplus as $electirqplu) {
+            $entityManager->remove($electirqplu);
+        }
+
+        foreach ($gazplus as $gazplu) {
+            $entityManager->remove($gazplu);
+        }
+       // $entityManager->flush();
+        
+
+        //if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->request->get('_token'))) {
+          //  $entityManager = $this->getDoctrine()->getManager();
+
+            $entityManager->remove($client);
+            $entityManager->flush();
+    //}
+            
         return $this->redirectToRoute('client_index');
     }
 

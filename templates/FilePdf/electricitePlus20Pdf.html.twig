@@ -1,76 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<style>
-    h2 {
-        text-align: center;
-        padding: 30px;
-        margin: 10px;
-    }
-
-    .info {
-        margin: 25px;
-    }
-
-    .access {
-        margin: 25px;
-    }
-
-    .liste {
-        margin: 25px;
-    }
-
-    ul li {
-        list-style-type: '- ';
-    }
-
-    .presente {
-        margin: 25px;
-    }
-
-    table,
-    th,
-    td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-
-    table.center {
-        margin-left: auto;
-        margin-right: auto;
-        width: 500px;
-    }
-
-    p {
-        font: 1em;
-    }
-
-    .p1 {
-        line-height: 1em;
-    }
-
-    .p2,
-    p3,
-    p4 {
-        line-height: 1em;
-    }
-
-</style>
-
-<body>
+{% if electreicite is not empty %}  
+<div>
         <h2>AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)</h2>
-        <div class="w3-container"></div>
+        <div class="w3-container">
         <div class="info">
             <p class="p1">L’entreprise:<b>{{ client.mermaid }}</p>
-            <p class="p2">Sous le SIREN: <b>{{ client.getSocialReason() }}</b></p>
+            <p class="p2">Sous le SIREN: <b>{{ client.SocialReason }}</b></p>
             <p class="p3">Ayant son siège à</p>
-            <p class="p4">et <b>représentée</b> par : {{ client.getNameOfSignatory()}} FONCTION: <b>{{ client.function }}</b>, <b>dûment habilité(e) à cet effet,</b> titulaire de contrat(s) unique(s) pour la fourniture d’électricité pour le(s) site(s) de consommation mentionné(s) dans
+            <p class="p4">et <b>représentée</b> par : {{ client.NameOfSignatory }} FONCTION: <b>{{ client.function }}</b>, <b>dûment habilité(e) à cet effet,</b> titulaire de contrat(s) unique(s) pour la fourniture d’électricité pour le(s) site(s) de consommation mentionné(s) dans
                 le tableau en annexe,
             </p>
         </div>
@@ -107,10 +43,21 @@
                     application de la présente autorisation est interdite
                 </p>
             <p style="margin-left: 800px;text-decoration: underline" class="underline">signature </p>
-            <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }}</p>
+            <p style="margin-left: 800px">{{ client.NameOfSignatory }}</p>
         </div>
-            <p style=" text-align: center"><b>{{value.electriciteplus20}} </b></p>
-    
-</body>
 
-</html>
+        <h3 style="text-align: center;">Annexe : Liste des PDL concernés</h3>
+{% for electricitePlus in electreicite %}
+    
+<p style=" text-align: center">
+
+    
+    <b>
+        {{electricitePlus.electriciteplus20}}
+    </b>
+</p>
+
+{% endfor %}
+
+        </div>
+{% endif %}

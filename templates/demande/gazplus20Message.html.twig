@@ -57,10 +57,10 @@
         <div class="w3-container">
             <div class="info">
 
-                <p class="p1">L’entreprise: <b>{{ entreprise }}</b></p>
-                <p class="p2">Sous le SIREN: <b>{{ siren }}</b></p>
+                <p class="p1">L’entreprise: <b>{{ client.mermaid}}</b></p>
+                <p class="p2">Sous le SIREN: <b>{{ client.getSocialReason() }}</b></p>
                 <p class="p3">Ayant son siège à</p>
-                <p class="p4">et représentée par : <b>{{ nom }}</b> FONCTION: <b>{{ fonction }}</b>,dûment habilité(e) à cet effet,
+                <p class="p4">et représentée par : <b>{{ client.getNameOfSignatory() }}</b> FONCTION: <b>{{ client.function }}</b>,dûment habilité(e) à cet effet,
                     titulaire de contrat(s) unique(s) pour la fourniture de gaz naturel pour le(s) site(s)
                     de consommation mentionné(s) dans le tableau en annexe,
                 </p>
@@ -93,9 +93,9 @@
                     application de la présente autorisation est interdite.
                 </p>
                 <p style="margin-left: 800px;text-decoration: underline" class="underline">signature </p>
-                <p style="margin-left: 800px">{{ nom }}</p>
+                <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }}</p>
             </div>
 
-            <p style=" text-align: center"><b>« Pour le(s) PCE dont la liste est annexée à la présente autorisation : »</b></p>
+            <p style=" text-align: center"><b>{{value.gazplus20}}</b></p>
 </body>
 </html>

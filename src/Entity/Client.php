@@ -74,6 +74,11 @@ class Client
      */
     private $gazPlus20s;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $date;
+
 
     public function __construct()
     {
@@ -289,6 +294,18 @@ class Client
                 $gazPlus20->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
 
         return $this;
     }

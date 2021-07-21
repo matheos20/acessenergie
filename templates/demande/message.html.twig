@@ -25,6 +25,7 @@
         <img src="{{ asset('image/logo.png') }}">
       </a>
     </div>
+    {%  if isHasMailSend %}
     <fieldset style="text-align: center; background-color: #F2F3F4;
             margin: 200px auto;
             padding-left: 5px;
@@ -32,6 +33,16 @@
         <h3>Votre autorisation à bien était prise en compte et nous vous en remercions.
             Une copie de cette autorisation, vient de vous être transmise par mail</h3>
     </fieldset>
+        {% else %}
+            <fieldset style="text-align: center; background-color: #F2F3F4;
+            margin: 200px auto;
+            padding-left: 5px;
+            width:70%;">
+                <h3>Votre autorisation à était déjà prise en compte et nous vous en remercions.
+                    Une copie de cette autorisation a été déjà transmise par mail</h3>
+            </fieldset>
+    {% endif %}
+
     <div class="footer">
         <p>Au revoir merci</p>
     </div>

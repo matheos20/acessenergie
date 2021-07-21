@@ -97,7 +97,10 @@
             </div>
 
         <h3 style="text-align: center;">Annexe : Liste des PCE concernés</h3>
-            <p style=" text-align: center"><b>« Pour le(s) PCE dont la liste est annexée à la présente autorisation : »</b></p>
+            {% for gazPlus in gazPluss %}
+            <p style=" text-align: center"><b>{{ gazPlus.gazplus20 }}
+                </b></p>
+            {% endfor %}
         </div>
 </body>
 </html>

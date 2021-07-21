@@ -124,10 +124,15 @@ class Gaz
      */
     private $client;
 
-    public function __construct()
-    {
-        $this->client = new ArrayCollection();
-    }
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isAlreadyAuthorized;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $tokenToConfirmAuthorization;
 
     public function getId(): ?int
     {
@@ -385,4 +390,41 @@ class Gaz
 
         return $this;
     }
+
+    /**
+     * @return bool
+     */
+    public function getIsAlreadyAuthorized()
+    {
+        return $this->isAlreadyAuthorized;
+    }
+
+    /**
+     * @param bool $isAlreadyAuthorized
+     * @return Gaz
+     */
+    public function setIsAlreadyAuthorized($isAlreadyAuthorized)
+    {
+        $this->isAlreadyAuthorized = $isAlreadyAuthorized;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTokenToConfirmAuthorization()
+    {
+        return $this->tokenToConfirmAuthorization;
+    }
+
+    /**
+     * @param mixed $tokenToConfirmAuthorization
+     * @return Gaz
+     */
+    public function setTokenToConfirmAuthorization($tokenToConfirmAuthorization)
+    {
+        $this->tokenToConfirmAuthorization = $tokenToConfirmAuthorization;
+        return $this;
+    }
+
 }

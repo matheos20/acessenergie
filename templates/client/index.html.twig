@@ -124,7 +124,8 @@ input[type="text"]#client_recherche_social_reason.form-control {
 </h1>
 
                     
-<div style="display: inline-flex;height: 38px; margin: 0px;">
+<div style="display: inline-flex;height: 38px; margin: 0px;
+">
     
     
                 <a class="btn btn-success" href="{{ path('client_new') }}" style="margin-left: 29px;">Nouveau Client</a>
@@ -165,7 +166,7 @@ input[type="text"]#client_recherche_social_reason.form-control {
                                         <a href="{{ path('client_show', {'id': client.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
                                         <a href="{{ path('client_edit', {'id': client.id}) }}"><i style="color: yellow;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                         <a href="{{ path('Ajout_demande', {'id': client.id}) }}"><i style="color: blue;padding-left:20px" class="fal fa-paper-plane" aria-hidden="true"></i></a>
-                                        <a href="{{ path('client_delete', {'id': client.id}) }}"><i style="color: red;padding-left:20px" class="fa fa-trash" aria-hidden="true"></i></a>
+                                        <a href="{{ path('client_delete', {'id': client.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i style="color: red;padding-left:20px" class="fa fa-trash delete" aria-hidden="true"></i></a>
                                         {% if client.valider == true  %}
                                             <a ><i style="color: green;padding-left:20px" class="fa fa-check" aria-hidden="true"></i></a>
                                             {% endif %}
@@ -182,5 +183,6 @@ input[type="text"]#client_recherche_social_reason.form-control {
                 <div class="navigation" style="text-align: center">
                     {{ knp_pagination_render(clients) }}
                 </div>
+
             </div>
 {% endblock %}

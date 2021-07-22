@@ -14,14 +14,14 @@ class AuthorizationRequestType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('isNaturalGaz', CheckboxType::class)
-            ->add('isElectricite', CheckboxType::class)
+        $builder->add('isNaturalGaz', CheckboxType::class,['label'=>'gaz naturel'])
+            ->add('isElectricite', CheckboxType::class,['label'=>'electricite'])
             ->add('gazNatural', GazType::class)
             ->add('electricite', ElectriciteRequestType::class)
-            ->add('isMoreThanTwentyGaz', CheckboxType::class)
-            ->add('isTwentyGaz', CheckboxType::class)
-            ->add('isMoreThanTwentyElec', CheckboxType::class)
-            ->add('isTwentyElec', CheckboxType::class);
+            ->add('isMoreThanTwentyGaz', CheckboxType::class,['label'=>'+ de 20 compteurs'])
+            ->add('isTwentyGaz', CheckboxType::class,['label'=>'- de 20 compteurs'])
+            ->add('isMoreThanTwentyElec', CheckboxType::class,['label'=>'+ de 20 compteurs'])
+            ->add('isTwentyElec', CheckboxType::class,['label'=>'- de 20 compteurs']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

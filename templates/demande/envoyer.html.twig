@@ -168,12 +168,11 @@
                 <div class="form-check form-check-inline mt-4 text-center">
                     {{ form_widget(form.isNaturalGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz'}}) }}
                     <img src="{{ asset('image/gaz.png') }}" class="mr-1" width="40" alt="">
-                    <label class="form-check-label" for="inlineCheckbox1">GAZ NATUREL</label>
                 </div>
                 <div class="form-check form-check-inline text-center">
                     {{ form_widget(form.isElectricite , {'attr': {'class': 'form-check-input', 'id': 'show-form-elec'}}) }}
                     <img src="{{ asset('image/elec.png') }}" class="mr-1" width="40" alt="">
-                    <label class="form-check-label" for="inlineCheckbox1">ELECTRICITE</label>
+
                 </div>
             </div>
             
@@ -181,11 +180,9 @@
                 <h4>GAZ NATUREL</h4>
                 <div class="form-check form-check-inline">
                     {{ form_widget(form.isTwentyGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz-twenty'}}) }}
-                    <label class="form-check-label" for="inlineCheckbox1">- DE 20 COMPTEURS</label>
                 </div>
                 <div class="form-check form-check-inline">
                     {{ form_widget(form.isMoreThanTwentyGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz-than-twenty'}}) }}
-                    <label class="form-check-label" for="inlineCheckbox1">+ DE 20 COMPTEURS</label>
                 </div>
                 <div class="table table-gaz mt-4 gaz1" id="form-gaz-twenty">
             <h5 colspan="5" class="text-center"> périmètre-gaz naturel</h5>
@@ -281,17 +278,15 @@
             <p id="plus20">Pour le(s) PCE dont la liste est annexée à la présente autorisation</p>
             </div>
             </div>
-            
+             
 
             <div class="jumbotron mt-2 electrique text-center">
                 <h4>ELECTRICITE</h4>
                 <div class="form-check form-check-inline">
                     {{ form_widget(form.isTwentyElec , {'attr': {'class': 'form-check-input', 'id': 'show-form-elec-twenty'}}) }}
-                    <label class="form-check-label" for="inlineCheckbox1">- DE 20 COMPTEURS</label>
                 </div>
                 <div class="form-check form-check-inline">
                     {{ form_widget(form.isMoreThanTwentyElec , {'attr': {'class': 'form-check-input', 'id': 'show-form-elec-than-twenty'}}) }}
-                    <label class="form-check-label" for="inlineCheckbox1">+ DE 20 COMPTEURS</label>
                 </div>
                 <div class="table table-electric mt-4 electric1" id="form-elec-twenty">
                     <table class="table table-bordered" >

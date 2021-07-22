@@ -67,7 +67,7 @@ class ClientController extends AbstractController
             'gazs' => $gaz,
             'electrics' => $electric,
             'electreicite' => $electricitePlus,
-            'gazz' => $gazPlus
+            'gazPluss' => $gazPlus
             //dd($electricitePlus),
 
         ]);

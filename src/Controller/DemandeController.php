@@ -176,8 +176,7 @@ class DemandeController extends AbstractController
         // Store PDF Binary Data
         $output = $dompdf->output();
 
-        // e.g /var/www/project/public/mypdf.pdf
-        $pdfFilepath =  sys_get_temp_dir() . $name;
+        $pdfFilepath =  rtrim(sys_get_temp_dir(), DIRECTORY_SEPARATOR). DIRECTORY_SEPARATOR . $name;
 
         // Write file to the desired path
         file_put_contents($pdfFilepath, $output);

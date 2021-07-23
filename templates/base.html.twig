@@ -13,10 +13,10 @@
         {% include 'partial/header.html.twig' %}
         {% block body %}{% endblock %}
 
+            <script src="{{ asset('js/jquery-3.6.0.js') }}"></script>
             <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
             <script src="{{ asset('js/bootstrap.min.js') }}"></script>
             <script src="{{ asset('js/popper.min.js') }}"></script>
-            <script src="{{ asset('js/jquery-3.6.0.js') }}"></script>
 
         {% block javascripts %}{% endblock %}
     </body>

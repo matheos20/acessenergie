@@ -1,231 +1,107 @@
 {% if gazs is not empty %}
-    <h2>
-        AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)
-    </h2>
-    <div class="w3-container">
-        <div class="info">
+    {% for gaz in gazs %}
+        <h2 style="background-color: grey; text-align: center;padding-top:15px; font-size: 14px">
+            AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)
+        </h2>
+        <p style="line-height: 4px;">L’entreprise: <b>{{ client.mermaid }}</b></p>
+        <p style="line-height: 4px;">Sous le SIREN: <b>{{ client.getSocialReason() }}</b></p>
+<p style="line-height: 4px;">Ayant son siège à: <b>{{ client.address }}</b>
+</p>
 
-            <p class="p1">
-                L’entreprise: 
-                <b>
-                    {{ client.mermaid }}
-                </b>
-            </p>
-            <p class="p2">
-                Sous le SIREN: 
-                <b>
-                    {{ client.SocialReason }}
-                </b>
-            </p>
-            <p class="p3">
-                Ayant son siège à
-            </p>
-            <p class="p4">
-                et représentée par : 
-                <b>
-                    {{ client.NameOfSignatory }}
-                </b>
-                FONCTION: 
-                <b>
-                    {{ client.function }}
-                </b>
-                ,dûment habilité(e) à cet effet,
+
+        <p>et représentée par : <b>{{ client.getNameOfSignatory() }}</b>
+            FONCTION:
+            <b>{{ client.function }}</b>,dûment habilité(e) à cet effet,
                                     titulaire de contrat(s) unique(s) pour la fourniture de gaz naturel pour le(s) site(s)
                                     de consommation mentionné(s) dans le tableau en annexe,
-                                
-            </p>
-        </div>
-        <h4 style="margin: 25px;">
-            AUTORISE
-        </h4>
-        <div class="access">
-            <p>
-                ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L4OURAILLE 76940 LA MAILLERAYE SUR SEINE, et
-                                    
-                <b>
-                    représentée par
-                </b>
-                M. DIAKITE Hamidou, dûment 
-                <b>
-                    habilité(s) à cet effet, à demander et recevoir directement de la part du
-                                            :
-                                            Gestionnaire de Réseau de Distribution (GRD) tous les paramètres nécessaires à l’établissement d’une proposition de
-                                            fourniture de gaz
-                </b>
-                pour l’ensemble des points de comptage mentionné ci-dessous.
-                                
-            </p>
-        </div>
-
-        <p style="margin: 25px;">
-            Parmi les paramètres attendus pour chacun de ces sites :
         </p>
-        <div class="liste">
-            <ul>
-                <li>
-                    Le numéro des Points de Comptage et d’Estimation (PCE)
-                </li>
-                <li>
-                    Leur mode de télérelève (J/J, M/J, etc.)
-                </li>
-                <li>
-                    La Consommation Annuelle de Référence (CAR) de chaque PCE (kWh/an)
-                </li>
-                <li>
-                    Les données historiques de consommation
-                </li>
-                <li>
-                    Le type de profil
-                </li>
-            </ul>
-        </div>
-        <div class="presente">
-            <p>
-                La présente autorisation est nominative,
-                                    ne peut être cédée et est valable et consultable douze mois après la date designature du présent document.
-                                
-            </p>
-            <p>
-                Toute cession, à titre gratuit ou onéreux, de tout ou partie de ces données transmises par GRDF à ce tiers en
-                                    application de la présente autorisation est interdite.
-                                
-            </p>
-            <p style="margin-left: 800px;text-decoration: underline" class="underline">
-                signature 
-            </p>
-            <p style="margin-left: 800px">
-                {{ client.NameOfSignatory }}
-            </p>
-        </div>
+        <h4 style="font-weight: bold;">AUTORISE</h4>
+        <p>ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L4OURAILLE 76940 LA MAILLERAYE SUR SEINE, et
+            <b>représentée par</b>
+            M. DIAKITE Hamidou, dûment
+            <b>habilité(s) à cet effet, à demander et recevoir directement de la part du
+                                        :
+                                        Gestionnaire de Réseau de Distribution (GRD) tous les paramètres nécessaires à l’établissement d’une proposition de
+                                        fourniture de gaz</b>
+            pour l’ensemble des points de comptage mentionné ci-dessous.
+        </p>
+        <p>Parmi les paramètres attendus pour chacun de ces sites :</p>
+        
+        <p style="margin-left: 50px; line-height: 1px;">
+            - Le numéro des Points de Comptage et d’Estimation (PCE)</p>
+        <p style="margin-left: 50px; line-height: 1px;">
+            - Leur mode de télérelève (J/J, M/J, etc.)</p>
+        <p style="margin-left: 50px; line-height: 1px;">
+            - La Consommation Annuelle de Référence (CAR) de chaque PCE (kWh/an)</p>
+        <p style="margin-left: 50px; line-height: 1px;">
+            - Les données historiques de consommation</p>
+        <p style="margin-left: 50px; line-height: 1px;">
+            - Le type de profil</p>
+        <p>La présente autorisation est nominative,
+            ne peut être cédée et est valable et consultable douze mois après la date designature du présent document.
+        </p>
+        <p>Toute cession, à titre gratuit ou onéreux, de tout ou partie de ces données transmises par GRDF à ce tiers en
+            application de la présente autorisation est interdite.
+        </p>
 
-        <h3 style="text-align: center;">
-            Annexe : Liste des PCE concernés
+    <p style="margin-left: 50px">Fait à {{ client.address }}  Le {{ "now"|date("m/d/Y") }}</p>
+
+
+
+        <p style="margin-left: 380px;text-decoration: underline" class="underline">signature
+        </p>
+        <p style="margin-left: 380px; border:#000 1px solid; height: 55px; width: 260px"></p>
+        {# <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }}</p> #}
+
+        <h3 style="font-size: 14px;">
+            <b style="font-weight: 900">Annexe : Liste des PCE concernés</b>
         </h3>
 
-        <table align="center" class="table-striped" style="border: 1px solid black;">
-            {% for gaz in gazs %}
-                <tr>
-                    <td rowspan="2">
-                        PCE1: 
-                        {{ gaz.PCE1 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE2: 
-                        {{ gaz.PCE2 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE3: 
-                        {{ gaz.PCE3 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE4: 
-                        {{ gaz.PCE4 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE5: 
-                        {{ gaz.PCE5 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE6: 
-                        {{ gaz.PCE6 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE7: 
-                        {{ gaz.PCE7 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE8: 
-                        {{ gaz.PCE8 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE9: 
-                        {{ gaz.PCE9 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE10:
-                        {{ gaz.PCE10 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE11:
-                        {{ gaz.PCE11 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE12:
-                        {{ gaz.PCE12 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE13:
-                        {{ gaz.PCE13 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE14:
-                        {{ gaz.PCE14 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE15:
-                        {{ gaz.PCE15 }}
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE16:
-                        {{ gaz.PCE16 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE17:
-                        {{ gaz.PCE17 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE18:
-                        {{ gaz.PCE18 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE19:
-                        {{ gaz.PCE19 }}
-                    </td>
-                </tr>
-                <tr>
-                    <td rowspan="2">
-                        PCE20:
-                        {{ gaz.PCE20 }}
-                    </td>
-                </tr>
-            {% endfor %}
+
+        <table align="center" class="table-striped" style="border: 1px solid black; width: 80%; border-collapse: collapse;">
+            
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE1: {{ gaz.PCE1 }}</td>
+                <td style="border: 1px solid black;">PCE11: {{ gaz.PCE11 }}</td>
+            </tr>
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE2: {{ gaz.PCE2 }}</td>
+                <td style="border: 1px solid black;">PCE12: {{ gaz.PCE12 }}</td>
+            </tr>
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE3: {{ gaz.PCE3 }}</td>
+                <td style="border: 1px solid black;">PCE13: {{ gaz.PCE13 }}</td>
+            </tr>
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE4: {{ gaz.PCE4 }}</td>
+                <td style="border: 1px solid black;">PCE14: {{ gaz.PCE14 }}</td>
+            </tr>
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE5: {{ gaz.PCE5 }}</td>
+                <td style="border: 1px solid black;">PCE15: {{ gaz.PCE15 }}</td>
+            </tr>
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE6: {{ gaz.PCE6}}</td>
+                <td style="border: 1px solid black;">PCE16: {{ gaz.PCE16}}</td>
+            </tr>
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE7: {{ gaz.PCE7 }}</td>
+                <td style="border: 1px solid black;">PCE17: {{ gaz.PCE17 }}</td>
+            </tr>
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE8: {{ gaz.PCE8 }}</td>
+                <td style="border: 1px solid black;">PCE18: {{ gaz.PCE18 }}</td>
+            </tr>
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE9: {{ gaz.PCE9 }}</td>
+                <td style="border: 1px solid black;">PCE19: {{ gaz.PCE19 }}</td>
+            </tr>
+            <tr style="height:35px;">
+                <td style="border: 1px solid black;">PCE10:{{ gaz.PCE10 }} </td>
+                <td style="border: 1px solid black;">PCE20:{{ gaz.PCE20 }} </td>
+            </tr>
         </table>
-    </div>
+
+    {% endfor %}
 {% endif %}
+

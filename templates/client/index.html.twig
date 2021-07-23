@@ -127,6 +127,11 @@
                     <button class="btn btn-primary recherche" type="submit">rechercher</button>
                     {{form_end(form)}}
         </div>
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-danger p-md-2" style="margin: 50px;text-align: center;">
+                {{ message }}
+            </div>
+        {% endfor %}
     <table class="table table-bordered" style="margin: 48px; margin-left: 0">
             <thead>
                     <tr>
@@ -157,6 +162,7 @@
                         {% if client.valider == true  %}
                                 <a ><i style="color: green;padding-left:20px" class="fa fa-check" aria-hidden="true"></i></a>
                         {% endif %}
+
                                 <a href="{{ path('client_pdf', {'id': client.id}) }}" style="padding-left:20px">pdf</a>
                         </td>
                     </tr>
@@ -170,6 +176,7 @@
         <div class="navigation" style="text-align: center">
             {{ knp_pagination_render(clients) }}
         </div>
-
     </div>
+
+
 {% endblock %}

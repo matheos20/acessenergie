@@ -165,6 +165,14 @@
             <input type="text" name="id_client" hidden value="{{ client.id }}">
             <div>
                 <h3 class="mt-4 text-center">Détermination de périmètre du client</h3>
+                {% if isHasSelectedOne is same as(false) %}
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        Selectionner au moins une demande d'authorisation !
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {% endif %}
                 <div class="form-check form-check-inline mt-4 text-center">
                     {{ form_widget(form.isNaturalGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz'}}) }}
                     <img src="{{ asset('image/gaz.png') }}" class="mr-1" width="40" alt="">
@@ -191,84 +199,104 @@
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE1</label>
                             {{ form_widget(form.gazNatural.PCE1, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE1) }}
 						</td></tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE11</label>
                             {{ form_widget(form.gazNatural.PCE11, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.gazNatural.PCE11) }}
 						</td></tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE2</label>
                             {{ form_widget(form.gazNatural.PCE2, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.gazNatural.PCE2) }}
 						</td></tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE12</label>
                             {{ form_widget(form.gazNatural.PCE12, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.gazNatural.PCE12) }}
 						</td></tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE3</label>
                             {{ form_widget(form.gazNatural.PCE3, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.gazNatural.PCE3) }}
 						</td></tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE13</label>
                             {{ form_widget(form.gazNatural.PCE13, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.gazNatural.PCE13) }}
 						</td></tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE4</label>
                             {{ form_widget(form.gazNatural.PCE4, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.gazNatural.PCE4) }}
 						</td></tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE14</label>
                             {{ form_widget(form.gazNatural.PCE14, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.gazNatural.PCE14) }}
 						</td></tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE5</label>
                             {{ form_widget(form.gazNatural.PCE5, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.gazNatural.PCE5) }}
 						</td></tr>
                         <tr><td rowspan="2">
 						  <label for="disabledTextInput" class="form-label">PCE15</label>
                             {{ form_widget(form.gazNatural.PCE15, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.gazNatural.PCE15) }}
 						</td></tr>
                     </tr>
                     <tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE6</label>
                             {{ form_widget(form.gazNatural.PCE6, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE6) }}
                         </td></tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE16</label>
                             {{ form_widget(form.gazNatural.PCE16, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE16) }}
                         </td></tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE7</label>
                             {{ form_widget(form.gazNatural.PCE7, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE7) }}
                         </td></tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE17</label>
                             {{ form_widget(form.gazNatural.PCE17, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE17) }}
                         </td></tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE8</label>
                             {{ form_widget(form.gazNatural.PCE8, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE8) }}
                         </td></tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE18</label>
                             {{ form_widget(form.gazNatural.PCE18, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE18) }}
                         </td></tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE9</label>
                             {{ form_widget(form.gazNatural.PCE9, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE9) }}
                         </td></tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE19</label>
                             {{ form_widget(form.gazNatural.PCE19, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE19) }}
                         </td></tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE10</label>
                             {{ form_widget(form.gazNatural.PCE10, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE10) }}
                         </td></tr>
                     <tr><td rowspan="2">
                             <label for="disabledTextInput" class="form-label">PCE20</label>
                             {{ form_widget(form.gazNatural.PCE20, {'attr': {'class': 'form-control'}}) }}
+                            {{ form_errors(form.gazNatural.PCE20) }}
                         </td></tr>
 
                     </tr>
@@ -294,84 +322,104 @@
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PCE1</label>
                                 {{ form_widget(form.electricite.PDL1, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL1) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL11</label>
                                 {{ form_widget(form.electricite.PDL11, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL11) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL2</label>
                                 {{ form_widget(form.electricite.PDL2, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL2) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL12</label>
                                 {{ form_widget(form.electricite.PDL12, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL12) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL3</label>
                                 {{ form_widget(form.electricite.PDL3, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL3) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL13</label>
                                 {{ form_widget(form.electricite.PDL13, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL13) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL4</label>
                                 {{ form_widget(form.electricite.PDL4, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL4) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL14</label>
                                 {{ form_widget(form.electricite.PDL14, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL14) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL5</label>
                                 {{ form_widget(form.electricite.PDL5, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL5) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL15</label>
                                 {{ form_widget(form.electricite.PDL15, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL15) }}
                             </td></tr>
                         </tr>
                         <tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL6</label>
                                 {{ form_widget(form.electricite.PDL6, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL6) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL16</label>
                                 {{ form_widget(form.electricite.PDL16, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL16) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL7</label>
                                 {{ form_widget(form.electricite.PDL7, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL7) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL17</label>
                                 {{ form_widget(form.electricite.PDL17, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL17) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL8</label>
                                 {{ form_widget(form.electricite.PDL8, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL8) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL18</label>
                                 {{ form_widget(form.electricite.PDL18, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL18) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL9</label>
                                 {{ form_widget(form.electricite.PDL9, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL9) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL19</label>
                                 {{ form_widget(form.electricite.PDL19, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL19) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL10</label>
                                 {{ form_widget(form.electricite.PDL10, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL10) }}
                             </td></tr>
                         <tr><td rowspan="2">
                                 <label for="disabledTextInput" class="form-label">PDL20</label>
                                 {{ form_widget(form.electricite.PDL20, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_errors(form.electricite.PDL20) }}
                             </td></tr>
 
                         </tr>
@@ -391,13 +439,61 @@
             {{ form_end(form) }}
     </div>
     {% block javascripts %}
+        {{ parent() }}
         <script>
             $(document).ready(function() {
+                $('.alert').alert()
+                if ($('#authorization_request_isNaturalGaz').is(':checked')){
+                    $('.gaz').show()
+                }else{
+                    $('.gaz').hide();
+                }
+                if ($('#authorization_request_isElectricite').is(':checked')){
+                    $('.electrique').show()
+                }else{
+                    $('.electrique').hide();
+                }
+                if ($('#authorization_request_isMoreThanTwentyGaz').is(':checked')){
+                    $('#form-gaz-plus20').show();
+                    $('#form-gaz-twenty').hide();
+                    document.getElementById('authorization_request_isTwentyGaz').checked = false;
+                }else{
+                    $('#form-gaz-plus20').hide();
+                }
+                if (!$('#authorization_request_isTwentyGaz').is(':checked')){
+                    $('#form-gaz-twenty').hide();
+                }else{
+                    $('#form-gaz-plus20').hide();
+                    $('#form-gaz-twenty').show();
+                    document.getElementById('authorization_request_isMoreThanTwentyGaz').checked = false;
+                }
+                if ($('#authorization_request_isMoreThanTwentyElec').is(':checked')){
+                    $('#form-elec-plus20').show();
+                    $('#form-elec-twenty').hide();
+                    document.getElementById('authorization_request_isTwentyElec').checked = false;
+                }else{
+                    $('#form-elec-plus20').hide();
+                }
+                if (!$('#authorization_request_isTwentyElec').is(':checked')){
+                    $('#form-elec-twenty').hide();
+                }else{
+                    $('#form-elec-plus20').hide();
+                    $('#form-elec-twenty').show();
+                    document.getElementById('authorization_request_isMoreThanTwentyElec').checked = false;
+                }
                 $('#authorization_request_isNaturalGaz').click(function () {
-                    $('.gaz').toggle();
+                    if ($(this).is(':checked')){
+                        $('.gaz').show()
+                    }else{
+                        $('.gaz').hide();
+                    }
                 });
                 $('#authorization_request_isElectricite').click(function () {
-                    $('.electrique').toggle();
+                    if ($(this).is(':checked')){
+                        $('.electrique').show()
+                    }else{
+                        $('.gelectriqueaz').hide();
+                    }
                 });
                 $('#authorization_request_isMoreThanTwentyGaz').click(function () {
                     if ($(this).is(':checked')){

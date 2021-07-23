@@ -1,115 +1,108 @@
-<div>
-        <h2>AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)</h2>
-        <div class="w3-container">
-        <div class="info">
-            <p class="p1">L’entreprise:<b>{{ client.mermaid }}</p>
-            <p class="p2">Sous le SIREN: <b>{{ client.getSocialReason() }}</b></p>
-            <p class="p3">Ayant son siège à</p>
-            <p class="p4">et <b>représentée</b> par : {{ client.getNameOfSignatory() }} FONCTION: <b>{{ client.function }}</b>, <b>dûment habilité(e) à cet effet,</b> titulaire de contrat(s) unique(s) pour la fourniture d’électricité pour le(s) site(s) de consommation mentionné(s) dans
-                le tableau en annexe,
-            </p>
-        </div>
-        <h4 style="margin: 25px;">AUTORISE</h4>
-        <div class="access">
-            <p>ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L4OURAILLE 76940 LA MAILLERAYE SUR
-                SEINE, et
-                <b>représentée par</b> M. DIAKITE Hamidou, dûment <b>habilité(s) à cet effet, à demander et recevoir directement de la part du :
-                    Gestionnaire de réseaux public de distribution d’électricité (ENEDIS)</b> société anonyme à directoire et à conseil de surveillance,
-                au capital de 270 037 000 euros, immatriculée au Registre du Commerce et des Sociétés de Nanterre, sous le numéro 444 608 442, dont le siège social est situé Tour ENEDIS 34, Place
-                des Corolles 92079 PARIS LA DEFENSE cedex
-            </p>
-        </div>
+<h2 style="background-color: grey; text-align: center;padding-top:5px; font-size: 12px">
+	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)
+</h2>
+<p style="line-height: 4px;">L’entreprise:
+	<b>{{ client.mermaid }}</b>
+</p>
+<p style="line-height: 4px;">Sous le SIREN:
+	<b>{{ client.getSocialReason() }}</b>
+</p>
+<p style="line-height: 4px;">Ayant son siège à :
+	<b>{{ client.address }}</b>
+</p>
+<p>et représentée par :
+	<b>{{ client.getNameOfSignatory() }}</b>FONCTION:
+	<b>{{ client.function }}</b>,
+				            dûment habilité(e) à cet effet,titulaire de contrat(s) unique(s) 
+				            pour la fourniture de gaz naturel pour le(s) site(s)de consommation
+				            mentionné(s) dans le tableau en annexe,
+</p>
+<h4 style="font-weight: bold;">AUTORISE</h4>
+<p>ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L4OURAILLE 76940 LA MAILLERAYE SUR
+		                SEINE, et
+	<b>représentée par</b>
+	M. DIAKITE Hamidou, dûment
+	<b>habilité(s) à cet effet, à demander et recevoir directement de la part du :
+				                    Gestionnaire de réseaux public de distribution d’électricité (ENEDIS)</b>
+	société anonyme à directoire et à conseil de surveillance,
+		                au capital de 270 037 000 euros, immatriculée au Registre du Commerce et des Sociétés de Nanterre, sous le numéro 444 608 442, dont le siège social est situé Tour ENEDIS 34, Place
+		                des Corolles 92079 PARIS LA DEFENSE cedex
+</p>
+<p>
+	<b>Les données de consommation disponibles cochées dans la liste ci-dessous, pour le(s) PDL dont la liste est annexée à la
+				        présente autorisation :</b>
+</p>
 
-            <p style="margin: 25px;"><b>Les données de consommation disponibles cochées dans la liste ci-dessous, pour le(s) PDL dont la liste est annexée à la
-        présente autorisation :</b></p>
-        <div class="liste">
-            <form>
-                <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                <label for="vehicle1"> la puissance souscrite en cours programmée dans le compteur</label><br>
-                <input type="checkbox" id="vehicle2" name="vehicle2" value="Car">
-                <label for="vehicle2"> la formule tarifaire d’acheminement en cours</label><br>
-                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-                <label for="vehicle3"> le type de compteur</label><br>
-                <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat">
-                <label for="vehicle3"> la courbe de charge</label>
-            </form>
-        </div>
-        <div class="presente">
-                <p>La présente autorisation est nominative, ne peut être cédée et est valable et consultable douze mois après la date de
-                    signature du présent document.
-                </p>
-                <p>Toute cession, à titre gratuit ou onéreux, de tout ou partie de ces données transmises par Enedis à ce tiers en
-                    application de la présente autorisation est interdite
-                </p>
-            <p style="margin-left: 800px;text-decoration: underline" class="underline">signature </p>
-            <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }}</p>
-        </div>
+<input type="checkbox" id="vehicle1" name="vehicle1" checked>
+<label for="vehicle1">
+	la puissance souscrite en cours programmée dans le compteur</label><br>
+<input type="checkbox" id="vehicle2" name="vehicle2" checked>
+<label for="vehicle2">
+	la formule tarifaire d’acheminement en cours</label><br>
+<input type="checkbox" id="vehicle3" name="vehicle3" checked>
+<label for="vehicle3">
+	le type de compteur</label><br>
+<input type="checkbox" id="vehicle3" name="vehicle3" checked>
+<label for="vehicle3">
+	la courbe de charge</label>
 
-        <h3 style="text-align: center;">Annexe : Liste des PDL concernés</h3>
+<p style="margin:-2px">La présente autorisation est nominative, ne peut être cédée et 
+		                est valable et consultable douze mois après la date de signature du présent document.
+</p>
+<p style="margin: -2px">Toute cession, à titre gratuit ou onéreux, de tout ou partie de 
+		                ces données transmises par Enedis à ce tiers en application de la présente autorisation est interdite
+</p>
+<p style="margin-left: 50px">Fait à
+	{{ client.address }}
+	Le
+	{{ "now"|date("m/d/Y") }}</p>
 
-        <table class="center" class="table-striped" style="border: 1px solid black;">
-            <tr>
-                <td rowspan="2"> PDL1: {{ value.PDL1 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL2: {{ value.PDL2 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL3: {{ value.PDL3 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL4: {{ value.PDL4 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL5: {{ value.PDL5 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL6: {{ value.PDL6 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL7: {{ value.PDL7 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL7: {{ value.PDL8 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL9: {{ value.PDL9 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL10:{{ value.PDL10 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL11:{{ value.PDL11 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL12:{{ value.PDL12 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL13:{{ value.PDL13 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL14:{{ value.PDL14 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL15:{{ value.PDL15 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL16:{{ value.PDL16 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL17:{{ value.PDL17 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL18:{{ value.PDL18 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL19:{{ value.PDL19 }}</td>
-            </tr>
-            <tr>
-                <td rowspan="2"> PDL20:{{ value.PDL20 }}</td>
-            </tr>
-        </table>
-        
-        </div>
-</div>
+<p style="margin-left: 380px;text-decoration: underline" class="underline">signature</p>
+<p style="margin-left: 380px; border:#000 1px solid; height: 40px; width: 230px"></p>
 
+<h3 style="font-size: 12px;">
+	<b style="font-weight: 900">Annexe : Liste des PDL concernés</b>
+</h3>
+
+<table align="center" class="table-striped" style="border: 1px solid black; width: 80%; border-collapse: collapse;">
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL1:{{ value.PDL1 }}</td>
+		<td style="border: 1px solid black;">PDL11:{{ value.PDL11 }}</td>
+	</tr>
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL2:{{ value.PDL2 }}</td>
+		<td style="border: 1px solid black;">PDL12:{{ value.PDL12 }}</td>
+	</tr>
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL3:{{ value.PDL3 }}</td>
+		<td style="border: 1px solid black;">PDL13:{{ value.PDL13 }}</td>
+	</tr>
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL4:{{ value.PDL4 }}</td>
+		<td style="border: 1px solid black;">PDL14:{{ value.PDL14 }}</td>
+	</tr>
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL5:{{ value.PDL5 }}</td>
+		<td style="border: 1px solid black;">PDL15:{{ value.PDL15 }}</td>
+	</tr>
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL6:{{ value.PDL6}}</td>
+		<td style="border: 1px solid black;">PDL16:{{ value.PDL16}}</td>
+	</tr>
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL7:{{ value.PDL7 }}</td>
+		<td style="border: 1px solid black;">PDL17:{{ value.PDL17 }}</td>
+	</tr>
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL8:{{ value.PDL8 }}</td>
+		<td style="border: 1px solid black;">PDL18:{{ value.PDL18 }}</td>
+	</tr>
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL9:{{ value.PDL9 }}</td>
+		<td style="border: 1px solid black;">PDL19:{{ value.PDL19 }}</td>
+	</tr>
+	<tr style="height:35px;">
+		<td style="border: 1px solid black;">PDL10:{{ value.PDL10 }}</td>
+		<td style="border: 1px solid black;">PDL20:{{ value.PDL20 }}</td>
+	</tr>
+</table>

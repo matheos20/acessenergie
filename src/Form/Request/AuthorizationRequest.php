@@ -3,7 +3,11 @@ namespace App\Form\Request;
 
 use App\Entity\Electricite;
 use App\Entity\Gaz;
+use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * @Assert\Callback({"App\Validator\AuthorizationRequestValidator", "validate"})
+ */
 class AuthorizationRequest{
 
     /**

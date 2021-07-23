@@ -22,38 +22,45 @@ use Dompdf\Dompdf;
 use Dompdf\Options;
 
 
-
 class ClientController extends AbstractController
 {
     /**
      * @Route("/", name="client_index")
      */
-    public function index(ClientRepository $clientRepository,PaginatorInterface $paginator,Request $request): Response
-    {  
-         $recherche = new ClientRecherche();
-        $form = $this->createForm(ClientRechercheType::class,$recherche);
-        $form ->handleRequest($request);
-        $searchQuery = $clientRepository->findBySocialResion($recherche->getSocialReason()? $recherche->getSocialReason():"");
-       
+    public function index(ClientRepository $clientRepository, PaginatorInterface $paginator, Request $request): Response
+    {
+        $recherche = new ClientRecherche();
+        $form = $this->createForm(ClientRechercheType::class, $recherche);
+        $form->handleRequest($request);
+        $searchQuery = $clientRepository->findBySocialResion($recherche->getSocialReason() ? $recherche->getSocialReason() : "");
+
 
         return $this->render('client/index.html.twig', [
             'clients' => $paginator->paginate($searchQuery, $request->query->getInt('page', 1), 20),
             'form' => $form->createView()
         ]);
     }
+
     /**
      * @Route("/clientpdf/{id}", name="client_pdf")
      */
-    public function renderpdf(Client $id, Request $request, ClientRepository $clientRepository, GazRepository $gazRepository, ElectriciteRepository $electriciteRepository, ElectricitePlus20Repository $electricPlus20,GazPlus20Repository $gazplus20)
+    public function renderpdf(
+        Client $id,
+        GazRepository $gazRepository,
+        ElectriciteRepository $electriciteRepository,
+        ElectricitePlus20Repository $electricPlus20,
+        GazPlus20Repository $gazplus20
+    )
     {
+        $gaz = $gazRepository->findBy(['client' => $id->getId(), 'isAlreadyAuthorized' => true]);
+        $electric = $electriciteRepository->findBy(['client' => $id->getId(), 'isAlreadyAuthorized' => true]);
+        $electricitePlus = $electricPlus20->findBy(['client' => $id->getId(), 'isAlreadyAuthorized' => true]);
+        $gazPlus = $gazplus20->findBy(['client' => $id->getId(), 'isAlreadyAuthorized' => true]);
 
-        $client = $clientRepository->find($id);
-        $gaz = $gazRepository->findBy(['client'=>$id]);
-        $electric = $electriciteRepository->findBy(['client'=>$id]);
-        $electricitePlus = $electricPlus20->findBy(['client' => $id]);
-        $gazPlus = $gazplus20 ->findBy(['client' => $id]);
-
-        
+        if (empty($gaz) && empty($electric) && empty($electricitePlus) && empty($gazPlus)) {
+            $this->addFlash('success', 'Ce client n\'a pas encore de donne ');
+            return $this->redirectToRoute('client_index');
+        }
         // Configure Dompdf according to your needs
         $pdfOptions = new Options();
         $pdfOptions->set('defaultFont', 'Arial');
@@ -63,12 +70,12 @@ class ClientController extends AbstractController
 
         // Retrieve the HTML generated in our twig file
         $html = $this->renderView('FilePdf/pdf.html.twig', [
-            'client' => $client,
+            'client' => $id,
             'gazs' => $gaz,
             'electrics' => $electric,
             'electreicite' => $electricitePlus,
             'gazPluss' => $gazPlus
-            //dd($electricitePlus),
+            // dd($gazs),
 
         ]);
 
@@ -82,7 +89,7 @@ class ClientController extends AbstractController
         @$dompdf->render();
 
         // Output the generated PDF to Browser (force download)
-        $dompdf->stream("mypdf.pdf", [
+        $dompdf->stream($id->getMermaid() . '.pdf', [
             "Attachment" => true
         ]);
         dd($dompdf);
@@ -144,23 +151,22 @@ class ClientController extends AbstractController
     /**
      * @Route("client/delete/{id}", name="client_delete")
      */
-    public function delete(Request $request, Client $client, ElectriciteRepository $electriciteRepository,GazRepository $gazRepository,ElectricitePlus20Repository $electricPlus20,GazPlus20Repository $gazPlus20): Response
-    { 
+    public function delete(Request $request, Client $client, ElectriciteRepository $electriciteRepository, GazRepository $gazRepository, ElectricitePlus20Repository $electricPlus20, GazPlus20Repository $gazPlus20): Response
+    {
         $electirqs = $electriciteRepository->findBy(['client' => $client->getId()]);
-        $gazs =$gazRepository->findBy(['client' => $client->getId()]);
+        $gazs = $gazRepository->findBy(['client' => $client->getId()]);
         $electirqplus = $electricPlus20->findBy(['client' => $client->getId()]);
         $gazplus = $gazPlus20->findBy(['client' => $client->getId()]);
-                                
 
-       
+
         $entityManager = $this->getDoctrine()->getManager();
 
         foreach ($gazs as $gaz) {
             $entityManager->remove($gaz);
         }
 
-        foreach($electirqs as $electirq){
-            $entityManager->remove($electirq);  
+        foreach ($electirqs as $electirq) {
+            $entityManager->remove($electirq);
         }
 
         foreach ($electirqplus as $electirqplu) {
@@ -170,16 +176,16 @@ class ClientController extends AbstractController
         foreach ($gazplus as $gazplu) {
             $entityManager->remove($gazplu);
         }
-       // $entityManager->flush();
-        
+        // $entityManager->flush();
+
 
         //if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->request->get('_token'))) {
-          //  $entityManager = $this->getDoctrine()->getManager();
+        //  $entityManager = $this->getDoctrine()->getManager();
 
-            $entityManager->remove($client);
-            $entityManager->flush();
-    //}
-            
+        $entityManager->remove($client);
+        $entityManager->flush();
+        //}
+
         return $this->redirectToRoute('client_index');
     }
 

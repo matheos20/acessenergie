@@ -121,27 +121,34 @@
         <h1 style="margin: 50px">Listes des Clients</h1>
         <div style="display: inline-flex;height: 38px; margin: 0px;
 ">
-            <a class="btn btn-success" href="{{ path('client_new') }}" style="margin-left: 29px;">Nouveau Client</a>
+            <a class="btn btn-success" href="{{ path('client_new') }}" style="margin-left: -128px;">Nouveau Client</a>
                     {{ form_start(form) }}
                     {{ form_row(form.social_reason) }}   
                     <button class="btn btn-primary recherche" type="submit">rechercher</button>
                     {{form_end(form)}}
         </div>
-        {% for message in app.flashes('success') %}
+        {% for message in app.flashes('danger') %}
             <div class="alert alert-danger p-md-2" style="margin: 50px;text-align: center;">
                 {{ message }}
             </div>
         {% endfor %}
-    <table class="table table-bordered" style="margin: 48px; margin-left: 0">
+        {% for message in app.flashes('succes') %}
+            <div class="alert alert-success p-md-2" style="margin: 50px;text-align: center;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    <table class="table table-bordered" style="margin: 48px; margin-left: -142px;width: 130%">
             <thead>
                     <tr>
-                        <th scope="col" class="align-middle">Raison sociale </th>
-                        <th scope="col" class="align-middle">Siren </th>
-                        <th scope="col" class="align-middle">Adresse du siège </th>
-                        <th scope="col" class="align-middle">Nom du Signataire </th>
-                        <th scope="col" class="align-middle">Fonction</th>
-                        <th scope="col" class="align-middle" style="width: 28%">Adresse mail </th>
-                        <th scope="col" class="align-middle" style="width: 22%">actions</th>
+                        <th scope="col" class="align-middle"style="width: 10%">Raison sociale </th>
+                        <th scope="col" class="align-middle"style="width: 10%">Siren </th>
+                        <th scope="col" class="align-middle"style="width: 10%">Adresse du siège </th>
+                        <th scope="col" class="align-middle"style="width: 10%">Code postal </th>
+                        <th scope="col" class="align-middle"style="width: 10%">Ville </th>
+                        <th scope="col" class="align-middle"style="width: 10%">Nom du Signataire </th>
+                        <th scope="col" class="align-middle"style="width: 10%">Fonction</th>
+                        <th scope="col" class="align-middle" style="width: 22%">Adresse mail </th>
+                        <th scope="col" class="align-middle" style="width: 23%">actions</th>
                     </tr>
             </thead>
             <tbody>
@@ -150,6 +157,8 @@
                         <td data-label=Raison_sociale>{{ client.socialReason }}</td>
                         <td data-label=Siren>{{ client.mermaid }}</td>
                         <td data-label=Adresse_du_siège>{{ client.address }}</td>
+                        <td data-label=Code Postal>{{ client.PostalCode }}</td>
+                        <td data-label=Adresse_du_siège>{{ client.City }}</td>
                         <td data-label=Nom_du_Signataire>{{ client.nameOfSignatory }}</td>
                         <td data-label=Fonction>{{ client.function }}</td>
                         <td data-label=Adresse_mail>{{ client.mail }}</td>

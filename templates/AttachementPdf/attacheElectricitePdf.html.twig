@@ -1,5 +1,5 @@
 <h2 style="background-color: grey; text-align: center;padding-top:5px; font-size: 12px">
-	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)
+	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (ENEDIS)
 </h2>
 <p style="line-height: 4px;">L’entreprise:
 	<b>{{ client.mermaid }}</b>
@@ -52,12 +52,13 @@
 <p style="margin: -2px">Toute cession, à titre gratuit ou onéreux, de tout ou partie de 
 		                ces données transmises par Enedis à ce tiers en application de la présente autorisation est interdite
 </p>
-<p style="margin-left: 50px">Fait à
+<p style="margin-left: 50px">Fait à {{ client.City }} {{ client.getSocialReason() }}
 	{{ client.address }}
 	Le
 	{{ "now"|date("m/d/Y") }}</p>
 
-<p style="margin-left: 380px;text-decoration: underline" class="underline">signature</p>
+<p style="margin-left: 380px;text-decoration: underline" class="underline">signature + cachet commercial du client</p>
+
 <p style="margin-left: 380px; border:#000 1px solid; height: 40px; width: 230px"></p>
 
 <h3 style="font-size: 12px;">
@@ -66,43 +67,43 @@
 
 <table align="center" class="table-striped" style="border: 1px solid black; width: 80%; border-collapse: collapse;">
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL1:{{ value.PDL1 }}</td>
-		<td style="border: 1px solid black;">PDL11:{{ value.PDL11 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL1:{{ value.PDL1 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL11:{{ value.PDL11 }}</td>
 	</tr>
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL2:{{ value.PDL2 }}</td>
-		<td style="border: 1px solid black;">PDL12:{{ value.PDL12 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL2:{{ value.PDL2 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL12:{{ value.PDL12 }}</td>
 	</tr>
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL3:{{ value.PDL3 }}</td>
-		<td style="border: 1px solid black;">PDL13:{{ value.PDL13 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL3:{{ value.PDL3 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL13:{{ value.PDL13 }}</td>
 	</tr>
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL4:{{ value.PDL4 }}</td>
-		<td style="border: 1px solid black;">PDL14:{{ value.PDL14 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL4:{{ value.PDL4 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL14:{{ value.PDL14 }}</td>
 	</tr>
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL5:{{ value.PDL5 }}</td>
-		<td style="border: 1px solid black;">PDL15:{{ value.PDL15 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL5:{{ value.PDL5 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL15:{{ value.PDL15 }}</td>
 	</tr>
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL6:{{ value.PDL6}}</td>
-		<td style="border: 1px solid black;">PDL16:{{ value.PDL16}}</td>
+		<td style="border: 1px solid black;width: 50%">PDL6:{{ value.PDL6}}</td>
+		<td style="border: 1px solid black;width: 50%">PDL16:{{ value.PDL16}}</td>
 	</tr>
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL7:{{ value.PDL7 }}</td>
-		<td style="border: 1px solid black;">PDL17:{{ value.PDL17 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL7:{{ value.PDL7 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL17:{{ value.PDL17 }}</td>
 	</tr>
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL8:{{ value.PDL8 }}</td>
-		<td style="border: 1px solid black;">PDL18:{{ value.PDL18 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL8:{{ value.PDL8 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL18:{{ value.PDL18 }}</td>
 	</tr>
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL9:{{ value.PDL9 }}</td>
-		<td style="border: 1px solid black;">PDL19:{{ value.PDL19 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL9:{{ value.PDL9 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL19:{{ value.PDL19 }}</td>
 	</tr>
 	<tr style="height:35px;">
-		<td style="border: 1px solid black;">PDL10:{{ value.PDL10 }}</td>
-		<td style="border: 1px solid black;">PDL20:{{ value.PDL20 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL10:{{ value.PDL10 }}</td>
+		<td style="border: 1px solid black;width: 50%">PDL20:{{ value.PDL20 }}</td>
 	</tr>
 </table>

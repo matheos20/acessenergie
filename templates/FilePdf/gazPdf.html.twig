@@ -44,12 +44,11 @@
             application de la présente autorisation est interdite.
         </p>
 
-    <p style="margin-left: 50px">Fait à {{ client.address }}  Le {{ "now"|date("m/d/Y") }}</p>
+    <p style="margin-left: 50px">Fait à {{ client.address }} {{ client.City }} {{ client.getSocialReason() }} Le {{ "now"|date("m/d/Y") }}</p>
 
 
 
-        <p style="margin-left: 380px;text-decoration: underline" class="underline">signature
-        </p>
+<p style="margin-left: 380px;text-decoration: underline" class="underline">signature + cachet commercial du client</p>
         <p style="margin-left: 380px; border:#000 1px solid; height: 55px; width: 260px"></p>
         {# <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }}</p> #}
 
@@ -61,44 +60,44 @@
         <table align="center" class="table-striped" style="border: 1px solid black; width: 80%; border-collapse: collapse;">
             
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE1: {{ gaz.PCE1 }}</td>
-                <td style="border: 1px solid black;">PCE11: {{ gaz.PCE11 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE1: {{ gaz.PCE1 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE11: {{ gaz.PCE11 }}</td>
             </tr>
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE2: {{ gaz.PCE2 }}</td>
-                <td style="border: 1px solid black;">PCE12: {{ gaz.PCE12 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE2: {{ gaz.PCE2 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE12: {{ gaz.PCE12 }}</td>
             </tr>
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE3: {{ gaz.PCE3 }}</td>
-                <td style="border: 1px solid black;">PCE13: {{ gaz.PCE13 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE3: {{ gaz.PCE3 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE13: {{ gaz.PCE13 }}</td>
             </tr>
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE4: {{ gaz.PCE4 }}</td>
-                <td style="border: 1px solid black;">PCE14: {{ gaz.PCE14 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE4: {{ gaz.PCE4 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE14: {{ gaz.PCE14 }}</td>
             </tr>
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE5: {{ gaz.PCE5 }}</td>
-                <td style="border: 1px solid black;">PCE15: {{ gaz.PCE15 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE5: {{ gaz.PCE5 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE15: {{ gaz.PCE15 }}</td>
             </tr>
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE6: {{ gaz.PCE6}}</td>
-                <td style="border: 1px solid black;">PCE16: {{ gaz.PCE16}}</td>
+                <td style="border: 1px solid black;width: 50%">PCE6: {{ gaz.PCE6}}</td>
+                <td style="border: 1px solid black;width: 50%">PCE16: {{ gaz.PCE16}}</td>
             </tr>
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE7: {{ gaz.PCE7 }}</td>
-                <td style="border: 1px solid black;">PCE17: {{ gaz.PCE17 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE7: {{ gaz.PCE7 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE17: {{ gaz.PCE17 }}</td>
             </tr>
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE8: {{ gaz.PCE8 }}</td>
-                <td style="border: 1px solid black;">PCE18: {{ gaz.PCE18 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE8: {{ gaz.PCE8 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE18: {{ gaz.PCE18 }}</td>
             </tr>
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE9: {{ gaz.PCE9 }}</td>
-                <td style="border: 1px solid black;">PCE19: {{ gaz.PCE19 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE9: {{ gaz.PCE9 }}</td>
+                <td style="border: 1px solid black;width: 50%">PCE19: {{ gaz.PCE19 }}</td>
             </tr>
             <tr style="height:35px;">
-                <td style="border: 1px solid black;">PCE10:{{ gaz.PCE10 }} </td>
-                <td style="border: 1px solid black;">PCE20:{{ gaz.PCE20 }} </td>
+                <td style="border: 1px solid black;width: 50%">PCE10:{{ gaz.PCE10 }} </td>
+                <td style="border: 1px solid black;width: 50%">PCE20:{{ gaz.PCE20 }} </td>
             </tr>
         </table>
 

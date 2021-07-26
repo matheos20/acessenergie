@@ -22,7 +22,7 @@ class ClientRepository extends ServiceEntityRepository
          return $this->createQueryBuilder('c')
             ->andWhere('c.social_reason like :val')
             ->setParameter('val', "%{$term}%")
-            ->orderBy('c.id', 'ASC')
+            ->orderBy('c.id', 'DESC')
             ->getQuery();
             
            

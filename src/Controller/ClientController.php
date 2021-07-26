@@ -58,7 +58,7 @@ class ClientController extends AbstractController
         $gazPlus = $gazplus20->findBy(['client' => $id->getId(), 'isAlreadyAuthorized' => true]);
 
         if (empty($gaz) && empty($electric) && empty($electricitePlus) && empty($gazPlus)) {
-            $this->addFlash('success', 'Ce client n\'a pas encore de donne ');
+            $this->addFlash('danger', 'le client n\'a pas validé son consentement');
             return $this->redirectToRoute('client_index');
         }
         // Configure Dompdf according to your needs
@@ -103,7 +103,6 @@ class ClientController extends AbstractController
         $client = new Client();
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($client);

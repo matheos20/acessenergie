@@ -82,7 +82,7 @@ class DemandeController extends AbstractController
                         ['name' => $client->getNameOfSignatory(), 'id' => $client->getId(), 'token' => $token])
                     );
                 $mailer->send($email);
-
+                $this->addFlash('succes', 'Votre demande a été envoyé avec succès.!');
                 return $this->redirectToRoute('client_index');
             }
             $isHasSelectedOne = false;

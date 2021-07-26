@@ -2,7 +2,7 @@
 {% for electricitePlus in electreicite %}
 
 <h2 style="background-color: grey; text-align: center;padding-top:5px; font-size: 12px">
-	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)
+	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (ENEDIS)
 </h2>
 <p style="line-height: 4px;">L’entreprise:
 	<b>{{ client.mermaid }}</b>
@@ -55,12 +55,13 @@
 <p style="margin: -2px">Toute cession, à titre gratuit ou onéreux, de tout ou partie de 
 	                ces données transmises par Enedis à ce tiers en application de la présente autorisation est interdite
 </p>
-<p style="margin-left: 50px">Fait à
+<p style="margin-left: 50px">Fait à {{ client.City }} {{ client.getSocialReason() }}
 	{{ client.address }}
 	Le
 	{{ "now"|date("m/d/Y") }}</p>
 
-<p style="margin-left: 380px;text-decoration: underline" class="underline">signature</p>
+<p style="margin-left: 380px;text-decoration: underline" class="underline">signature + cachet commercial du client</p>
+
 <p style="margin-left: 380px; border:#000 1px solid; height: 40px; width: 230px"></p>
 
 <h3 style="font-size: 12px;">

@@ -74,6 +74,16 @@ class Client
      */
     private $gazPlus20s;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $PostalCode;
+
+    /**
+     * @ORM\Column(type="string", length=50)
+     */
+    private $city;
+
     public function __construct()
     {
         $this->gaz = new ArrayCollection();
@@ -288,6 +298,30 @@ class Client
                 $gazPlus20->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPostalCode(): ?int
+    {
+        return $this->PostalCode;
+    }
+
+    public function setPostalCode(int $PostalCode): self
+    {
+        $this->PostalCode = $PostalCode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(string $city): self
+    {
+        $this->city = $city;
 
         return $this;
     }

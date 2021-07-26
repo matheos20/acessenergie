@@ -16,6 +16,8 @@ class ClientType extends AbstractType
             ->add('social_reason',TextType::class,['label'=>'Raison sociale'])
             ->add('mermaid', TextType::class,['label'=>'Siren'])
             ->add('address',TextType::class,['label'=>'Adresse du siège'])
+            ->add('PostalCode',TextType::class,['label'=>'Code Postal'])
+            ->add('city',TextType::class,['label'=>'Ville'])
             ->add('name_of_signatory',TextType::class,['label'=>'Nom du Signataire'])
             ->add('function',TextType::class,['label'=>'Fonction'])
             ->add('mail',TextType::class,['label'=>'Adresse mail'])

@@ -84,6 +84,11 @@ class Client
      */
     private $city;
 
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $telephone;
+
     public function __construct()
     {
         $this->gaz = new ArrayCollection();
@@ -322,6 +327,18 @@ class Client
     public function setCity(string $city): self
     {
         $this->city = $city;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(string $telephone): self
+    {
+        $this->telephone = $telephone;
 
         return $this;
     }

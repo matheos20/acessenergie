@@ -3,13 +3,15 @@
 {% block title %}Gaz{% endblock %}
 
 {% block body %}
-    <h1>Gaz</h1>
 
-    <table class="table">
+<div class="container mt-5">
+    <h1 style="margin: -10px;">Gaz</h1>
+    <a style="right: 20px;margin: 15px" class="btn btn-success mt-4" href="{{ path('gaz_index') }}">Retour à liste</a>
+    <table class="table table-bordered">
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ gaz.id }}</td>
+                <th style="width: 50%">Id</th>
+                <td style="width: 50%">{{ gaz.id }}</td>
             </tr>
             <tr>
                 <th>PCE1</th>
@@ -94,9 +96,9 @@
         </tbody>
     </table>
 
-    <a href="{{ path('gaz_index') }}">back to list</a>
-
-    <a href="{{ path('gaz_edit', {'id': gaz.id}) }}">edit</a>
-
-    {{ include('gaz/_delete_form.html.twig') }}
+    <div class="show" style="text-align: center;display: flex;margin-left: 480px;">
+        <a class="btn btn-primary" href="{{ path('gaz_edit', {'id': gaz.id}) }}" style="width: 83px;height: 44px;">Editer</a>
+        {{ include('gaz/_delete_form.html.twig') }}
+    </div>
+</div>
 {% endblock %}

@@ -3,12 +3,13 @@
 {% block title %}Gaz index{% endblock %}
 
 {% block body %}
-    <h1>Gaz index</h1>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+    <h1 style="margin: 25px;">Listes Gaz</h1>
 
-    <table class="table">
+    <table class="table table-bordered">
         <thead>
             <tr>
-                <th>Id</th>
+                <th>Code client</th>
                 <th>PCE1</th>
                 <th>PCE2</th>
                 <th>PCE3</th>
@@ -34,8 +35,9 @@
         </thead>
         <tbody>
         {% for gaz in gazs %}
+
             <tr>
-                <td>{{ gaz.id }}</td>
+                <td>{{ gaz.client.id }}</td>
                 <td>{{ gaz.PCE1 }}</td>
                 <td>{{ gaz.PCE2 }}</td>
                 <td>{{ gaz.PCE3 }}</td>
@@ -57,17 +59,18 @@
                 <td>{{ gaz.PCE19 }}</td>
                 <td>{{ gaz.PCE20 }}</td>
                 <td>
-                    <a href="{{ path('gaz_show', {'id': gaz.id}) }}">show</a>
-                    <a href="{{ path('gaz_edit', {'id': gaz.id}) }}">edit</a>
+                    <a href="{{ path('gaz_show', {'id': gaz.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('gaz_edit', {'id': gaz.id}) }}"><i style="color: yellow;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="22">no records found</td>
+                <td colspan="22">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('gaz_new') }}">Create new</a>
+    <div class="navigation" style="text-align: center ;margin-right: 590px;">
+        {{ knp_pagination_render(gazs) }}
+    </div>
 {% endblock %}

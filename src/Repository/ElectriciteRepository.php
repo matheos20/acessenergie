@@ -67,4 +67,11 @@ class ElectriciteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
+    public function findByElectricite(){
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.id', 'DESC')
+            ->getQuery();
+
+
+    }
 }

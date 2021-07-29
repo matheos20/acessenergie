@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Gaz;
 use App\Form\GazType;
 use App\Repository\GazRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,11 +19,13 @@ class GazController extends AbstractController
     /**
      * @Route("/", name="gaz_index", methods={"GET"})
      */
-    public function index(GazRepository $gazRepository): Response
+    public function index(GazRepository $gazRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $gazQuerry = $gazRepository->findByGaz();
         return $this->render('gaz/index.html.twig', [
-            'gazs' => $gazRepository->findAll(),
+            'gazs' => $paginator->paginate($gazQuerry, $request->query->getInt('page',1),2),
         ]);
+
     }
 
     /**
@@ -49,7 +52,7 @@ class GazController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="gaz_show", methods={"GET"})
+     * @Route("/{id}/gaz", name="gaz_show", methods={"GET"})
      */
     public function show(Gaz $gaz): Response
     {

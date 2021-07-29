@@ -1,4 +1,4 @@
-<h2 style="background-color: grey; text-align: center;padding-top:15px; font-size: 14px">
+<h2 style="background-color: grey; text-align: center;padding-top:5px; font-size: 14px">
 	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (GRDF)
 </h2>
 <p style="line-height: 4px;">L’entreprise:
@@ -13,7 +13,7 @@
 
 
 <p>et représentée par :
-	<b>{{ client.getNameOfSignatory() }}</b>
+	 <b>{{ client.getNameOfSignatory() }}</b>
 	FONCTION:
 	<b>{{ client.function }}</b>,dûment habilité(e) à cet effet,
 				                                    titulaire de contrat(s) unique(s) pour la fourniture de gaz naturel pour le(s) site(s)
@@ -48,15 +48,19 @@
 		            application de la présente autorisation est interdite.
 </p>
 
-<p style="margin-left: 50px">Fait à {{ client.City }} {{ client.getSocialReason() }}
-	{{ client.address }}
+<p style="margin-left: 50px">Fait à {{ client.City }} {{ client.getNameOfSignatory() }} {{ client.address }}
 	Le
 	{{ "now"|date("m/d/Y") }}</p>
 
 
 <p style="margin-left: 380px;text-decoration: underline" class="underline">signature + cachet commercial du client
 </p>
-<p style="margin-left: 380px; border:#000 1px solid; height: 55px; width: 260px"></p>
+<p style="margin-left: 380px; border:#000 1px solid; height: 78px; width: 260px;text-align: center">
+	consentement digitalisé <br>
+	le {{ "now"|date("d/m/y H:i:s") }} par <br>
+	{{ client.Mail }} <br>
+	{{ client.Telephone }}
+</p>
 {# <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }}</p> #}
 
 <h3 style="font-size: 14px;">

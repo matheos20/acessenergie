@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Gaz{% endblock %}
+{% block title %}Edit Electricite{% endblock %}
 
 {% block body %}
     <style>
@@ -10,11 +10,12 @@
         }
     </style>
 <div class="container mt-5">
-    <h1>Edit Gaz</h1>
+    <h1>Edit Electricite</h1>
     <div class="update mt-4">
-        <a class="btn btn-success" href="{{ path('gaz_index') }}" style="margin-left: 15px">Retour à liste</a>
+
+        <a class="btn btn-success" href="{{ path('electricite_index') }}" style="margin-left: 15px">Retour à liste</a>
         <div style="margin: 20px">
-            {{ include('gaz/_form.html.twig', {'button_label': 'Editer'}) }}
+        {{ include('electricite/_form.html.twig', {'button_label': 'Editer'}) }}
         </div>
     </div>
 </div>

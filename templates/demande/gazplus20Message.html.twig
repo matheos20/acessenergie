@@ -13,7 +13,7 @@
 </p>
 <p>et représentée par :
 	<b>{{ client.getNameOfSignatory() }}</b>
-	FONCTION:<b>{{ client.function }}</b>,dûment habilité(e) à cet effet,
+	 FONCTION:<b>{{ client.function }}</b>, dûment habilité(e) à cet effet,
 		                titulaire de contrat(s) unique(s) pour la fourniture de gaz naturel pour le(s) site(s)
 		             de consommation mentionné(s) dans le tableau en annexe,
 </p>
@@ -49,7 +49,12 @@
 	Le
 	{{ "now"|date("d/m/Y") }}</p>
 <p style="margin-left: 380px;text-decoration: underline" class="underline">signature + cachet commercial du client</p>
-<p style="margin-left: 380px; border:#000 1px solid; height: 55px; width: 260px"></p>
+<p style="margin-left: 380px; border:#000 1px solid; height: 55px; width: 260px;text-align: center">
+	consentement digitalisé <br>
+	le {{ "now"|date("d/m/y H:i:s") }} par <br>
+	{{ client.Mail }} <br>
+	{{ client.Telephone }}
+</p>
 {# <p style="margin-left: 800px">{{ "now"|date("m/d/Y") }}</p> #}
 
 <h3 style="font-size: 14px;">

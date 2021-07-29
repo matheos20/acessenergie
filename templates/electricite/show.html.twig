@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Electricite{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 style="margin: -10px;">Electricite</h1>
+    <a style="right: 20px;margin: 15px" class="btn btn-success mt-4" href="{{ path('electricite_index') }}">Retour à liste</a>
+    <table class="table table-bordered">
+        <tbody>
+        <tr>
+            <th style="width: 50%">Code client</th>
+            <td style="width: 50%">{{ electricite.id }}</td>
+        </tr>
+        <tr>
+            <th>PDL1</th>
+            <td>{{ electricite.PDL1 }}</td>
+        </tr>
+        <tr>
+            <th>PDL2</th>
+            <td>{{ electricite.PDL2 }}</td>
+        </tr>
+        <tr>
+            <th>PDL3</th>
+            <td>{{ electricite.PDL3 }}</td>
+        </tr>
+        <tr>
+            <th>PDL4</th>
+            <td>{{ electricite.PDL4 }}</td>
+        </tr>
+        <tr>
+            <th>PDL5</th>
+            <td>{{ electricite.PDL5 }}</td>
+        </tr>
+        <tr>
+            <th>PDL6</th>
+            <td>{{ electricite.PDL6 }}</td>
+        </tr>
+        <tr>
+            <th>PDL7</th>
+            <td>{{ electricite.PDL7 }}</td>
+        </tr>
+        <tr>
+            <th>PDL8</th>
+            <td>{{ electricite.PDL8 }}</td>
+        </tr>
+        <tr>
+            <th>PDL9</th>
+            <td>{{ electricite.PDL9 }}</td>
+        </tr>
+        <tr>
+            <th>PDL10</th>
+            <td>{{ electricite.PDL10 }}</td>
+        </tr>
+        <tr>
+            <th>PDL11</th>
+            <td>{{ electricite.PDL11 }}</td>
+        </tr>
+        <tr>
+            <th>PDL12</th>
+            <td>{{ electricite.PDL12 }}</td>
+        </tr>
+        <tr>
+            <th>PDL13</th>
+            <td>{{ electricite.PDL13 }}</td>
+        </tr>
+        <tr>
+            <th>PDL14</th>
+            <td>{{ electricite.PDL14 }}</td>
+        </tr>
+        <tr>
+            <th>PDL15</th>
+            <td>{{ electricite.PDL15 }}</td>
+        </tr>
+        <tr>
+            <th>PDL16</th>
+            <td>{{ electricite.PDL16 }}</td>
+        </tr>
+        <tr>
+            <th>PDL17</th>
+            <td>{{ electricite.PDL17 }}</td>
+        </tr>
+        <tr>
+            <th>PDL18</th>
+            <td>{{ electricite.PDL18 }}</td>
+        </tr>
+        <tr>
+            <th>PDL19</th>
+            <td>{{ electricite.PDL19 }}</td>
+        </tr>
+        <tr>
+            <th>PDL20</th>
+            <td>{{ electricite.PDL20 }}</td>
+        </tr>
+        </tbody>
+    </table>
+<div class="show" style="text-align: center;display: flex;margin-left: 480px;">
+     <a class="btn badge-primary" href="{{ path('electricite_edit', {'id': electricite.id}) }}" style="width: 83px;height: 44px;">Editer</a>
+     {{ include('electricite/_delete.html.twig') }}
+</div>
+</div>
+{% endblock %}

@@ -1,25 +1,16 @@
 {% if electreicite is not empty %} 
 {% for electricitePlus in electreicite %}
 
-<h2 style="background-color: grey; text-align: center;padding-top:5px; font-size: 12px">
-	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (ENEDIS)
-</h2>
-<p style="line-height: 4px;">L’entreprise:
-	<b>{{ client.mermaid }}</b>
-</p>
-<p style="line-height: 4px;">Sous le SIREN:
-	<b>{{ client.getSocialReason() }}</b>
-</p>
-<p style="line-height: 4px;">Ayant son siège à :
-	<b>{{ client.address }}</b>
-</p>
-<p>et représentée par :
-	<b>{{ client.getNameOfSignatory() }}</b>FONCTION:
-	<b>{{ client.function }}</b>,
-		            dûment habilité(e) à cet effet,titulaire de contrat(s) unique(s) 
-		            pour la fourniture de gaz naturel pour le(s) site(s)de consommation
-		            mentionné(s) dans le tableau en annexe,
-</p>
+	<h2 style="background-color: grey; text-align: center;padding-top:5px; font-size: 12px">
+		AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (ENEDIS)
+	</h2>
+	<p style="line-height: 4px;">L’entreprise:<b>{{ client.mermaid }}</b></p>
+	<p style="line-height: 4px;">Sous le SIREN:<b>{{ client.getSocialReason() }}</b></p>
+	<p style="line-height: 4px;">Ayant son siège à :<b>{{ client.address }}</b></p>
+	<p>et représentée par :<b>{{ client.getNameOfSignatory() }}</b>
+		FONCTION: <b>{{ client.function }}</b>, dûment habilité(e) à cet effet,
+		titulaire de contrat(s) unique(s) pour la fourniture de gaz naturel pour le(s) site(s)de consommation
+		mentionné(s) dans le tableau en annexe,</p>
 <h4 style="font-weight: bold;">AUTORISE</h4>
 <p>ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L4OURAILLE 76940 LA MAILLERAYE SUR
 	                SEINE, et
@@ -55,14 +46,19 @@
 <p style="margin: -2px">Toute cession, à titre gratuit ou onéreux, de tout ou partie de 
 	                ces données transmises par Enedis à ce tiers en application de la présente autorisation est interdite
 </p>
-<p style="margin-left: 50px">Fait à {{ client.City }} {{ client.getSocialReason() }}
+<p style="margin-left: 50px">Fait à {{ client.City }} {{ client.getNameOfSignatory() }}
 	{{ client.address }}
 	Le
 	{{ "now"|date("m/d/Y") }}</p>
 
 <p style="margin-left: 380px;text-decoration: underline" class="underline">signature + cachet commercial du client</p>
 
-<p style="margin-left: 380px; border:#000 1px solid; height: 40px; width: 230px"></p>
+<p style="margin-left: 380px; border:#000 1px solid; height: 78px; width: 230px">
+	consentement digitalisé <br>
+	le {{ "now"|date("d/m/y H:i:s") }} par <br>
+	{{ client.Mail }} <br>
+	{{ client.Telephone }}
+</p>
 
 <h3 style="font-size: 12px;">
 	<b style="font-weight: 900">Annexe : Liste des PDL concernés</b>

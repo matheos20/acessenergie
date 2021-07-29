@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Electricite index{% endblock %}
+
+{% block body %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+    <h1 style="margin: 25px">Listes Electricite</h1>
+
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Code client</th>
+            <th>PDL1</th>
+            <th>PDL2</th>
+            <th>PDL3</th>
+            <th>PDL4</th>
+            <th>PDL5</th>
+            <th>PDL6</th>
+            <th>PDL7</th>
+            <th>PDL8</th>
+            <th>PDL9</th>
+            <th>PDL10</th>
+            <th>PDL11</th>
+            <th>PDL12</th>
+            <th>PDL13</th>
+            <th>PDL14</th>
+            <th>PDL15</th>
+            <th>PDL16</th>
+            <th>PDL17</th>
+            <th>PDL18</th>
+            <th>PDL19</th>
+            <th>PDL20</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for electricite in electricites %}
+
+            <tr>
+                <td>{{ electricite.client.id }}</td>
+                <td>{{ electricite.PDL1 }}</td>
+                <td>{{ electricite.PDL2 }}</td>
+                <td>{{ electricite.PDL3 }}</td>
+                <td>{{ electricite.PDL4 }}</td>
+                <td>{{ electricite.PDL5 }}</td>
+                <td>{{ electricite.PDL6 }}</td>
+                <td>{{ electricite.PDL7 }}</td>
+                <td>{{ electricite.PDL8 }}</td>
+                <td>{{ electricite.PDL9 }}</td>
+                <td>{{ electricite.PDL10 }}</td>
+                <td>{{ electricite.PDL11 }}</td>
+                <td>{{ electricite.PDL12 }}</td>
+                <td>{{ electricite.PDL13 }}</td>
+                <td>{{ electricite.PDL14 }}</td>
+                <td>{{ electricite.PDL15 }}</td>
+                <td>{{ electricite.PDL16 }}</td>
+                <td>{{ electricite.PDL17 }}</td>
+                <td>{{ electricite.PDL18 }}</td>
+                <td>{{ electricite.PDL19 }}</td>
+                <td>{{ electricite.PDL20 }}</td>
+               <td>
+                    <a href="{{ path('electricite_show', {'id': electricite.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
+                    <a href="{{ path('electricite_edit', {'id': electricite.id}) }}"><i style="color: yellow;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="22">Aucun enregistrement trouvé</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <div class="navigation" style="text-align: center ;margin-right: 590px;">
+        {{ knp_pagination_render(electricites) }}
+    </div>
+{% endblock %}

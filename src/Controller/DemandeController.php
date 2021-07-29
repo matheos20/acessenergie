@@ -45,15 +45,19 @@ class DemandeController extends AbstractController
         $isHasSelectedOne = null;
         if ($form->isSubmitted() && $form->isValid()) {
             $token = uniqid();
+            $hasGaz = false;
+            $hasElec = false;
             if ($authorizationRequest->getIsNaturalGaz() && $authorizationRequest->getIsTwentyGaz()) {
                 $authorizationRequest->getGazNatural()->setClient($client)->setTokenToConfirmAuthorization($token);
                 $em->persist($authorizationRequest->getGazNatural());
                 $isHasSelectedOne = true;
+                $hasGaz = true;
             }
             if ($authorizationRequest->getElectricite() && $authorizationRequest->getIsTwentyElec()) {
                 $authorizationRequest->getElectricite()->setClient($client)->setTokenToConfirmAuthorization($token);
                 $em->persist($authorizationRequest->getElectricite());
                 $isHasSelectedOne = true;
+                $hasElec = true;
             }
             if ($authorizationRequest->getIsElectricite() && $authorizationRequest->getIsMoreThanTwentyElec()) {
                 $elecPlus20 = new ElectricitePlus20();
@@ -62,6 +66,7 @@ class DemandeController extends AbstractController
                 $elecPlus20->setElectriciteplus20('Pour le(s) PDL dont la liste est annexée à la présente autorisation ');
                 $em->persist($elecPlus20);
                 $isHasSelectedOne = true;
+                $hasElec = true;
             }
             if ($authorizationRequest->getIsNaturalGaz() && $authorizationRequest->getIsMoreThanTwentyGaz()) {
                 $gazPlus20 = new GazPlus20();
@@ -70,13 +75,14 @@ class DemandeController extends AbstractController
                 $gazPlus20->setGazplus20('Pour le(s) PCE dont la liste est annexée à la présente autorisation ');
                 $em->persist($gazPlus20);
                 $isHasSelectedOne = true;
+                $hasGaz = true;
             }
             if ($isHasSelectedOne === true) {
                 $em->flush();
                 //send mail
                 $email = (new Email())
                     ->to($client->getMail())
-                    ->subject('Demande d\'autorisation')
+                    ->subject('Demande d\'autorisation de collecte de données ' . ($hasGaz ? 'de gaz' : '') .($hasGaz && $hasElec ? ' / ' : ''). ($hasElec ? 'd\'électricité' : ''))
                     ->html($this->renderView(
                         'demande/clientMessage.html.twig',
                         ['name' => $client->getNameOfSignatory(), 'id' => $client->getId(), 'token' => $token])
@@ -116,28 +122,28 @@ class DemandeController extends AbstractController
         $isHasMailSended = false;
         if ($gazClient) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPdf.html.twig', $gazClient, $client, 'gaz.pdf');
-            $this->sendMailDuplicata('demande/gazMessage.html.twig', $gazClient, $client, $mailer, $attachement);
+            $this->sendMailDuplicata('demande d\'autorisation de collecte de données de gaz','demande/gazMessage.html.twig', $gazClient, $client, $mailer, $attachement);
             $gazClient->setIsAlreadyAuthorized(1);
             $em->persist($gazClient);
             $isHasMailSended = true;
         }
         if ($elecClient) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePdf.html.twig', $elecClient, $client, 'electricite.pdf');
-            $this->sendMailDuplicata('demande/electriciteMessage.html.twig', $elecClient, $client, $mailer, $attachement);
+            $this->sendMailDuplicata('demande d\'autorisation de collecte de données électricité','demande/electriciteMessage.html.twig', $elecClient, $client, $mailer, $attachement);
             $elecClient->setIsAlreadyAuthorized(1);
             $em->persist($elecClient);
             $isHasMailSended = true;
         }
         if ($gaz20Client) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPlus20Pdf.html.twig', $gaz20Client, $client, 'gazPlus20.pdf');
-            $this->sendMailDuplicata('demande/gazplus20Message.html.twig', $gaz20Client, $client, $mailer, $attachement);
+            $this->sendMailDuplicata('demande d\'autorisation de collecte de données de gaz','demande/gazplus20Message.html.twig', $gaz20Client, $client, $mailer, $attachement);
             $gaz20Client->setIsAlreadyAuthorized(1);
             $em->persist($gaz20Client);
             $isHasMailSended = true;
         }
         if ($elec20Client) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePlus20Pdf.html.twig', $elec20Client, $client, 'electricitePlus20.pdf');
-            $this->sendMailDuplicata('demande/electriciteplus20Message.html.twig', $elec20Client, $client, $mailer, $attachement);
+            $this->sendMailDuplicata('demande d\'autorisation de collecte de données électricité','demande/electriciteplus20Message.html.twig', $elec20Client, $client, $mailer, $attachement);
             $elec20Client->setIsAlreadyAuthorized(1);
             $em->persist($elec20Client);
             $isHasMailSended = true;
@@ -148,11 +154,11 @@ class DemandeController extends AbstractController
 
     }
 
-    private function sendMailDuplicata(string $template, $value, Client $client, MailerInterface $mailer, string $attachement)
+    private function sendMailDuplicata(string $subject,string $template, $value, Client $client, MailerInterface $mailer, string $attachement)
     {
         $email = (new Email())
             ->to($client->getMail())
-            ->subject('Demande d\'autorisation')
+            ->subject($subject)
             ->attachFromPath($attachement)
             ->html($this->renderView($template, [
                 'value' => $value,

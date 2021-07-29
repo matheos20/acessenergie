@@ -15,6 +15,7 @@ class ClientType extends AbstractType
         $builder
             ->add('social_reason',TextType::class,['label'=>'Raison sociale'])
             ->add('mermaid', TextType::class,['label'=>'Siren'])
+            ->add('telephone',TextType::class,['label'=>'téléphone'])
             ->add('address',TextType::class,['label'=>'Adresse du siège'])
             ->add('PostalCode',TextType::class,['label'=>'Code Postal'])
             ->add('city',TextType::class,['label'=>'Ville'])

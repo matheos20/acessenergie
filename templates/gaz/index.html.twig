@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
     <h1 style="margin: 25px;">Listes Gaz</h1>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="width: 100%">
         <thead>
-            <tr>
+            <tr style="font-size: .7vw;">
                 <th>Code client</th>
                 <th>PCE1</th>
                 <th>PCE2</th>
@@ -36,7 +36,7 @@
         <tbody>
         {% for gaz in gazs %}
 
-            <tr>
+            <tr style="font-size: .7vw;">
                 <td>{{ gaz.client.id }}</td>
                 <td>{{ gaz.PCE1 }}</td>
                 <td>{{ gaz.PCE2 }}</td>

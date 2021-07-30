@@ -61,6 +61,7 @@
                 border-bottom: 3px solid #ddd;
                 display: block;
                 margin-bottom: .625em;
+                
             }
 
             table td {
@@ -92,39 +93,48 @@
             width: 231px
         }
         input[type="text"]#client_recherche_social_reason.form-control {
-            /* display: block; */
-            margin: 6px;
-            /* width: 5px;*/
-            margin-left: 227px;
-            /*width: 30% !important; */
-            height: calc(1.5em + .75rem + 2px);
-            padding: .375rem .75rem;
-            font-size: 1rem;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #495057;
-            background-color: #fff;
-            background-clip: padding-box;
-            border: 1px solid #ced4da;
-            border-radius: .25rem;
-            transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+       display: block;
+    */: ;
+    margin: 6px;
+    /* width: 5px; */
+    margin-left: 299px;
+    width: 76% !important;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
         }
         .recherche{
             /* margin:-58px; */
             margin: -63px;
             margin-left: 148%;
         }
+        .btn-success {
+    color: #fff;
+    background-color: #0d7526 !important;
+    border-color: #0d7526 !important;
+}
+form{
+    display: -webkit-box;
+}
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">
     <div class="container mt-5">
         <h1 style="margin: 50px">Listes des Clients</h1>
-        <div style="display: inline-flex;height: 38px; margin: 0px;
-">
-            <a class="btn btn-success" href="{{ path('client_new') }}" style="margin-left: -128px;">Nouveau Client</a>
+        <div style="display:flex;height: 38px; margin: 0px;">
+            <a class="btn btn-success" href="{{ path('client_new') }}">Nouveau Client</a>
                     {{ form_start(form) }}
                     {{ form_row(form.social_reason) }}   
-                    <button class="btn btn-primary recherche" type="submit">rechercher</button>
+                    <button class="btn btn-primary recherche" type="submit" style="margin-left: 200px;">rechercher</button>
                     {{form_end(form)}}
         </div>
         {% for message in app.flashes('danger') %}
@@ -137,24 +147,26 @@
                 {{ message }}
             </div>
         {% endfor %}
-    <table class="table table-bordered" style="margin: 48px; margin-left: -142px;width: 130%">
+    <table class="table table-bordered" style="margin: 48px auto;width: 100%">
             <thead>
-                    <tr>
+                    <tr style="font-size: .7vw;">
+                        <th scope="col" class="align-middle"style="width: 7%">Code client </th>
                         <th scope="col" class="align-middle"style="width: 10%">Raison sociale </th>
-                        <th scope="col" class="align-middle"style="width: 10%">Siren </th>
-                        <th scope="col" class="align-middle"style="width: 10%">téléphone </th>
+                        <th scope="col" class="align-middle"style="width: 15%">Siren </th>
+                        <th scope="col" class="align-middle"style="width: 12%">téléphone </th>
                         <th scope="col" class="align-middle"style="width: 10%">Adresse du siège </th>
-                        <th scope="col" class="align-middle"style="width: 10%">Code postal </th>
-                        <th scope="col" class="align-middle"style="width: 10%">Ville </th>
+                        <th scope="col" class="align-middle"style="width: 7%">Code postal </th>
+                        <th scope="col" class="align-middle"style="width: 12%">Ville </th>
                         <th scope="col" class="align-middle"style="width: 10%">Nom du Signataire </th>
                         <th scope="col" class="align-middle"style="width: 10%">Fonction</th>
                         <th scope="col" class="align-middle" style="width: 22%">Adresse mail </th>
-                        <th scope="col" class="align-middle" style="width: 23%">actions</th>
+                        <th scope="col" class="align-middle" style="width: 24%">actions</th>
                     </tr>
             </thead>
             <tbody>
             {% for client in clients %}
-                    <tr>
+                    <tr style="font-size: .7vw;">
+                        <td data-label=Raison_sociale>{{ client.id }}</td>
                         <td data-label=Raison_sociale>{{ client.socialReason }}</td>
                         <td data-label=Siren>{{ client.mermaid }}</td>
                         <td data-label=Siren>{{ client.telephone }}</td>

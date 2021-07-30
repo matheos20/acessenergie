@@ -17,7 +17,7 @@ class ElectriciteController extends AbstractController{
     {
         $electriciteQuerry = $electriciteRepository->findByElectricite();
         return $this->render('electricite/index.html.twig',[
-            'electricites' => $paginator->paginate($electriciteQuerry, $request->query->getInt('page',1),2),
+            'electricites' => $paginator->paginate($electriciteQuerry, $request->query->getInt('page',1),20),
             ]);
     }
     /**

@@ -87,11 +87,11 @@ class ClientController extends AbstractController
 
         // Render the HTML as PDF
         @$dompdf->render();
-
+        $isHasGaz = !empty($gaz) || !empty($gazPlus);
+        $isHasElec = !empty($electric) || !empty($electricitePlus);
         // Output the generated PDF to Browser (force download)
-        $dompdf->stream($id->getMermaid() . '.pdf', [
-            "Attachment" => true
-        ]);
+        $filename = 'ACD' . ($isHasGaz ? 'gaz' : '') . ($isHasGaz && $isHasElec ? '/' : '') . ($isHasElec ? 'électricité' : ''). ' ' . $id->getSocialReason() . '.pdf';
+        $dompdf->stream($filename, ["Attachment" => true]);
         dd($dompdf);
     }
 

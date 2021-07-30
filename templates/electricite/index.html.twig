@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
     <h1 style="margin: 25px">Listes Electricite</h1>
 
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="width: 100%">
         <thead>
-        <tr>
+        <tr style="font-size: .7vw;">
             <th>Code client</th>
             <th>PDL1</th>
             <th>PDL2</th>
@@ -36,7 +36,7 @@
         <tbody>
         {% for electricite in electricites %}
 
-            <tr>
+            <tr style="font-size: .7vw;">
                 <td>{{ electricite.client.id }}</td>
                 <td>{{ electricite.PDL1 }}</td>
                 <td>{{ electricite.PDL2 }}</td>

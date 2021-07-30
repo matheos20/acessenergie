@@ -122,28 +122,28 @@ class DemandeController extends AbstractController
         $isHasMailSended = false;
         if ($gazClient) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPdf.html.twig', $gazClient, $client, 'gaz.pdf');
-            $this->sendMailDuplicata('demande d\'autorisation de collecte de données de gaz','demande/gazMessage.html.twig', $gazClient, $client, $mailer, $attachement);
+            $this->sendMailDuplicata('ACD gaz','demande/gazMessage.html.twig', $gazClient, $client, $mailer, $attachement);
             $gazClient->setIsAlreadyAuthorized(1);
             $em->persist($gazClient);
             $isHasMailSended = true;
         }
         if ($elecClient) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePdf.html.twig', $elecClient, $client, 'electricite.pdf');
-            $this->sendMailDuplicata('demande d\'autorisation de collecte de données électricité','demande/electriciteMessage.html.twig', $elecClient, $client, $mailer, $attachement);
+            $this->sendMailDuplicata('ACD électricité','demande/electriciteMessage.html.twig', $elecClient, $client, $mailer, $attachement);
             $elecClient->setIsAlreadyAuthorized(1);
             $em->persist($elecClient);
             $isHasMailSended = true;
         }
         if ($gaz20Client) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPlus20Pdf.html.twig', $gaz20Client, $client, 'gazPlus20.pdf');
-            $this->sendMailDuplicata('demande d\'autorisation de collecte de données de gaz','demande/gazplus20Message.html.twig', $gaz20Client, $client, $mailer, $attachement);
+            $this->sendMailDuplicata('ACD gaz','demande/gazplus20Message.html.twig', $gaz20Client, $client, $mailer, $attachement);
             $gaz20Client->setIsAlreadyAuthorized(1);
             $em->persist($gaz20Client);
             $isHasMailSended = true;
         }
         if ($elec20Client) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePlus20Pdf.html.twig', $elec20Client, $client, 'electricitePlus20.pdf');
-            $this->sendMailDuplicata('demande d\'autorisation de collecte de données électricité','demande/electriciteplus20Message.html.twig', $elec20Client, $client, $mailer, $attachement);
+            $this->sendMailDuplicata('ACD électricité','demande/electriciteplus20Message.html.twig', $elec20Client, $client, $mailer, $attachement);
             $elec20Client->setIsAlreadyAuthorized(1);
             $em->persist($elec20Client);
             $isHasMailSended = true;

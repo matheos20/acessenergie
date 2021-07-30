@@ -23,7 +23,7 @@ class GazController extends AbstractController
     {
         $gazQuerry = $gazRepository->findByGaz();
         return $this->render('gaz/index.html.twig', [
-            'gazs' => $paginator->paginate($gazQuerry, $request->query->getInt('page',1),2),
+            'gazs' => $paginator->paginate($gazQuerry, $request->query->getInt('page',1),20),
         ]);
 
     }

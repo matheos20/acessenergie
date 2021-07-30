@@ -90,7 +90,7 @@ class ClientController extends AbstractController
         $isHasGaz = !empty($gaz) || !empty($gazPlus);
         $isHasElec = !empty($electric) || !empty($electricitePlus);
         // Output the generated PDF to Browser (force download)
-        $filename = 'ACD' . ($isHasGaz ? 'gaz' : '') . ($isHasGaz && $isHasElec ? '/' : '') . ($isHasElec ? 'électricité' : ''). ' ' . $id->getSocialReason() . '.pdf';
+        $filename = 'ACD' . ($isHasGaz ? 'gaz' : '') . ($isHasGaz && $isHasElec ? '-' : '') . ($isHasElec ? 'électricité' : '') . ' ' . $id->getSocialReason() . '.pdf';
         $dompdf->stream($filename, ["Attachment" => true]);
         dd($dompdf);
     }

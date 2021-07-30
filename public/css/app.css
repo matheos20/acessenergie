@@ -1,5 +1,7 @@
 
-
+.form-control{
+    text-transform: none !important;
+}
 
 div.ad-title{
     padding: 2em;

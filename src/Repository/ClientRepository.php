@@ -30,7 +30,7 @@ class ClientRepository extends ServiceEntityRepository
                       ->where('c.social_reason like :val');
 
         for ($i = 1; $i <= 20; $i++) {
-            $query->orWhere("c.PDL$i like :val")->orWhere("c.PCE$i like :val");
+            $query->orWhere("e.PDL$i like :val")->orWhere("g.PCE$i like :val");
         }
         $query->setParameter('val', "%{$term}%")
               ->orderBy('c.id', 'DESC');

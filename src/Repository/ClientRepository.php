@@ -3,6 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Client;
+use App\Entity\Electricite;
+use App\Entity\Gaz;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -18,14 +20,22 @@ class ClientRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Client::class);
     }
-    public function findBySocialResion(?string $term){
-         return $this->createQueryBuilder('c')
-            ->andWhere('c.social_reason like :val')
-            ->setParameter('val', "%{$term}%")
-            ->orderBy('c.id', 'DESC')
-            ->getQuery();
-            
-           
+
+    public function findBySocialResion(?string $term)
+    {
+
+        $query = $this->createQueryBuilder('c')
+                      ->leftJoin(Gaz::class, 'g', 'g.client = c.id')
+                      ->leftJoin(Electricite::class, 'e', 'e.client = c.id')
+                      ->where('c.social_reason like :val');
+
+        for ($i = 1; $i <= 20; $i++) {
+            $query->orWhere("c.PDL$i like :val")->orWhere("c.PCE$i like :val");
+        }
+        $query->setParameter('val', "%{$term}%")
+              ->orderBy('c.id', 'DESC');
+
+        return $query;
     }
 
     // /**

@@ -25,8 +25,8 @@ class ClientRepository extends ServiceEntityRepository
     {
 
         $query = $this->createQueryBuilder('c')
-                      ->leftJoin(Gaz::class, 'g', 'g.client = c.id')
-                      ->leftJoin(Electricite::class, 'e', 'e.client = c.id')
+                      ->leftJoin(Gaz::class, 'g','WITH', 'g.client = c.id')
+                      ->leftJoin(Electricite::class, 'e', 'WITH','e.client = c.id')
                       ->where('c.social_reason like :val');
 
         for ($i = 1; $i <= 20; $i++) {

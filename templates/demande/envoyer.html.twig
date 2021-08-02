@@ -69,7 +69,7 @@
         table th, input,label,.form-control {
             font-size: .85em;
             letter-spacing: .1em;
-            text-transform: uppercase;
+           /* text-transform: uppercase;*/
 
         }
         input{
@@ -124,7 +124,7 @@
                 content: attr(data-label);
                 float: left;
                 font-weight: bold;
-                text-transform: uppercase;
+               /* text-transform: uppercase;*/
             }
 
             table td:last-child {
@@ -135,19 +135,21 @@
     </style>
 
     <div class="container mt-5">
-        <h1>DEMANDE D'AUTORISATIONS</h1>
+    <h3 style="text-align: center;">DEMANDE D'AUTORISATIONS</h3>
         <a style="right: " class="btn btn-success" href="{{ path('client_index') }}">Retour à liste</a>
         {% for message in app.flashes('success') %}
             <div class="alert alert-primary" style="background-color: #2e72ea!important;">
                 {{ message }}
             </div>
         {% endfor %}
-        <table class="table table-bordered mt-4">
+        <table class="table table-bordered mt-4" style="width: 100%;font-size: .7vw;">
             <thead>
             <tr>
                 <th scope="col" class="align-middle">Raison sociale </th>
                 <th scope="col" class="align-middle">Siren </th>
                 <th scope="col" class="align-middle">Adresse du siège </th>
+                <th scope="col" class="align-middle" style="width: 7%">Code postal</th>
+                <th scope="col" class="align-middle" style="width: 12%">Ville</th>
                 <th scope="col" class="align-middle">Nom du Signataire </th>
                 <th scope="col" class="align-middle">Fonction</th>
                 <th scope="col" class="align-middle" style="width: 28%">Adresse mail </th>
@@ -158,6 +160,8 @@
                 <td data-label=Raison_sociale>{{ client.socialReason }}</td>
                 <td data-label=Siren>{{ client.mermaid }}</td>
                 <td data-label=Adresse_du_siège>{{ client.address }}</td>
+                <td data-label="Code" postal>{{ client.PostalCode }}</td>
+                <td data-label="Adresse_du_siège">{{ client.City }}</td>
                 <td data-label=Nom_du_Signataire>{{ client.nameOfSignatory }}</td>
                 <td data-label=Fonction>{{ client.function }}</td>
                 <td data-label=Adresse_mail>{{ client.mail }}</td>
@@ -169,7 +173,7 @@
             {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
             <input type="text" name="id_client" hidden value="{{ client.id }}">
             <div>
-                <h3 class="mt-4 text-center">Détermination de périmètre du client</h3>
+                <h5 class="mt-4 text-center">Détermination de périmètre du client</h5>
                 {% if isHasSelectedOne is same as(false) %}
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         Selectionner au moins une demande d'authorisation !
@@ -190,7 +194,7 @@
             </div>
             
             <div class="jumbotron mt-2 gaz text-center">
-                <h4>GAZ NATUREL</h4>
+                <h5>GAZ NATUREL</h5>
                 <div class="form-check form-check-inline">
                     {{ form_widget(form.isTwentyGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz-twenty'}}) }}
                 </div>
@@ -314,7 +318,7 @@
              
 
             <div class="jumbotron mt-2 electrique text-center">
-                <h4>ELECTRICITE</h4>
+                <h5>ELECTRICITE</h5>
                 <div class="form-check form-check-inline">
                     {{ form_widget(form.isTwentyElec , {'attr': {'class': 'form-check-input', 'id': 'show-form-elec-twenty'}}) }}
                 </div>

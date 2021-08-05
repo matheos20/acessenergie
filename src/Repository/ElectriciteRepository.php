@@ -67,8 +67,13 @@ class ElectriciteRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-    public function findByElectricite(){
-        return $this->createQueryBuilder('c')
+    public function findByElectricite($rechecher){
+        $querry = $this->createQueryBuilder('c');
+        for ($i = 1; $i <= 20; $i++) {
+            $querry->orWhere("c.PDL$i like :val");
+        }
+        $term = $rechecher->getPDL1();
+        return  $querry->setParameter('val', "%{$term}%")
             ->orderBy('c.id', 'DESC')
             ->getQuery();
 

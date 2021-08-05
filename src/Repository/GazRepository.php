@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Gaz;
+use App\Entity\GazRecherche;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -67,12 +68,17 @@ class GazRepository extends ServiceEntityRepository
             ->getQuery()
             ->getOneOrNullResult();
     }
-    public function findByGaz(){
-        return $this->createQueryBuilder('c')
+
+    public function findByGaz($recherche)
+    {
+        $query = $this->createQueryBuilder('c');
+        for ($i = 1; $i <= 20; $i++) {
+            $query->orWhere("c.PCE$i like :val");
+        }
+        $term = $recherche->getPCE1();
+        return $query->setParameter('val', "%{$term}%")
             ->orderBy('c.id', 'DESC')
             ->getQuery();
-
-
     }
 
 }

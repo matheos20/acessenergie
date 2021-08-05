@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\Gaz;
+use App\Entity\GazRecherche;
+use App\Form\GazRechercheType;
 use App\Form\GazType;
 use App\Repository\GazRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -20,10 +22,19 @@ class GazController extends AbstractController
      * @Route("/", name="gaz_index", methods={"GET"})
      */
     public function index(GazRepository $gazRepository, PaginatorInterface $paginator, Request $request): Response
-    {
-        $gazQuerry = $gazRepository->findByGaz();
+    {   $recherche = new GazRecherche();
+        $form = $this->createForm(GazRechercheType::class,$recherche);
+        $form->handleRequest($request);
+        if (!empty($recherche->getPCE1())){
+            $gazQuerry = $gazRepository->findByGaz($recherche);
+        }
+        else{
+            $gazQuerry = $gazRepository->findAll();
+        }
+
         return $this->render('gaz/index.html.twig', [
             'gazs' => $paginator->paginate($gazQuerry, $request->query->getInt('page',1),20),
+            'form' => $form->createView()
         ]);
 
     }

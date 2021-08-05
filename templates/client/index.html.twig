@@ -150,7 +150,6 @@ form{
     <table class="table table-bordered" style="margin: 48px auto;width: 100%">
             <thead>
                     <tr style="font-size: .7vw;">
-                        <th scope="col" class="align-middle"style="width: 7%">Code client </th>
                         <th scope="col" class="align-middle"style="width: 10%">Raison sociale </th>
                         <th scope="col" class="align-middle"style="width: 15%">Siren </th>
                         <th scope="col" class="align-middle"style="width: 12%">téléphone </th>
@@ -166,7 +165,7 @@ form{
             <tbody>
             {% for client in clients %}
                     <tr style="font-size: .7vw;">
-                        <td data-label=Raison_sociale>{{ client.id }}</td>
+
                         <td data-label=Raison_sociale>{{ client.socialReason }}</td>
                         <td data-label=Siren>{{ client.mermaid }}</td>
                         <td data-label=Siren>{{ client.telephone }}</td>

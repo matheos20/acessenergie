@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 use App\Entity\Electricite;
+use App\Entity\ElectriciteRecherche;
+use App\Form\ElectriciteRechercheType;
 use App\Form\ElectriciteRequestType;
 use App\Repository\ElectriciteRepository;
 use Knp\Component\Pager\PaginatorInterface;
@@ -14,10 +16,19 @@ class ElectriciteController extends AbstractController{
      * @Route("/electricite", name="electricite_index", methods={"GET"})
      */
     public function index(ElectriciteRepository $electriciteRepository,PaginatorInterface $paginator, Request $request): Response
-    {
-        $electriciteQuerry = $electriciteRepository->findByElectricite();
+    {   $rechecher = new ElectriciteRecherche();
+        $form = $this->createForm(ElectriciteRechercheType::class,$rechecher);
+        $form->handleRequest($request);
+        if (!empty($rechecher->getPDL1())){
+            $electriciteQuerry = $electriciteRepository->findByElectricite($rechecher);
+        }
+        else{
+            $electriciteQuerry = $electriciteRepository->findAll();
+        }
+
         return $this->render('electricite/index.html.twig',[
             'electricites' => $paginator->paginate($electriciteQuerry, $request->query->getInt('page',1),20),
+            'form' => $form->createView()
             ]);
     }
     /**

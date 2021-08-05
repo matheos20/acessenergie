@@ -3,13 +3,24 @@
 {% block title %}Gaz index{% endblock %}
 
 {% block body %}
+    <style>
+        form{
+            display: flex;
+            margin-left: 60%;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
     <h1 style="margin: 25px;">Listes Gaz</h1>
-
+    <div>
+        {{ form_start(form) }}
+        {{ form_row(form.PCE1) }}
+        <button class="btn btn-primary recherche" type="submit" style="margin-left: 20px;height: 10%">rechercher</button>
+        {{form_end(form)}}
+    </div>
     <table class="table table-bordered" style="width: 100%">
         <thead>
             <tr style="font-size: .7vw;">
-                <th>Code client</th>
+                <th>Raison sociale</th>
                 <th>PCE1</th>
                 <th>PCE2</th>
                 <th>PCE3</th>
@@ -37,7 +48,7 @@
         {% for gaz in gazs %}
 
             <tr style="font-size: .7vw;">
-                <td>{{ gaz.client.id }}</td>
+                <td>{{ gaz.client.socialReason }}</td>
                 <td>{{ gaz.PCE1 }}</td>
                 <td>{{ gaz.PCE2 }}</td>
                 <td>{{ gaz.PCE3 }}</td>

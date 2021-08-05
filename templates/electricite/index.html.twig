@@ -3,13 +3,25 @@
 {% block title %}Electricite index{% endblock %}
 
 {% block body %}
+    <style>
+        form{
+            display: flex;
+            margin-left: 60%;
+        }
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
     <h1 style="margin: 25px">Listes Electricite</h1>
+    <div>
+        {{ form_start(form) }}
+        {{ form_row(form.PDL1) }}
+        <button class="btn btn-primary recherche" type="submit" style="margin-left: 20px;height: 10%">rechercher</button>
+        {{form_end(form)}}
+    </div>
 
     <table class="table table-bordered" style="width: 100%">
         <thead>
         <tr style="font-size: .7vw;">
-            <th>Code client</th>
+            <th>Raison sociale</th>
             <th>PDL1</th>
             <th>PDL2</th>
             <th>PDL3</th>
@@ -37,7 +49,7 @@
         {% for electricite in electricites %}
 
             <tr style="font-size: .7vw;">
-                <td>{{ electricite.client.id }}</td>
+                <td>{{ electricite.client.socialReason }}</td>
                 <td>{{ electricite.PDL1 }}</td>
                 <td>{{ electricite.PDL2 }}</td>
                 <td>{{ electricite.PDL3 }}</td>

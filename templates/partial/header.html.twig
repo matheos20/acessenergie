@@ -90,7 +90,7 @@ nav a:after {content: none;}
   <div class="container d-md-flex justify-content-between">
     <div class="logo-box">
       <a href="/">
-        <img src="{{ asset('image/logo.png') }}">
+        <img src="{{ asset('build/image/logo.png') }}">
       </a>
     </div>
     <nav class="nav-header">
@@ -102,6 +102,7 @@ nav a:after {content: none;}
 		      <li><a href="{{ path('client_index') }}">Client</a></li>
                 <li><a href="{{ path('gaz_index') }}">PCE</a></li>
                 <li><a href="{{ path('electricite_index') }}">PDL</a></li>
+                <li><a href="{{ path('client_consommation') }}">CONSOMMATION</a></li>
 		      <li> <a href="{{ path('security_logout') }}">Deconnexion</a></li>
       	{% endif %}
    			</ul>

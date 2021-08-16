@@ -1,4 +1,7 @@
 
+@import "~bootstrap/scss/bootstrap";
+
+@import './bootstrap1.min.css';
 .form-control{
     text-transform: none !important;
 }
@@ -15,3 +18,4 @@ div.ad-title h1, div.ad-title p{
 div.carousel-caption{
     text-shadow: 3px 3px 3px rgba(0,0,0,0.5);
 }
+@import './Navabar.css';

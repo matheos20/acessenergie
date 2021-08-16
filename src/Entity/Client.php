@@ -89,6 +89,11 @@ class Client
      */
     private $telephone;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $horodatage;
+
     public function __construct()
     {
         $this->gaz = new ArrayCollection();
@@ -339,6 +344,18 @@ class Client
     public function setTelephone(string $telephone): self
     {
         $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getHorodatage(): ?\DateTimeInterface
+    {
+        return $this->horodatage;
+    }
+
+    public function setHorodatage(?\DateTimeInterface $horodatage): self
+    {
+        $this->horodatage = $horodatage;
 
         return $this;
     }

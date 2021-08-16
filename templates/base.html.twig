@@ -3,21 +3,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>{% block title %}Welcome!{% endblock %}</title>
-            <link rel="stylesheet" href="{{ asset('css/bootstrap1.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">
-        {% block stylesheets %}{% endblock %}
-    </head>
+        {{ encore_entry_link_tags('app') }}
+        {# <link rel="stylesheet" href="{{ asset('css/bootstrap1.min.css') }}">#}
+        {#<link rel="stylesheet" href="{{ asset('css/app.css') }}">#}
+        {#<link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">#}
+   {#  {% block stylesheets %}
 
-    <body>
-        {% include 'partial/header.html.twig' %}
-        {% block body %}{% endblock %}
+    {% endblock %}#}
+</head>
 
-            <script src="{{ asset('js/jquery-3.6.0.js') }}"></script>
-            <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-            <script src="{{ asset('js/popper.min.js') }}"></script>
+<body>
+   {% include 'partial/header.html.twig' %}
+    {% block body %}{% endblock %}
 
-        {% block javascripts %}{% endblock %}
+        {#        <script src="{{ asset('js/jquery-3.6.0.js') }}"></script>#}
+       {# <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>#}
+            {# <script src="{{ asset('js/bootstrap.min.js') }}"></script> #}
+            {# <script src="{{ asset('js/popper.min.js') }}"></script> #}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
     </body>
 </html>

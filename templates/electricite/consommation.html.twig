@@ -133,7 +133,8 @@
         <div class="d-flex justify-content-center align-items-center">
             <select class="form-control" multiple="multiple" id="search_consommation_input">
             </select>
-            <button class="btn btn-primary recherche" type="submit" style="margin-left: 20px; width: 13%;" onclick="window.Consommation().search('{{ path('search_consommation') }}');">
+            <button class="btn btn-primary recherche" type="submit" style="margin-left: 20px; width: 13%;"
+                    onclick="window.Consommation().search('{{ path('search_consommation') }}', '{{ path('electricite_excel') }}');">
                 <span class="spinner-border spinner-border-sm d-none" id="loader_search_btn_consommation" role="status" aria-hidden="true"></span>
                 rechercher
                 </button>
@@ -148,7 +149,7 @@
                 {{ message }}
             </div>
         {% endfor %}
-        <table class="table table-bordered tableau d-none" style="margin: 48px auto;width: 100%" id="list_consomation_table">
+        <table class="table table-bordered tableau d-none" style="margin: 48px 0 10px 0;width: 100%" id="list_consomation_table">
             <thead>
             <tr style="font-size: .7vw;">
 
@@ -168,6 +169,9 @@
 
             </tbody>
         </table>
+        <div>
+            <a href="#" class="h6 d-none" id="consommtion_download_excel_link" target="_blank">Exporter en excel</a>
+        </div>
     </div>
 
 {% endblock %}

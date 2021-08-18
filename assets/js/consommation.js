@@ -2,7 +2,7 @@
 
 const Consommation =  () => {
     return {
-        search : async (url) => {
+        search : async (url, urlDownloadExcel) => {
             let loaderBtn = $('#loader_search_btn_consommation');
             try {
                 loaderBtn.removeClass('d-none');
@@ -26,13 +26,20 @@ const Consommation =  () => {
                                 <td data-label="Données contractuelles">Oui</td>
                                 <td data-label="Données de mesure">Oui</td>
                             </tr>
+                            <a href="#">excel</a>
                             ` ;
                 });
-                $('#list_consomation_table tbody').html(res);
+                $('#list_consomation_table tbody').html(res !== '' ? res : '<tr><td colspan="9">Aucun resultat trouvé</td></tr>');
                 $('#list_consomation_table').removeClass('d-none');
+                if (res !== ''){
+                    $('#consommtion_download_excel_link').removeClass('d-none');
+                    $('#consommtion_download_excel_link').attr('href', urlDownloadExcel+'?terms='+JSON.stringify($("#search_consommation_input").val()))
+                }else{
+                    $('#consommtion_download_excel_link').addClass('d-none');
+                }
             }catch (e) {
                 loaderBtn.addClass('d-none');
-                $('#list_consomation_table tbody').html('<tr><td colspan="10">Une erreur se reproduite lors de recherche des données</td></tr>');
+                $('#list_consomation_table tbody').html('<tr><td colspan="9">Une erreur se reproduite lors de recherche des données</td></tr>');
                 $('#list_consomation_table').removeClass('d-none');
                 console.error(e);
             }

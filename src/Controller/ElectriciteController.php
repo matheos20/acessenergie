@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Controller;
+
 use App\Entity\Client;
 use App\Entity\Electricite;
 use App\Entity\ElectriciteRecherche;
@@ -12,39 +14,45 @@ use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-class ElectriciteController extends AbstractController{
+class ElectriciteController extends AbstractController
+{
     /**
      * @Route("/electricite", name="electricite_index", methods={"GET"})
      */
-    public function index(ElectriciteRepository $electriciteRepository,PaginatorInterface $paginator, Request $request): Response
-    {   $rechecher = new ElectriciteRecherche();
-        $form = $this->createForm(ElectriciteRechercheType::class,$rechecher);
+    public function index(ElectriciteRepository $electriciteRepository, PaginatorInterface $paginator, Request $request): Response
+    {
+        $rechecher = new ElectriciteRecherche();
+        $form = $this->createForm(ElectriciteRechercheType::class, $rechecher);
         $form->handleRequest($request);
-        if (!empty($rechecher->getPDL1())){
+        if (!empty($rechecher->getPDL1())) {
             $electriciteQuerry = $electriciteRepository->findByElectricite($rechecher);
-        }
-        else{
+        } else {
             $electriciteQuerry = $electriciteRepository->findAll();
         }
 
-        return $this->render('electricite/index.html.twig',[
-            'electricites' => $paginator->paginate($electriciteQuerry, $request->query->getInt('page',1),20),
+        return $this->render('electricite/index.html.twig', [
+            'electricites' => $paginator->paginate($electriciteQuerry, $request->query->getInt('page', 1), 20),
             'form' => $form->createView()
-            ]);
+        ]);
     }
+
     /**
      * @Route("/{id}/electricite", name="electricite_show", methods={"GET"})
-    */
-    public function show(Electricite $electricite){
+     */
+    public function show(Electricite $electricite)
+    {
         return $this->render('electricite/show.html.twig', [
             'electricite' => $electricite,
         ]);
     }
+
     /**
      * @Route("/{id}/edit", name="electricite_edit", methods={"GET","POST"})
      */
@@ -63,13 +71,14 @@ class ElectriciteController extends AbstractController{
             'form' => $form->createView(),
         ]);
     }
+
     /**
      * @Route("electricite/delete/{id}", name="electricite_delete", methods={"POST"})
      */
     public function delete(Request $request, Electricite $electricite): Response
     {
 
-        if ($this->isCsrfTokenValid('delete'.$electricite->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $electricite->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($electricite);
             $entityManager->flush();
@@ -89,11 +98,11 @@ class ElectriciteController extends AbstractController{
      * @param Request $request
      * @param ElectriciteRepository $electriciteRepository
      * @return JsonResponse
-      * @Route("/consommation/search", name="search_consommation",  methods={"POST"})
+     * @Route("/consommation/search", name="search_consommation",  methods={"POST"})
      */
     public function consommationSearch(Request $request, ElectriciteRepository $electriciteRepository, LoggerInterface $logger)
     {
-        try{
+        try {
             $terms = $request->request->get('terms');
             $elecs = $electriciteRepository->searchByTerms(is_array($terms) ? $terms : [])->getResult();
             return new JsonResponse(
@@ -110,53 +119,65 @@ class ElectriciteController extends AbstractController{
                     $elecs
                 )
             );
-        }catch (\Exception $ex){
+        } catch (\Exception $ex) {
             $logger->error('error on search consommation', ['message' => $ex->getMessage(), 'trace' => $ex->getTraceAsString()]);
             return new JsonResponse(['message' => 'an error internal server'], 500);
         }
     }
 
     /**
-     * @Route("/electriciteExcel/{id}", name="electricite_excel")
+     * @Route("/electriciteExcel}", name="electricite_excel")
+     * @param Request $request
+     * @param ElectriciteRepository $electriciteRepository
+     * @param LoggerInterface $logger
+     * @return BinaryFileResponse|JsonResponse
      */
-    public function exportEcel (Electricite $electricite,ElectriciteRepository $electriciteRepository){
-        //$electric = $electriciteRepository->findAll();
-        //dd($electricite->getClient());
-        $electric = $electriciteRepository->findBy(['client' => $electricite->getClient()]);
-        //dd($electric);
-        $spreadshee = new Spreadsheet();
+    public function exportEcel(Request $request, ElectriciteRepository $electriciteRepository, LoggerInterface $logger)
+    {
+        try {
+            $terms = json_decode($request->query->get('terms'), true);
+            $elecs = $electriciteRepository->searchByTerms(is_array($terms) ? $terms : [])->getResult();
 
-        $sheet = $spreadshee->getActiveSheet();
-        $i =0;
-        foreach ($electric as $value){
-            $i= $i+1;
-            $id =$value->getId();
-            $PDL1 =$value->getPDL1();
-            $sheet->getCell('A'.$i)->setValue("$id");
-            $sheet->getCell('B'.$i)->setValue("$PDL1");
-            //$sheet->setCellValue('A'.$i,"teste");
-            dump($sheet);
+            $spreadshee = new Spreadsheet();
+            $sheet = $spreadshee->getActiveSheet();
+            $sheet->setCellValue('A1', 'HORODATAGE');
+            $sheet->setCellValue('B1', 'IDENTITÉ');
+            $sheet->setCellValue('C1', 'ADRESSE MAIL');
+            $sheet->setCellValue('D1', 'ADRESSE PHYSIQUE');
+            $sheet->setCellValue('E1', 'NUMÉRO DE PRM');
+            $sheet->setCellValue('F1', 'AUTORISATION');
+            $sheet->setCellValue('G1', 'DONNÉES TECHNIQUES');
+            $sheet->setCellValue('H1', 'DONNÉES CONTRACTUELLES');
+            $sheet->setCellValue('I1', 'DONNÉES DE MESURE');
+            $i = 2;
+            foreach ($elecs as $elc) {
+                $sheet->setCellValue('A' . $i, (new \DateTime())->format(('d/m/Y')));
+                $sheet->setCellValue('B' . $i, $elc->getClient()->getNameOfSignatory());
+                $sheet->setCellValue('C' . $i, $elc->getClient()->getMail());
+                $sheet->setCellValue('D' . $i, $elc->getClient()->getAddress());
+                $sheet->setCellValue('E' . $i, $elc->getPDL1());
+                $sheet->setCellValue('F' . $i, 'Oui');
+                $sheet->setCellValue('G' . $i, 'Oui');
+                $sheet->setCellValue('H' . $i, 'Oui');
+                $sheet->setCellValue('I' . $i, 'Oui');
+                $i++;
+            }
+            $writer = new Xlsx($spreadshee);
+            $name = uniqid('consommation_') . '.xlsx';
+            $filename = sys_get_temp_dir() . DIRECTORY_SEPARATOR . $name;
+            $writer->save($filename);
+
+            $response = new BinaryFileResponse($filename);
+            $response->headers->set('Content-Type', 'application/vnd.ms-excel; charset=utf-8');
+            $response->setContentDisposition(
+                ResponseHeaderBag::DISPOSITION_ATTACHMENT,
+                $name
+            );
+
+            return $response;
+        } catch (\Exception $ex) {
+            $logger->error('error on download excel consommation', ['message' => $ex->getMessage(), 'trace' => $ex->getTraceAsString()]);
+            return new JsonResponse(['message' => 'an error internal server'], 500);
         }
-        //$sheet->fromArray($electric,null, 'A2', true);
-
-
-        $writer = new Xlsx($spreadshee);
-
-        $writer->save('teste2.xlsx');
-
-        //$writer = new Xlsx($spreadshee);
-        //$writer->save('hello word.xlsx');
-
-        
-        // In this case, we want to write the file in the public directory
-        //$publicDirectory = $this->get('kernel')->getProjectDir() . '/public';
-        // e.g /var/www/project/public/my_first_excel_symfony4.xlsx
-        //$excelFilepath =  $publicDirectory . '/my_first_excel_symfony4.xlsx';
-
-        // Create the file
-       // $writer->save($excelFilepath);
-
-        // Return a text response to the browser saying that the excel was succesfully created
-        return new Response("Excel generated succesfully");
     }
 }

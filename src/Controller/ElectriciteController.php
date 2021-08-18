@@ -1,5 +1,6 @@
 <?php
 namespace App\Controller;
+use App\Entity\Client;
 use App\Entity\Electricite;
 use App\Entity\ElectriciteRecherche;
 use App\Form\ElectriciteRechercheType;
@@ -9,7 +10,9 @@ use Knp\Component\Pager\PaginatorInterface;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -77,36 +80,72 @@ class ElectriciteController extends AbstractController{
     /**
      * @Route("/consommation", name="client_consommation",  methods={"GET"})
      */
-    public function consommation(ElectriciteRepository $electriciteRepository, Request $request, PaginatorInterface $paginator): Response
+    public function consommation(): Response
     {
-        $rechecher = new ElectriciteRecherche();
-        $form = $this->createForm(ElectriciteRechercheType::class,$rechecher);
-        $form->handleRequest($request);
-        if (!empty($rechecher->getPDL1())){
-            $electriciteQuerry = $electriciteRepository->findByElectricite($rechecher);
+        return $this->render('electricite/consommation.html.twig');
+    }
 
+    /**
+     * @param Request $request
+     * @param ElectriciteRepository $electriciteRepository
+     * @return JsonResponse
+      * @Route("/consommation/search", name="search_consommation",  methods={"POST"})
+     */
+    public function consommationSearch(Request $request, ElectriciteRepository $electriciteRepository, LoggerInterface $logger)
+    {
+        try{
+            $terms = $request->request->get('terms');
+            $elecs = $electriciteRepository->searchByTerms(is_array($terms) ? $terms : [])->getResult();
+            return new JsonResponse(
+                array_map(function (Electricite $elc) {
+                    return [
+                        'dateNow' => (new \DateTime())->format(('d/m/Y')),
+                        'nameOfSignatory' => $elc->getClient()->getNameOfSignatory(),
+                        'mail' => $elc->getClient()->getMail(),
+                        'address' => $elc->getClient()->getAddress(),
+                        'pdl1' => $elc->getPDL1(),
+                        'linkToDownloadExcel' => $this->generateUrl('electricite_excel', ['id' => $elc->getId()])
+                    ];
+                },
+                    $elecs
+                )
+            );
+        }catch (\Exception $ex){
+            $logger->error('error on search consommation', ['message' => $ex->getMessage(), 'trace' => $ex->getTraceAsString()]);
+            return new JsonResponse(['message' => 'an error internal server'], 500);
         }
-        else{
-
-            $electriciteQuerry = [];
-        }
-
-        return $this->render('electricite/consommation.html.twig',[
-            'electricites' => $paginator->paginate($electriciteQuerry, $request->query->getInt('page',1),20),
-            'form' => $form->createView()
-        ]);
     }
 
     /**
      * @Route("/electriciteExcel/{id}", name="electricite_excel")
      */
-    public function exportEcel (){
+    public function exportEcel (Electricite $electricite,ElectriciteRepository $electriciteRepository){
+        //$electric = $electriciteRepository->findAll();
+        //dd($electricite->getClient());
+        $electric = $electriciteRepository->findBy(['client' => $electricite->getClient()]);
+        //dd($electric);
         $spreadshee = new Spreadsheet();
+
         $sheet = $spreadshee->getActiveSheet();
-        $sheet->setCellValue('A1','hello');
+        $i =0;
+        foreach ($electric as $value){
+            $i= $i+1;
+            $id =$value->getId();
+            $PDL1 =$value->getPDL1();
+            $sheet->getCell('A'.$i)->setValue("$id");
+            $sheet->getCell('B'.$i)->setValue("$PDL1");
+            //$sheet->setCellValue('A'.$i,"teste");
+            dump($sheet);
+        }
+        //$sheet->fromArray($electric,null, 'A2', true);
+
 
         $writer = new Xlsx($spreadshee);
-        $writer->save('hello word.xlsx');
+
+        $writer->save('teste2.xlsx');
+
+        //$writer = new Xlsx($spreadshee);
+        //$writer->save('hello word.xlsx');
 
         
         // In this case, we want to write the file in the public directory

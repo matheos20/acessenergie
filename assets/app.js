@@ -13,9 +13,11 @@ import './css/app.scss'
 
 
 // start the Stimulus application
+import $ from 'jquery';
+window.$ = $;
+global.$ = global.jQuery = $;
 import './bootstrap';
-//import './js/jquery-3.6.0';
-//import './js/bootstrap.min'
-//import './js/bootstrap.bundle.min';
-//import './js/popper.min';
+require('select2');
+import './js/consommation'
+
 

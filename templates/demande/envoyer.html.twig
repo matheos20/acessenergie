@@ -182,24 +182,28 @@
                         </button>
                     </div>
                 {% endif %}
-                <div class="form-check form-check-inline mt-4 text-center">
+                <div class="d-flex">
+                <div class="d-flex align-items-center-request">
                     {{ form_widget(form.isNaturalGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz'}}) }}
                     <img src="{{ asset('build/image/gaz.png') }}" class="mr-1" width="40" alt="">
                 </div>
-                <div class="form-check form-check-inline text-center">
+                <div class="d-flex ms-5 align-items-center-request">
                     {{ form_widget(form.isElectricite , {'attr': {'class': 'form-check-input', 'id': 'show-form-elec'}}) }}
                     <img src="{{ asset('build/image/elec.png') }}" class="mr-1" width="40" alt="">
 
+                </div>
                 </div>
             </div>
             
             <div class="jumbotron mt-2 gaz text-center">
                 <h5>GAZ NATUREL</h5>
-                <div class="form-check form-check-inline">
-                    {{ form_widget(form.isTwentyGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz-twenty'}}) }}
-                </div>
-                <div class="form-check form-check-inline">
-                    {{ form_widget(form.isMoreThanTwentyGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz-than-twenty'}}) }}
+                <div class="d-flex justify-content-center">
+                    <div class="form-check align-items-center-request">
+                        {{ form_widget(form.isTwentyGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz-twenty'}}) }}
+                    </div>
+                    <div class="form-check align-items-center-request">
+                        {{ form_widget(form.isMoreThanTwentyGaz , {'attr': {'class': 'form-check-input', 'id': 'show-form-gaz-than-twenty'}}) }}
+                    </div>
                 </div>
                 <div class="table table-gaz mt-4 gaz1" id="form-gaz-twenty">
             <h5 colspan="5" class="text-center"> périmètre-gaz naturel</h5>
@@ -319,11 +323,13 @@
 
             <div class="jumbotron mt-2 electrique text-center">
                 <h5>ELECTRICITE</h5>
-                <div class="form-check form-check-inline">
-                    {{ form_widget(form.isTwentyElec , {'attr': {'class': 'form-check-input', 'id': 'show-form-elec-twenty'}}) }}
-                </div>
-                <div class="form-check form-check-inline">
-                    {{ form_widget(form.isMoreThanTwentyElec , {'attr': {'class': 'form-check-input', 'id': 'show-form-elec-than-twenty'}}) }}
+                <div class="d-flex justify-content-center">
+                    <div class="form-check align-items-center-request">
+                        {{ form_widget(form.isTwentyElec , {'attr': {'class': 'form-check-input', 'id': 'show-form-elec-twenty'}}) }}
+                    </div>
+                    <div class="form-check align-items-center-request">
+                        {{ form_widget(form.isMoreThanTwentyElec , {'attr': {'class': 'form-check-input', 'id': 'show-form-elec-than-twenty'}}) }}
+                    </div>
                 </div>
                 <div class="table table-electric mt-4 electric1" id="form-elec-twenty">
                     <table class="table table-bordered" >
@@ -447,100 +453,100 @@
             </div>
             {{ form_end(form) }}
     </div>
-    {% block javascripts %}
-        {{ parent() }}
-        <script>
-            $(document).ready(function() {
-                $('.alert').alert()
-                if ($('#authorization_request_isNaturalGaz').is(':checked')){
-                    $('.gaz').show()
-                }else{
-                    $('.gaz').hide();
-                }
-                if ($('#authorization_request_isElectricite').is(':checked')){
-                    $('.electrique').show()
-                }else{
-                    $('.electrique').hide();
-                }
-                if ($('#authorization_request_isMoreThanTwentyGaz').is(':checked')){
-                    $('#form-gaz-plus20').show();
-                    $('#form-gaz-twenty').hide();
-                    document.getElementById('authorization_request_isTwentyGaz').checked = false;
-                }else{
-                    $('#form-gaz-plus20').hide();
-                }
-                if (!$('#authorization_request_isTwentyGaz').is(':checked')){
-                    $('#form-gaz-twenty').hide();
-                }else{
-                    $('#form-gaz-plus20').hide();
-                    $('#form-gaz-twenty').show();
-                    document.getElementById('authorization_request_isMoreThanTwentyGaz').checked = false;
-                }
-                if ($('#authorization_request_isMoreThanTwentyElec').is(':checked')){
-                    $('#form-elec-plus20').show();
-                    $('#form-elec-twenty').hide();
-                    document.getElementById('authorization_request_isTwentyElec').checked = false;
-                }else{
-                    $('#form-elec-plus20').hide();
-                }
-                if (!$('#authorization_request_isTwentyElec').is(':checked')){
-                    $('#form-elec-twenty').hide();
-                }else{
-                    $('#form-elec-plus20').hide();
-                    $('#form-elec-twenty').show();
-                    document.getElementById('authorization_request_isMoreThanTwentyElec').checked = false;
-                }
-                $('#authorization_request_isNaturalGaz').click(function () {
-                    if ($(this).is(':checked')){
-                        $('.gaz').show()
-                    }else{
-                        $('.gaz').hide();
-                    }
-                });
-                $('#authorization_request_isElectricite').click(function () {
-                    if ($(this).is(':checked')){
-                        $('.electrique').show()
-                    }else{
-                        $('.gelectriqueaz').hide();
-                    }
-                });
-                $('#authorization_request_isMoreThanTwentyGaz').click(function () {
-                    if ($(this).is(':checked')){
-                        $('#form-gaz-plus20').show();
-                        $('#form-gaz-twenty').hide();
-                        document.getElementById('authorization_request_isTwentyGaz').checked = false;
-                    }else{
-                        $('#form-gaz-plus20').hide();
-                    }
-                });
-                $('#authorization_request_isTwentyGaz').click(function () {
-                    if (!$(this).is(':checked')){
-                        $('#form-gaz-twenty').hide();
-                    }else{
-                        $('#form-gaz-plus20').hide();
-                        $('#form-gaz-twenty').show();
-                        document.getElementById('authorization_request_isMoreThanTwentyGaz').checked = false;
-                    }
-                });
-                $('#authorization_request_isMoreThanTwentyElec').click(function () {
-                    if ($(this).is(':checked')){
-                        $('#form-elec-plus20').show();
-                        $('#form-elec-twenty').hide();
-                        document.getElementById('authorization_request_isTwentyElec').checked = false;
-                    }else{
-                        $('#form-elec-plus20').hide();
-                    }
-                });
-                $('#authorization_request_isTwentyElec').click(function () {
-                    if (!$(this).is(':checked')){
-                        $('#form-elec-twenty').hide();
-                    }else{
-                        $('#form-elec-plus20').hide();
-                        $('#form-elec-twenty').show();
-                        document.getElementById('authorization_request_isMoreThanTwentyElec').checked = false;
-                    }
-                });
-            });
-        </script>
-    {% endblock %}
 {% endblock %}
+ {% block javascripts %}
+     {{ parent() }}
+     <script>
+         $(document).ready(function() {
+             $('.alert').alert()
+             if ($('#authorization_request_isNaturalGaz').is(':checked')){
+                 $('.gaz').show()
+             }else{
+                 $('.gaz').hide();
+             }
+             if ($('#authorization_request_isElectricite').is(':checked')){
+                 $('.electrique').show()
+             }else{
+                 $('.electrique').hide();
+             }
+             if ($('#authorization_request_isMoreThanTwentyGaz').is(':checked')){
+                 $('#form-gaz-plus20').show();
+                 $('#form-gaz-twenty').hide();
+                 document.getElementById('authorization_request_isTwentyGaz').checked = false;
+             }else{
+                 $('#form-gaz-plus20').hide();
+             }
+             if (!$('#authorization_request_isTwentyGaz').is(':checked')){
+                 $('#form-gaz-twenty').hide();
+             }else{
+                 $('#form-gaz-plus20').hide();
+                 $('#form-gaz-twenty').show();
+                 document.getElementById('authorization_request_isMoreThanTwentyGaz').checked = false;
+             }
+             if ($('#authorization_request_isMoreThanTwentyElec').is(':checked')){
+                 $('#form-elec-plus20').show();
+                 $('#form-elec-twenty').hide();
+                 document.getElementById('authorization_request_isTwentyElec').checked = false;
+             }else{
+                 $('#form-elec-plus20').hide();
+             }
+             if (!$('#authorization_request_isTwentyElec').is(':checked')){
+                 $('#form-elec-twenty').hide();
+             }else{
+                 $('#form-elec-plus20').hide();
+                 $('#form-elec-twenty').show();
+                 document.getElementById('authorization_request_isMoreThanTwentyElec').checked = false;
+             }
+             $('#authorization_request_isNaturalGaz').click(function () {
+                 if ($(this).is(':checked')){
+                     $('.gaz').show()
+                 }else{
+                     $('.gaz').hide();
+                 }
+             });
+             $('#authorization_request_isElectricite').click(function () {
+                 if ($(this).is(':checked')){
+                     $('.electrique').show()
+                 }else{
+                     $('.gelectriqueaz').hide();
+                 }
+             });
+             $('#authorization_request_isMoreThanTwentyGaz').click(function () {
+                 if ($(this).is(':checked')){
+                     $('#form-gaz-plus20').show();
+                     $('#form-gaz-twenty').hide();
+                     document.getElementById('authorization_request_isTwentyGaz').checked = false;
+                 }else{
+                     $('#form-gaz-plus20').hide();
+                 }
+             });
+             $('#authorization_request_isTwentyGaz').click(function () {
+                 if (!$(this).is(':checked')){
+                     $('#form-gaz-twenty').hide();
+                 }else{
+                     $('#form-gaz-plus20').hide();
+                     $('#form-gaz-twenty').show();
+                     document.getElementById('authorization_request_isMoreThanTwentyGaz').checked = false;
+                 }
+             });
+             $('#authorization_request_isMoreThanTwentyElec').click(function () {
+                 if ($(this).is(':checked')){
+                     $('#form-elec-plus20').show();
+                     $('#form-elec-twenty').hide();
+                     document.getElementById('authorization_request_isTwentyElec').checked = false;
+                 }else{
+                     $('#form-elec-plus20').hide();
+                 }
+             });
+             $('#authorization_request_isTwentyElec').click(function () {
+                 if (!$(this).is(':checked')){
+                     $('#form-elec-twenty').hide();
+                 }else{
+                     $('#form-elec-plus20').hide();
+                     $('#form-elec-twenty').show();
+                     document.getElementById('authorization_request_isMoreThanTwentyElec').checked = false;
+                 }
+             });
+         });
+     </script>
+ {% endblock %}

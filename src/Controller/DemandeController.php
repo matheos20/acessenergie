@@ -55,6 +55,8 @@ class DemandeController extends AbstractController
             }
             if ($authorizationRequest->getElectricite() && $authorizationRequest->getIsTwentyElec()) {
                 $authorizationRequest->getElectricite()->setClient($client)->setTokenToConfirmAuthorization($token);
+                //$dateImmutable = \DateTime::createFromFormat('Y-m-d H:i:s', strtotime('now'));
+                $authorizationRequest->getElectricite()->setHorodatage(new \DateTime());
                 $em->persist($authorizationRequest->getElectricite());
                 $isHasSelectedOne = true;
                 $hasElec = true;

@@ -106,16 +106,17 @@ class ElectriciteController extends AbstractController
             $terms = $request->request->get('terms');
             $elecs = $electriciteRepository->searchByTerms(is_array($terms) ? $terms : [])->getResult();
             return new JsonResponse(
-                array_map(function (Electricite $elc) {
+                array_map(function (Electricite $elc) use ($terms) {
                     return [
-                        'dateNow' => (new \DateTime())->format(('d/m/Y')),
+                        'dateNow' => $elc->getHorodatage() ? $elc->getHorodatage()->format('d/m/Y H:i:s')  : '',
                         'nameOfSignatory' => $elc->getClient()->getNameOfSignatory(),
                         'mail' => $elc->getClient()->getMail(),
                         'address' => $elc->getClient()->getAddress(),
-                        'pdl1' => $elc->getPDL1(),
+                        'pdl1' => $this->getNumberPRMByTerms($elc, is_array($terms) ? $terms : []),
                         'linkToDownloadExcel' => $this->generateUrl('electricite_excel', ['id' => $elc->getId()])
                     ];
                 },
+
                     $elecs
                 )
             );
@@ -123,6 +124,19 @@ class ElectriciteController extends AbstractController
             $logger->error('error on search consommation', ['message' => $ex->getMessage(), 'trace' => $ex->getTraceAsString()]);
             return new JsonResponse(['message' => 'an error internal server'], 500);
         }
+    }
+
+    private function getNumberPRMByTerms(Electricite $elec, array $terms)
+    {
+        foreach ($terms as $term) {
+            for ($i = 1; $i <= 20; $i++) {
+                if (strpos($elec->{'getPDL'.$i}(), $term) !== false){
+                    return $elec->{'getPDL'.$i}();
+                }
+            }
+        }
+
+        return $elec->getPDL1();
     }
 
     /**
@@ -151,11 +165,11 @@ class ElectriciteController extends AbstractController
             $sheet->setCellValue('I1', 'DONNÉES DE MESURE');
             $i = 2;
             foreach ($elecs as $elc) {
-                $sheet->setCellValue('A' . $i, (new \DateTime())->format(('d/m/Y')));
+                $sheet->setCellValue('A' . $i, $elc->getHorodatage() ? $elc->getHorodatage()->format('d/m/Y H:i:s')  : '-');
                 $sheet->setCellValue('B' . $i, $elc->getClient()->getNameOfSignatory());
                 $sheet->setCellValue('C' . $i, $elc->getClient()->getMail());
                 $sheet->setCellValue('D' . $i, $elc->getClient()->getAddress());
-                $sheet->setCellValue('E' . $i, $elc->getPDL1());
+                $sheet->setCellValue('E' . $i, $this->getNumberPRMByTerms($elc, is_array($terms) ? $terms : []));
                 $sheet->setCellValue('F' . $i, 'Oui');
                 $sheet->setCellValue('G' . $i, 'Oui');
                 $sheet->setCellValue('H' . $i, 'Oui');

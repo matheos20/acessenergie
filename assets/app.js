@@ -12,12 +12,14 @@ import './css/app.scss'
 
 
 
-// start the Stimulus application
-import $ from 'jquery';
+// start the Stimulus applications
+const $ = require('jquery');
 window.$ = $;
 global.$ = global.jQuery = $;
-import './bootstrap';
+//import './bootstrap';
+require('bootstrap');
 require('select2');
 import './js/consommation'
+
 
 

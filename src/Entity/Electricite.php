@@ -134,6 +134,11 @@ class Electricite
      */
     private $tokenToConfirmAuthorization;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $horodatage;
+
     public function __construct()
     {
         $this->client = new ArrayCollection();
@@ -429,6 +434,18 @@ class Electricite
     public function setTokenToConfirmAuthorization($tokenToConfirmAuthorization)
     {
         $this->tokenToConfirmAuthorization = $tokenToConfirmAuthorization;
+        return $this;
+    }
+
+    public function getHorodatage(): ?\DateTimeInterface
+    {
+        return $this->horodatage;
+    }
+
+    public function setHorodatage(\DateTimeInterface $horodatage): self
+    {
+        $this->horodatage = $horodatage;
+
         return $this;
     }
 

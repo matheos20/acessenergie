@@ -9,23 +9,23 @@
 
                         {{form_start(form)}}
 
-                        <div class="form-group">
-                            <label for="nom">Nom</label>
+                        <div class="form-group ">
+                            <label for="nom" class="col-sm-2 col-form-label">Nom</label>
                             {{form_widget(form.username, {'label':'Nom d\utilisateur','attr':{'placeholder': 'votre nom...','class':'form-control'}})}}
                         </div>
                         <div class="form-group">
-                            <label for="Email1">Adresse mail</label>
+                            <label for="Email1" class="col-sm-4 col-form-label">Adresse mail</label>
                             {{form_widget(form.email,{'label':'Adresse mail','attr':{'placeholder':'votre Adresse mail...','class':'form-control'}})}}
                         </div>
                         <div class="form-group">
-                            <label for="Password1">Mot de passe</label>
+                            <label for="Password1" class="col-sm-4 col-form-label">Mot de passe</label>
                             {{form_widget(form.password,{'label':'mot de passe','attr':{'placeholder':'votre mot de passe...','class':'form-control'}})}}
                         </div>
                         <div class="form-group">
-                            <label for="Password1">Confirmer</label>
+                            <label for="Password1" class="col-sm-4 col-form-label">Confirmer</label>
                             {{form_widget(form.confirm_password,{'label':'confirmation mot de passe','attr':{'placeholder':'repeter votre mot de passe','class':'form-control'}})}}
                     </div>
-                    <div class="form-group" style="text-align: center">
+                    <div class="form-group m-2" style="text-align: center">
                         <button type="submit" class="btn btn-primary">Inscription</button>
                     </div>
                     {{form_end(form)}}

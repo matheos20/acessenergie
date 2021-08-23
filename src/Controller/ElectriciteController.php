@@ -105,40 +105,41 @@ class ElectriciteController extends AbstractController
         try {
             $terms = $request->request->get('terms');
             $elecs = $electriciteRepository->searchByTerms(is_array($terms) ? $terms : [])->getResult();
-            return new JsonResponse(
-                array_map(function (Electricite $elc) use ($terms) {
-                    return [
-                        'dateNow' => $elc->getHorodatage() ? $elc->getHorodatage()->format('d/m/Y H:i:s')  : '',
-                        'nameOfSignatory' => $elc->getClient()->getNameOfSignatory(),
-                        'mail' => $elc->getClient()->getMail(),
-                        'address' => $elc->getClient()->getAddress(),
-                        'pdl1' => $this->getNumberPRMByTerms($elc, is_array($terms) ? $terms : []),
-                        'linkToDownloadExcel' => $this->generateUrl('electricite_excel', ['id' => $elc->getId()])
-                    ];
-                },
-
-                    $elecs
-                )
-            );
+            return new JsonResponse($this->formatDataConsommationByTerms($terms, $elecs));
         } catch (\Exception $ex) {
             $logger->error('error on search consommation', ['message' => $ex->getMessage(), 'trace' => $ex->getTraceAsString()]);
             return new JsonResponse(['message' => 'an error internal server'], 500);
         }
     }
 
-    private function getNumberPRMByTerms(Electricite $elec, array $terms)
+
+    private function formatDataConsommationByTerms(array $terms, $elecs): array
     {
-        foreach ($terms as $term) {
-            for ($i = 1; $i <= 20; $i++) {
-                if (strpos($elec->{'getPDL'.$i}(), $term) !== false){
-                    return $elec->{'getPDL'.$i}();
+        $res = [];
+        /**
+         * @var Electricite $elec
+         */
+        foreach ($elecs as $elec) {
+            $methods = [];
+            foreach ($terms as $term) {
+                for ($i = 1; $i <= 20; $i++) {
+                    $method = 'getPDL'.$i;
+                    if (strpos($elec->{$method}(), $term) !== false && !in_array($method, $methods)){
+                        $methods[] = $method;
+                        $res[] = [
+                            'dateNow' => $elec->getHorodatage() ? $elec->getHorodatage()->format('d/m/Y H:i:s')  : '',
+                            'nameOfSignatory' => $elec->getClient()->getNameOfSignatory(),
+                            'mail' => $elec->getClient()->getMail(),
+                            'address' => $elec->getClient()->getAddress(),
+                            'pdl1' => $elec->{$method}(),
+                            'linkToDownloadExcel' => $this->generateUrl('electricite_excel', ['id' => $elec->getId()])
+                        ];
+                    }
                 }
             }
         }
-
-        return $elec->getPDL1();
+        return $res;
     }
-
     /**
      * @Route("/electriciteExcel}", name="electricite_excel")
      * @param Request $request
@@ -164,12 +165,13 @@ class ElectriciteController extends AbstractController
             $sheet->setCellValue('H1', 'DONNÉES CONTRACTUELLES');
             $sheet->setCellValue('I1', 'DONNÉES DE MESURE');
             $i = 2;
-            foreach ($elecs as $elc) {
-                $sheet->setCellValue('A' . $i, $elc->getHorodatage() ? $elc->getHorodatage()->format('d/m/Y H:i:s')  : '-');
-                $sheet->setCellValue('B' . $i, $elc->getClient()->getNameOfSignatory());
-                $sheet->setCellValue('C' . $i, $elc->getClient()->getMail());
-                $sheet->setCellValue('D' . $i, $elc->getClient()->getAddress());
-                $sheet->setCellValue('E' . $i, $this->getNumberPRMByTerms($elc, is_array($terms) ? $terms : []));
+            $datas = $this->formatDataConsommationByTerms($terms, $elecs);
+            foreach ($datas as $item) {
+                $sheet->setCellValue('A' . $i, $item['dateNow']);
+                $sheet->setCellValue('B' . $i, $item['nameOfSignatory']);
+                $sheet->setCellValue('C' . $i, $item['mail']);
+                $sheet->setCellValue('D' . $i, ['address']);
+                $sheet->setCellValue('E' . $i, $item['pdl1']);
                 $sheet->setCellValue('F' . $i, 'Oui');
                 $sheet->setCellValue('G' . $i, 'Oui');
                 $sheet->setCellValue('H' . $i, 'Oui');

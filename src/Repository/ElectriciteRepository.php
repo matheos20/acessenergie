@@ -80,6 +80,6 @@ class ElectriciteRepository extends ServiceEntityRepository
             $j++;
         }
 
-        return $query->orderBy('c.id', 'DESC')->getQuery();
+        return $query->where('c.horodatage IS NOT NULL')->orderBy('c.id', 'DESC')->getQuery();
     }
 }

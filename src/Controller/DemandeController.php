@@ -35,6 +35,13 @@ class DemandeController extends AbstractController
 
     /** envoyer demende au client
      * @Route("/demad/{id}", name="Ajout_demande"):
+     *
+     * @param Client          $client
+     * @param Request         $request
+     * @param MailerInterface $mailer
+     *
+     * @return Response
+     * @throws \Symfony\Component\Mailer\Exception\TransportExceptionInterface
      */
     public function demande(Client $client, Request $request, MailerInterface $mailer): Response
     {
@@ -55,8 +62,6 @@ class DemandeController extends AbstractController
             }
             if ($authorizationRequest->getElectricite() && $authorizationRequest->getIsTwentyElec()) {
                 $authorizationRequest->getElectricite()->setClient($client)->setTokenToConfirmAuthorization($token);
-                //$dateImmutable = \DateTime::createFromFormat('Y-m-d H:i:s', strtotime('now'));
-                $authorizationRequest->getElectricite()->setHorodatage(new \DateTime());
                 $em->persist($authorizationRequest->getElectricite());
                 $isHasSelectedOne = true;
                 $hasElec = true;
@@ -105,6 +110,17 @@ class DemandeController extends AbstractController
 
     /** Reponse client click j'autorise
      * @Route("/email/response/{client}/{token}", name="Email_demandee",methods={"GET","POST"})
+     *
+     * @param Client                      $client
+     * @param string                      $token
+     * @param GazRepository               $gazRepository
+     * @param ElectricitePlus20Repository $electricitePlus20Repository
+     * @param ElectriciteRepository       $electriciteRepository
+     * @param GazPlus20Repository         $gazPlus20
+     * @param MailerInterface             $mailer
+     *
+     * @return Response
+     * @throws \Doctrine\ORM\NonUniqueResultException
      */
     public function RenvoyerMail(
         Client $client,
@@ -122,28 +138,29 @@ class DemandeController extends AbstractController
         $gaz20Client = $gazPlus20->findLastByClient($client->getId(), $token);
         $elec20Client = $electricitePlus20Repository->findLastByClient($client->getId(), $token);
         $isHasMailSended = false;
-        if ($gazClient) {
+        if ($gazClient instanceof Gaz) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPdf.html.twig', $gazClient, $client, 'gaz.pdf');
             $this->sendMailDuplicata('ACD gaz','demande/gazMessage.html.twig', $gazClient, $client, $mailer, $attachement);
             $gazClient->setIsAlreadyAuthorized(1);
             $em->persist($gazClient);
             $isHasMailSended = true;
         }
-        if ($elecClient) {
+        if ($elecClient instanceof Electricite) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePdf.html.twig', $elecClient, $client, 'electricite.pdf');
             $this->sendMailDuplicata('ACD électricité','demande/electriciteMessage.html.twig', $elecClient, $client, $mailer, $attachement);
             $elecClient->setIsAlreadyAuthorized(1);
+            $elecClient->setHorodatage(new \DateTime());
             $em->persist($elecClient);
             $isHasMailSended = true;
         }
-        if ($gaz20Client) {
+        if ($gaz20Client instanceof GazPlus20) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPlus20Pdf.html.twig', $gaz20Client, $client, 'gazPlus20.pdf');
             $this->sendMailDuplicata('ACD gaz','demande/gazplus20Message.html.twig', $gaz20Client, $client, $mailer, $attachement);
             $gaz20Client->setIsAlreadyAuthorized(1);
             $em->persist($gaz20Client);
             $isHasMailSended = true;
         }
-        if ($elec20Client) {
+        if ($elec20Client instanceof ElectricitePlus20) {
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePlus20Pdf.html.twig', $elec20Client, $client, 'electricitePlus20.pdf');
             $this->sendMailDuplicata('ACD électricité','demande/electriciteplus20Message.html.twig', $elec20Client, $client, $mailer, $attachement);
             $elec20Client->setIsAlreadyAuthorized(1);

@@ -54,7 +54,7 @@ class SecurityController extends AbstractController
                     )
                 );
             $mail           = (new Email())
-                ->to('sandinho10herios@gmail.com')
+                ->to($this->getParameter('email_validator_account'))
                 ->subject('validation d\'inscription')
                 ->html(
                     $this->renderView(

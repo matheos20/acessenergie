@@ -51,17 +51,17 @@ class UserRepository extends ServiceEntityRepository implements UserLoaderInterf
     */
 
     /**
-     * @param string $username
+     * @param string $email
      *
      * @return mixed|null|UserInterface
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function loadUserByUsername(string $username)
+    public function loadUserByUsername(string $email)
     {
         return $this->createQueryBuilder('u')
-                    ->andWhere('u.username = :val')
+                    ->where('u.email = :val')
                     ->andWhere('u.IsValid = 1')
-                    ->setParameter('val', $username)
+                    ->setParameter('val', $email)
                     ->getQuery()
                     ->getOneOrNullResult();
     }

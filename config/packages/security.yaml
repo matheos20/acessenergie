@@ -38,5 +38,6 @@ security:
          - { path: ^/email/response, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          -  { path: ^/inscription, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/connexion, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+         - { path: ^/validation/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
          - { path: ^/, roles: ROLE_USER }
         # - { path: ^/profile, roles: ROLE_USER }

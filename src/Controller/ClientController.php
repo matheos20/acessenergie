@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Client;
 
+use App\Form\AuthorizationRequestType;
 use App\Form\ClientRechercheType;
 use App\Form\ClientType;
 use App\Form\Request\ClientRecherche;
@@ -101,7 +102,7 @@ class ClientController extends AbstractController
     public function new(Request $request): Response
     {
         $client = new Client();
-        $form = $this->createForm(ClientType::class, $client);
+        $form = $this->createForm(ClientType::class,$client);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();

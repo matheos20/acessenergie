@@ -46,6 +46,16 @@ class User implements UserInterface
      */
     public $confirm_password;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true, options={"default":true})
+     */
+    private $IsValid;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $tokenToConfirmAccount;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -98,5 +108,34 @@ class User implements UserInterface
     public function getRoles()
     {
         return['ROLE_USER'];
+    }
+
+    public function getIsValid(): ?bool
+    {
+        return $this->IsValid;
+    }
+
+    public function setIsValid(?bool $IsValid): self
+    {
+        $this->IsValid = $IsValid;
+
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getTokenToConfirmAccount()
+    {
+        return $this->tokenToConfirmAccount;
+    }
+
+    /**
+     * @param mixed $tokenToConfirmAccount
+     * @return User
+     */
+    public function setTokenToConfirmAccount($tokenToConfirmAccount)
+    {
+        $this->tokenToConfirmAccount = $tokenToConfirmAccount;
+        return $this;
     }
 }

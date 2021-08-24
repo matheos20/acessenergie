@@ -29,7 +29,7 @@ class SecurityController extends AbstractController
         MailerInterface $mailer
     ): Response {
         $user = new User();
-        $user->setValidation(false);
+        $user->setIsValid(false);
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
 

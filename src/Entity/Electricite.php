@@ -4,8 +4,8 @@ namespace App\Entity;
 
 use App\Repository\ElectriciteRepository;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ElectriciteRepository::class)
@@ -15,107 +15,127 @@ class Electricite
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="bigint")
      */
     private $id;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL1;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL2;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL3;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL4;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL5;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL6;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL7;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL8;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL9;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL10;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL11;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL12;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL13;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     *
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL14;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL15;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL16;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL17;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL18;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL19;
 
     /**
-     * @ORM\Column(type="integer", nullable=true)
+     * @Assert\Type("integer")
+     * @ORM\Column(type="bigint", nullable=true)
      */
     private $PDL20;
 

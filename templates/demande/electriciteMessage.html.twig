@@ -4,10 +4,10 @@
 	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (ENEDIS)
 </h2>
 <p style="line-height: 4px;">L’entreprise:
-	<b>{{ client.mermaid }}</b>
+	<b>{{ client.getSocialReason() }}</b>
 </p>
 <p style="line-height: 4px;">Sous le SIREN:
-	<b>{{ client.getSocialReason() }}</b>
+	<b>{{ client.mermaid }}</b>
 </p>
 <p style="line-height: 4px;">Ayant son siège à :
 	<b>{{ client.address }}</b>

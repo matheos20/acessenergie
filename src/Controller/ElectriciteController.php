@@ -206,7 +206,7 @@ class ElectriciteController extends AbstractController
                 $sheet->setCellValue('A' . $i, $item['dateNow']);
                 $sheet->setCellValue('B' . $i, $item['nameOfSignatory']);
                 $sheet->setCellValue('C' . $i, $item['mail']);
-                $sheet->setCellValue('D' . $i, ['address']);
+                $sheet->setCellValue('D' . $i, $item['address']);
                 $sheet->setCellValue('E' . $i, $item['pdl1']);
                 $sheet->setCellValue('F' . $i, 'Oui');
                 $sheet->setCellValue('G' . $i, 'Oui');

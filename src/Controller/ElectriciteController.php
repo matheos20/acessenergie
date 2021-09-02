@@ -2,24 +2,24 @@
 
 namespace App\Controller;
 
-use App\Entity\Client;
 use App\Entity\Electricite;
 use App\Entity\ElectriciteRecherche;
+use App\Entity\Gaz;
 use App\Form\ElectriciteRechercheType;
 use App\Form\ElectriciteRequestType;
 use App\Repository\ElectriciteRepository;
+use App\Repository\GazRepository;
 use Knp\Component\Pager\PaginatorInterface;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xls;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Response;
 
 class ElectriciteController extends AbstractController
 {
@@ -95,25 +95,29 @@ class ElectriciteController extends AbstractController
     }
 
     /**
-     * @param Request $request
+     * @param Request               $request
      * @param ElectriciteRepository $electriciteRepository
+     * @param LoggerInterface       $logger
+     * @param GazRepository         $gazRepository
+     *
      * @return JsonResponse
      * @Route("/consommation/search", name="search_consommation",  methods={"POST"})
      */
-    public function consommationSearch(Request $request, ElectriciteRepository $electriciteRepository, LoggerInterface $logger)
+    public function consommationSearch(Request $request, ElectriciteRepository $electriciteRepository, LoggerInterface $logger, GazRepository $gazRepository)
     {
         try {
             $terms = $request->request->get('terms');
             $elecs = $electriciteRepository->searchByTerms(is_array($terms) ? $terms : [])->getResult();
-            return new JsonResponse($this->formatDataConsommationByTerms($terms, $elecs));
+            $gazs = $gazRepository->searchByTerms(is_array($terms) ? $terms : [])->getResult();
+
+            return new JsonResponse($this->formatDataConsommationByTerms(is_array($terms) ? $terms : [], $elecs, $gazs));
         } catch (\Exception $ex) {
             $logger->error('error on search consommation', ['message' => $ex->getMessage(), 'trace' => $ex->getTraceAsString()]);
             return new JsonResponse(['message' => 'an error internal server'], 500);
         }
     }
 
-
-    private function formatDataConsommationByTerms(array $terms, $elecs): array
+    private function formatDataConsommationByTerms(array $terms, array $elecs, array $gazs): array
     {
         $res = [];
         /**
@@ -138,20 +142,52 @@ class ElectriciteController extends AbstractController
                 }
             }
         }
+        /**
+         * @var Gaz $gaz
+         */
+        foreach ($gazs as $gaz) {
+            $methods = [];
+            foreach ($terms as $term) {
+                for ($i = 1; $i <= 20; $i++) {
+                    $method = 'getPCE'.$i;
+                    if (strpos($gaz->{$method}(), $term) !== false && !in_array($method, $methods)){
+                        $methods[] = $method;
+                        $res[] = [
+                            'dateNow' => $gaz->getHorodatage() ? $gaz->getHorodatage()->format('d/m/Y H:i:s')  : '',
+                            'nameOfSignatory' => $gaz->getClient()->getNameOfSignatory(),
+                            'mail' => $gaz->getClient()->getMail(),
+                            'address' => $gaz->getClient()->getAddress(),
+                            'pdl1' => $gaz->{$method}(),
+                            'linkToDownloadExcel' => $this->generateUrl('electricite_excel', ['id' => $gaz->getId()])
+                        ];
+                    }
+                }
+            }
+        }
+
         return $res;
     }
+
     /**
      * @Route("/electriciteExcel}", name="electricite_excel")
-     * @param Request $request
+     * @param Request               $request
      * @param ElectriciteRepository $electriciteRepository
-     * @param LoggerInterface $logger
+     * @param LoggerInterface       $logger
+     * @param GazRepository         $gazRepository
+     *
      * @return BinaryFileResponse|JsonResponse
      */
-    public function exportEcel(Request $request, ElectriciteRepository $electriciteRepository, LoggerInterface $logger)
+    public function exportEcel(
+        Request $request,
+        ElectriciteRepository $electriciteRepository,
+        LoggerInterface $logger,
+        GazRepository $gazRepository
+    )
     {
         try {
             $terms = json_decode($request->query->get('terms'), true);
             $elecs = $electriciteRepository->searchByTerms(is_array($terms) ? $terms : [])->getResult();
+            $gazs = $gazRepository->searchByTerms(is_array($terms) ? $terms : [])->getResult();
 
             $spreadshee = new Spreadsheet();
             $sheet = $spreadshee->getActiveSheet();
@@ -165,7 +201,7 @@ class ElectriciteController extends AbstractController
             $sheet->setCellValue('H1', 'DONNÉES CONTRACTUELLES');
             $sheet->setCellValue('I1', 'DONNÉES DE MESURE');
             $i = 2;
-            $datas = $this->formatDataConsommationByTerms($terms, $elecs);
+            $datas = $this->formatDataConsommationByTerms($terms, $elecs, $gazs);
             foreach ($datas as $item) {
                 $sheet->setCellValue('A' . $i, $item['dateNow']);
                 $sheet->setCellValue('B' . $i, $item['nameOfSignatory']);

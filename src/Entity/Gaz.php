@@ -135,6 +135,11 @@ class Gaz
      */
     private $tokenToConfirmAuthorization;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $horodatage;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -425,6 +430,26 @@ class Gaz
     public function setTokenToConfirmAuthorization($tokenToConfirmAuthorization)
     {
         $this->tokenToConfirmAuthorization = $tokenToConfirmAuthorization;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getHorodatage()
+    {
+        return $this->horodatage;
+    }
+
+    /**
+     * @param mixed $horodatage
+     *
+     * @return Gaz
+     */
+    public function setHorodatage($horodatage)
+    {
+        $this->horodatage = $horodatage;
+
         return $this;
     }
 

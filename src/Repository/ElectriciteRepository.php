@@ -82,6 +82,7 @@ class ElectriciteRepository extends ServiceEntityRepository
 
         return $query->andWhere('c.horodatage IS NOT NULL')->orderBy('c.id', 'DESC')->getQuery();
     }
+
     public function findByElectricite($recherche)
     {
         $query = $this->createQueryBuilder('c');

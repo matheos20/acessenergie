@@ -142,6 +142,7 @@ class DemandeController extends AbstractController
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPdf.html.twig', $gazClient, $client, 'gaz.pdf');
             $this->sendMailDuplicata('ACD gaz','demande/gazMessage.html.twig', $gazClient, $client, $mailer, $attachement);
             $gazClient->setIsAlreadyAuthorized(1);
+            $gazClient->setHorodatage(new \DateTime());
             $em->persist($gazClient);
             $isHasMailSended = true;
         }

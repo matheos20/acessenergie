@@ -81,4 +81,18 @@ class GazRepository extends ServiceEntityRepository
             ->getQuery();
     }
 
+    public function searchByTerms(array $terms)
+    {
+        $query = $this->createQueryBuilder('g');
+        $j = 0;
+        foreach ($terms as $term) {
+            for ($i = 1; $i <= 20; $i++) {
+                $query->orWhere("g.PCE$i like :term$j");
+            }
+            $query->setParameter("term$j", "%{$term}%");
+            $j++;
+        }
+
+        return $query->andWhere('g.horodatage IS NOT NULL')->orderBy('g.id', 'DESC')->getQuery();
+    }
 }

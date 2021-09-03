@@ -6,7 +6,7 @@ namespace App\Form;
 
 use App\Entity\Electricite;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,26 +15,26 @@ class ElectriciteRequestType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('PDL1', IntegerType::class)
-            ->add('PDL2', IntegerType::class)
-            ->add('PDL3', IntegerType::class)
-            ->add('PDL4', IntegerType::class)
-            ->add('PDL5', IntegerType::class)
-            ->add('PDL6', IntegerType::class)
-            ->add('PDL7', IntegerType::class)
-            ->add('PDL8', IntegerType::class)
-            ->add('PDL9', IntegerType::class)
-            ->add('PDL10', IntegerType::class)
-            ->add('PDL11', IntegerType::class)
-            ->add('PDL12', IntegerType::class)
-            ->add('PDL13', IntegerType::class)
-            ->add('PDL14', IntegerType::class)
-            ->add('PDL15', IntegerType::class)
-            ->add('PDL16', IntegerType::class)
-            ->add('PDL17', IntegerType::class)
-            ->add('PDL18', IntegerType::class)
-            ->add('PDL19', IntegerType::class)
-            ->add('PDL20', IntegerType::class)
+            ->add('PDL1',TextType::class)
+            ->add('PDL2', TextType::class)
+            ->add('PDL3', TextType::class)
+            ->add('PDL4', TextType::class)
+            ->add('PDL5', TextType::class)
+            ->add('PDL6', TextType::class)
+            ->add('PDL7', TextType::class)
+            ->add('PDL8', TextType::class)
+            ->add('PDL9', TextType::class)
+            ->add('PDL10', TextType::class)
+            ->add('PDL11', TextType::class)
+            ->add('PDL12', TextType::class)
+            ->add('PDL13', TextType::class)
+            ->add('PDL14', TextType::class)
+            ->add('PDL15', TextType::class)
+            ->add('PDL16', TextType::class)
+            ->add('PDL17', TextType::class)
+            ->add('PDL18', TextType::class)
+            ->add('PDL19', TextType::class)
+            ->add('PDL20', TextType::class)
         ;
     }
 

@@ -20,122 +20,103 @@ class Electricite
     private $id;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL1;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL2;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL3;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL4;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL5;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL6;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL7;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL8;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL9;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL10;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL11;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL12;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL13;
 
     /**
      *
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL14;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL15;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL16;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL17;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL18;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL19;
 
     /**
-     * @Assert\Type("integer")
-     * @ORM\Column(type="bigint", nullable=true)
+     * @ORM\Column(type="string", length=255 , nullable=true)
      */
     private $PDL20;
 
@@ -169,240 +150,240 @@ class Electricite
         return $this->id;
     }
 
-    public function getPDL1(): ?int
+    public function getPDL1(): ?string
     {
         return $this->PDL1;
     }
 
-    public function setPDL1(?int $PDL1): self
+    public function setPDL1(string $PDL1): self
     {
         $this->PDL1 = $PDL1;
 
         return $this;
     }
 
-    public function getPDL2(): ?int
+    public function getPDL2(): ?string
     {
         return $this->PDL2;
     }
 
-    public function setPDL2(?int $PDL2): self
+    public function setPDL2(string $PDL2): self
     {
         $this->PDL2 = $PDL2;
 
         return $this;
     }
 
-    public function getPDL3(): ?int
+    public function getPDL3(): ?string
     {
         return $this->PDL3;
     }
 
-    public function setPDL3(?int $PDL3): self
+    public function setPDL3(string $PDL3): self
     {
         $this->PDL3 = $PDL3;
 
         return $this;
     }
 
-    public function getPDL4(): ?int
+    public function getPDL4(): ?string
     {
         return $this->PDL4;
     }
 
-    public function setPDL4(?int $PDL4): self
+    public function setPDL4(string $PDL4): self
     {
         $this->PDL4 = $PDL4;
 
         return $this;
     }
 
-    public function getPDL5(): ?int
+    public function getPDL5(): ?string
     {
         return $this->PDL5;
     }
 
-    public function setPDL5(?int $PDL5): self
+    public function setPDL5(string $PDL5): self
     {
         $this->PDL5 = $PDL5;
 
         return $this;
     }
 
-    public function getPDL6(): ?int
+    public function getPDL6(): ?string
     {
         return $this->PDL6;
     }
 
-    public function setPDL6(?int $PDL6): self
+    public function setPDL6(string $PDL6): self
     {
         $this->PDL6 = $PDL6;
 
         return $this;
     }
 
-    public function getPDL7(): ?int
+    public function getPDL7(): ?string
     {
         return $this->PDL7;
     }
 
-    public function setPDL7(?int $PDL7): self
+    public function setPDL7(string $PDL7): self
     {
         $this->PDL7 = $PDL7;
 
         return $this;
     }
 
-    public function getPDL8(): ?int
+    public function getPDL8(): ?string
     {
         return $this->PDL8;
     }
 
-    public function setPDL8(?int $PDL8): self
+    public function setPDL8(string $PDL8): self
     {
         $this->PDL8 = $PDL8;
 
         return $this;
     }
 
-    public function getPDL9(): ?int
+    public function getPDL9(): ?string
     {
         return $this->PDL9;
     }
 
-    public function setPDL9(?int $PDL9): self
+    public function setPDL9(string $PDL9): self
     {
         $this->PDL9 = $PDL9;
 
         return $this;
     }
 
-    public function getPDL10(): ?int
+    public function getPDL10(): ?string
     {
         return $this->PDL10;
     }
 
-    public function setPDL10(?int $PDL10): self
+    public function setPDL10(string $PDL10): self
     {
         $this->PDL10 = $PDL10;
 
         return $this;
     }
 
-    public function getPDL11(): ?int
+    public function getPDL11(): ?string
     {
         return $this->PDL11;
     }
 
-    public function setPDL11(?int $PDL11): self
+    public function setPDL11(string $PDL11): self
     {
         $this->PDL11 = $PDL11;
 
         return $this;
     }
 
-    public function getPDL12(): ?int
+    public function getPDL12(): ?string
     {
         return $this->PDL12;
     }
 
-    public function setPDL12(?int $PDL12): self
+    public function setPDL12(string $PDL12): self
     {
         $this->PDL12 = $PDL12;
 
         return $this;
     }
 
-    public function getPDL13(): ?int
+    public function getPDL13(): ?string
     {
         return $this->PDL13;
     }
 
-    public function setPDL13(?int $PDL13): self
+    public function setPDL13(string $PDL13): self
     {
         $this->PDL13 = $PDL13;
 
         return $this;
     }
 
-    public function getPDL14(): ?int
+    public function getPDL14(): ?string
     {
         return $this->PDL14;
     }
 
-    public function setPDL14(?int $PDL14): self
+    public function setPDL14(string $PDL14): self
     {
         $this->PDL14 = $PDL14;
 
         return $this;
     }
 
-    public function getPDL15(): ?int
+    public function getPDL15(): ?string
     {
         return $this->PDL15;
     }
 
-    public function setPDL15(?int $PDL15): self
+    public function setPDL15(string $PDL15): self
     {
         $this->PDL15 = $PDL15;
 
         return $this;
     }
 
-    public function getPDL16(): ?int
+    public function getPDL16(): ?string
     {
         return $this->PDL16;
     }
 
-    public function setPDL16(?int $PDL16): self
+    public function setPDL16(string $PDL16): self
     {
         $this->PDL16 = $PDL16;
 
         return $this;
     }
 
-    public function getPDL17(): ?int
+    public function getPDL17(): ?string
     {
         return $this->PDL17;
     }
 
-    public function setPDL17(?int $PDL17): self
+    public function setPDL17(string $PDL17): self
     {
         $this->PDL17 = $PDL17;
 
         return $this;
     }
 
-    public function getPDL18(): ?int
+    public function getPDL18(): ?string
     {
         return $this->PDL18;
     }
 
-    public function setPDL18(?int $PDL18): self
+    public function setPDL18(string $PDL18): self
     {
         $this->PDL18 = $PDL18;
 
         return $this;
     }
 
-    public function getPDL19(): ?int
+    public function getPDL19(): ?string
     {
         return $this->PDL19;
     }
 
-    public function setPDL19(?int $PDL19): self
+    public function setPDL19(string $PDL19): self
     {
         $this->PDL19 = $PDL19;
 
         return $this;
     }
 
-    public function getPDL20(): ?int
+    public function getPDL20(): ?string
     {
         return $this->PDL20;
     }
 
-    public function setPDL20(?int $PDL20): self
+    public function setPDL20(string $PDL20): self
     {
         $this->PDL20 = $PDL20;
 

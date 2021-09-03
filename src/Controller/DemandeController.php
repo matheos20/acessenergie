@@ -158,6 +158,7 @@ class DemandeController extends AbstractController
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPlus20Pdf.html.twig', $gaz20Client, $client, 'gazPlus20.pdf');
             $this->sendMailDuplicata('ACD gaz','demande/gazplus20Message.html.twig', $gaz20Client, $client, $mailer, $attachement);
             $gaz20Client->setIsAlreadyAuthorized(1);
+            $gaz20Client->setHorodatage(new \DateTime());
             $em->persist($gaz20Client);
             $isHasMailSended = true;
         }
@@ -165,6 +166,7 @@ class DemandeController extends AbstractController
             $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePlus20Pdf.html.twig', $elec20Client, $client, 'electricitePlus20.pdf');
             $this->sendMailDuplicata('ACD électricité','demande/electriciteplus20Message.html.twig', $elec20Client, $client, $mailer, $attachement);
             $elec20Client->setIsAlreadyAuthorized(1);
+            $elec20Client->setHorodatage(new \DateTime());
             $em->persist($elec20Client);
             $isHasMailSended = true;
         }

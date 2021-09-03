@@ -36,6 +36,11 @@ class GazPlus20
      * @ORM\Column(type="string", nullable=true)
      */
     private $tokenToConfirmAuthorization;
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $horodatage;
+
 
     public function getId(): ?int
     {
@@ -99,6 +104,25 @@ class GazPlus20
     public function setTokenToConfirmAuthorization($tokenToConfirmAuthorization)
     {
         $this->tokenToConfirmAuthorization = $tokenToConfirmAuthorization;
+        return $this;
+    }
+    /**
+     * @return mixed
+     */
+    public function getHorodatage()
+    {
+        return $this->horodatage;
+    }
+
+    /**
+     * @param mixed $horodatage
+     *
+     * @return Gaz
+     */
+    public function setHorodatage($horodatage)
+    {
+        $this->horodatage = $horodatage;
+
         return $this;
     }
 

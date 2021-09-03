@@ -37,6 +37,11 @@ class ElectricitePlus20
      */
     private $tokenToConfirmAuthorization;
 
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $horodatage;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -102,5 +107,23 @@ class ElectricitePlus20
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getHorodatage()
+    {
+        return $this->horodatage;
+    }
 
+    /**
+     * @param mixed $horodatage
+     *
+     * @return ElectricitePlus20
+     */
+    public function setHorodatage($horodatage)
+    {
+        $this->horodatage = $horodatage;
+
+        return $this;
+    }
 }

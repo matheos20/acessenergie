@@ -49,7 +49,8 @@ class SecurityController extends AbstractController
                         'security/userValidation.html.twig',
                         [
                             'id'  => $user->getId(),
-                            'nom' => $user->getUsername(),
+                            'nom' => $user->getname(),
+                            'prenom' => $user->getUsername(),
                         ]
                     )
                 );

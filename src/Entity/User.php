@@ -44,6 +44,11 @@ class User implements UserInterface
     /**
      * @Assert\EqualTo(propertyPath="password", message="vous n'avez pas taper le meme mot de passe")
      */
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     public $confirm_password;
 
     /**
@@ -93,6 +98,18 @@ class User implements UserInterface
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getname(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setname(string $name): self
+    {
+        $this->name = $name;
 
         return $this;
     }

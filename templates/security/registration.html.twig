@@ -15,19 +15,23 @@
                         </div>
 
                         <div class="form-group ">
+                            {{ form_errors(form.username) }}
                             <label for="nom" class="col-sm-2 col-form-label">Prenom</label>
                             {{form_widget(form.username, {'label':'Prenom d\utilisateur','attr':{'placeholder': 'votre prenom...','class':'form-control'}})}}
                         </div>
 
                         <div class="form-group">
+                            {{ form_errors(form.email) }}
                             <label for="Email1" class="col-sm-4 col-form-label">Adresse mail</label>
                             {{form_widget(form.email,{'label':'Adresse mail','attr':{'placeholder':'votre Adresse mail...','class':'form-control'}})}}
                         </div>
                         <div class="form-group">
+                            {{ form_errors(form.password) }}
                             <label for="Password1" class="col-sm-4 col-form-label">Mot de passe</label>
                             {{form_widget(form.password,{'label':'mot de passe','attr':{'placeholder':'votre mot de passe...','class':'form-control'}})}}
                         </div>
                         <div class="form-group">
+                            {{ form_errors(form.confirm_password) }}
                             <label for="Password1" class="col-sm-4 col-form-label">Confirmer</label>
                             {{form_widget(form.confirm_password,{'label':'confirmation mot de passe','attr':{'placeholder':'repeter votre mot de passe','class':'form-control'}})}}
                     </div>

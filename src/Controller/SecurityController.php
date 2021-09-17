@@ -43,7 +43,7 @@ class SecurityController extends AbstractController
             $manager->flush();
             $mailToSendUser = (new Email())
                 ->to($user->getEmail())
-                ->subject('validation d\'inscription ')
+                ->subject('Inscription à ACCESS ACD SIGN en cours de validation ')
                 ->html(
                     $this->renderView(
                         'security/userValidation.html.twig',
@@ -119,12 +119,13 @@ class SecurityController extends AbstractController
             $mailer->send(
                 (new Email())
                     ->to($user->getEmail())
-                    ->subject('Confirmation de votre inscription ')
+                    ->subject('Validation de votre espace ACCESS ACD SIGN ')
                     ->html(
                         $this->renderView(
                             'security/confirmationaccountuser.html.twig',
                             [
                                 'username' => $user->getUsername(),
+                                'name' => $user->getname(),
                             ]
                         )
                     )

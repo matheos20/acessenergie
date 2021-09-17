@@ -2,49 +2,37 @@
 	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (ENEDIS)
 </h2>
 <p style="line-height: 4px;">L’entreprise:
-	<b>{{ client.getSocialReason() }}</b>
-</p>
+	<b>{{ client.getSocialReason() }}</b> </p>
 <p style="line-height: 4px;">Sous le SIREN:
-	<b>{{ client.mermaid }}</b>
-</p>
+	<b>{{ client.mermaid }}</b> </p>
 <p style="line-height: 4px;">Ayant son siège à :
-	<b>{{ client.address }}</b>
-</p>
+	<b>{{ client.address }}</b> </p>
 <p>et représentée par :
 	<b>{{ client.getNameOfSignatory() }}</b> FONCTION:
-	<b>{{ client.function }}</b>,
-						            dûment habilité(e) à cet effet,titulaire de contrat(s) unique(s) 
-						            pour la fourniture de gaz naturel pour le(s) site(s)de consommation
-						            mentionné(s) dans le tableau en annexe,
-</p>
-<h4 style="font-weight: bold;">AUTORISE</h4>
-<p>ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L4OURAILLE 76940 LA MAILLERAYE SUR
-			                SEINE, et
-	<b>représentée par</b>
-	M. DIAKITE Hamidou, dûment
-	<b>habilité(s) à cet effet, à demander et recevoir directement de la part du :
-						                    Gestionnaire de réseaux public de distribution d’électricité (ENEDIS)</b>
-	société anonyme à directoire et à conseil de surveillance,
-			                au capital de 270 037 000 euros, immatriculée au Registre du Commerce et des Sociétés de Nanterre, sous le numéro 444 608 442, dont le siège social est situé Tour ENEDIS 34, Place
-			                des Corolles 92079 PARIS LA DEFENSE cedex
-</p>
-<p>
-	<b>Les données de consommation disponibles cochées dans la liste ci-dessous, pour le(s) PDL dont la liste est annexée à la
-						        présente autorisation :</b>
-</p>
+	<b>{{ client.function }}</b>,dûment habilité(e) à cet effet,titulaire de contrat(s) unique(s)
+	pour la fourniture d’électricité pour le(s) site(s)de consommation mentionné(s) dans le tableau en annexe,</p>
+	<h4 style="font-weight: bold;">AUTORISE</h4>
 
-<input type="checkbox" id="vehicle1" name="vehicle1" checked>
-<label for="vehicle1">
-	la puissance souscrite en cours programmée dans le compteur</label><br>
-<input type="checkbox" id="vehicle2" name="vehicle2" checked>
-<label for="vehicle2">
-	la formule tarifaire d’acheminement en cours</label><br>
-<input type="checkbox" id="vehicle3" name="vehicle3" checked>
-<label for="vehicle3">
-	le type de compteur</label><br>
-<input type="checkbox" id="vehicle3" name="vehicle3" checked>
-<label for="vehicle3">
-	la courbe de charge</label>
+<p>ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L4OURAILLE 76940 Arelaune en seine, et
+	<b>représentée par</b>M. DIAKITE Hamidou, dûment
+	<b>habilité(s) à cet effet, à demander et recevoir directement de la part du :Gestionnaire de réseaux
+		public de distribution d’électricité (ENEDIS)</b>
+		société anonyme à directoire et à conseil de surveillance, au capital de 270 037 000 euros,
+		immatriculée au Registre du Commerce et des Sociétés de Nanterre, sous le numéro 444 608 442,
+		dont le siège social est situé Tour ENEDIS 34, Place des Corolles 92079 PARIS LA DEFENSE cedex</p>
+
+<p><b>Les données de consommation disponibles cochées dans la liste ci-dessous,
+		pour le(s) PDL dont la liste est annexée à la présente autorisation :</b> </p>
+
+	<input type="checkbox" id="vehicle1" name="vehicle1" checked>
+		<label for="vehicle1">
+			la puissance souscrite en cours programmée dans le compteur</label><br>
+	<input type="checkbox" id="vehicle2" name="vehicle2" checked>
+		<label for="vehicle2">la formule tarifaire d’acheminement en cours</label><br>
+	<input type="checkbox" id="vehicle3" name="vehicle3" checked>
+		<label for="vehicle3">le type de compteur</label><br>
+	<input type="checkbox" id="vehicle3" name="vehicle3" checked>
+	<label for="vehicle3">la courbe de charge</label>
 
 <p style="margin:-2px">La présente autorisation est nominative, ne peut être cédée et 
 			                est valable et consultable douze mois après la date de signature du présent document.

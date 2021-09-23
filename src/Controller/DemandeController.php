@@ -139,7 +139,7 @@ class DemandeController extends AbstractController
         $elec20Client = $electricitePlus20Repository->findLastByClient($client->getId(), $token);
         $isHasMailSended = false;
         if ($gazClient instanceof Gaz) {
-            $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPdf.html.twig', $gazClient, $client, 'gaz.pdf');
+            $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPdf.html.twig', $gazClient, $client, 'ACDgaz'.$client->getSocialReason().'.pdf');
             $this->sendMailDuplicata('ACD gaz','demande/gazMessage.html.twig', $gazClient, $client, $mailer, $attachement);
             $gazClient->setIsAlreadyAuthorized(1);
             $gazClient->setHorodatage(new \DateTime());
@@ -147,7 +147,7 @@ class DemandeController extends AbstractController
             $isHasMailSended = true;
         }
         if ($elecClient instanceof Electricite) {
-            $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePdf.html.twig', $elecClient, $client, 'electricite.pdf');
+            $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePdf.html.twig', $elecClient, $client, 'ACDelectricite'.$client->getSocialReason().'.pdf');
             $this->sendMailDuplicata('ACD électricité','demande/electriciteMessage.html.twig', $elecClient, $client, $mailer, $attachement);
             $elecClient->setIsAlreadyAuthorized(1);
             $elecClient->setHorodatage(new \DateTime());
@@ -155,7 +155,7 @@ class DemandeController extends AbstractController
             $isHasMailSended = true;
         }
         if ($gaz20Client instanceof GazPlus20) {
-            $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPlus20Pdf.html.twig', $gaz20Client, $client, 'gazPlus20.pdf');
+            $attachement = $this->generatePdfAttachement('AttachementPdf/attacheGazPlus20Pdf.html.twig', $gaz20Client, $client, 'ACDgaz'.$client->getSocialReason().'.pdf');
             $this->sendMailDuplicata('ACD gaz','demande/gazplus20Message.html.twig', $gaz20Client, $client, $mailer, $attachement);
             $gaz20Client->setIsAlreadyAuthorized(1);
             $gaz20Client->setHorodatage(new \DateTime());
@@ -163,7 +163,7 @@ class DemandeController extends AbstractController
             $isHasMailSended = true;
         }
         if ($elec20Client instanceof ElectricitePlus20) {
-            $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePlus20Pdf.html.twig', $elec20Client, $client, 'electricitePlus20.pdf');
+            $attachement = $this->generatePdfAttachement('AttachementPdf/attacheElectricitePlus20Pdf.html.twig', $elec20Client, $client, 'ACDelectricite'.$client->getSocialReason().'.pdf');
             $this->sendMailDuplicata('ACD électricité','demande/electriciteplus20Message.html.twig', $elec20Client, $client, $mailer, $attachement);
             $elec20Client->setIsAlreadyAuthorized(1);
             $elec20Client->setHorodatage(new \DateTime());

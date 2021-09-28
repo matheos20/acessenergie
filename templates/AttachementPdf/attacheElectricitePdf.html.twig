@@ -1,40 +1,30 @@
 <h2 style="background-color: grey; text-align: center;padding-top:5px; font-size: 12px">
 	AUTORISATION DE COMMUNICATION DE DONNEES A UN TIERS AUTORISE (ENEDIS)
 </h2>
-<p style="line-height: 4px;">L’entreprise:
-	<b>{{ client.getSocialReason() }}</b>
-</p>
-<p style="line-height: 4px;">Sous le SIREN:
-	<b>{{ client.mermaid }}</b>
-</p>
-<p style="line-height: 4px;">Ayant son siège à :
-	<b>{{ client.address }}  {{ client.PostalCode }} {{ client.City }}</b>
-</p>
-<p>et représentée par :
+<p style="line-height: 1em;">L’entreprise:
+	<b>{{ client.getSocialReason() }}</b> Sous le SIREN:
+	<b>{{ client.mermaid }}</b> Ayant son siège à :
+	<b>{{ client.address }}  {{ client.PostalCode }} {{ client.City }}</b> et représentée par :
 	<b>{{ client.getNameOfSignatory() }}</b> FONCTION:
 	<b>{{ client.function }}</b>,
-				            dûment habilité(e) à cet effet,titulaire de contrat(s) unique(s) 
-				            pour la fourniture d’électricité pour le(s) site(s)de consommation
-				            mentionné(s) dans le tableau en annexe,
-</p>
-<h4 style="font-weight: bold;">AUTORISE</h4>
-<p>ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L'OURAILLE 76940 Arelaune en seine, et
+    dûment habilité(e) à cet effet,titulaire de contrat(s) unique(s)
+    pour la fourniture d’électricité pour le(s) site(s)de consommation
+    mentionné(s) dans le tableau en annexe,<br>
+    <h4 style="font-weight: bold; padding: 0px">AUTORISE</h4>ACCESS ENERGIES, SIREN 851987198, ayant son siège au 240 CHEMIN DE L'OURAILLE 76940 Arelaune en seine, et
 	<b>représentée par</b>M. DIAKITE Hamidou, dûment <b>habilité(s) à cet effet, à demander et recevoir directement de la part du :</b></p>
-
-<ul>
-	<li>
-		<b>Gestionnaire de réseaux public de distribution d’électricité (ENEDIS)</b>
-		société anonyme à directoire et à conseil de surveillance,
-		au capital de 270 037 000 euros, immatriculée au Registre du Commerce et des Sociétés de Nanterre, sous le numéro 444 608 442, dont le siège social est situé Tour ENEDIS 34, Place
-		des Corolles 92079 PARIS LA DEFENSE cedex
-	</li>
-	<p></p>
-	<li>
+	<ul style="line-height: 1em;">
+		<li>
+			<b>Gestionnaire de réseaux public de distribution d’électricité (ENEDIS)</b>
+			société anonyme à directoire et à conseil de surveillance,
+			au capital de 270 037 000 euros, immatriculée au Registre du Commerce et des Sociétés de Nanterre, sous le numéro 444 608 442, dont le siège social est situé Tour ENEDIS 34, Place
+			des Corolles 92079 PARIS LA DEFENSE cedex
+		</li>
+		<li>
 		Entité exerçant l’activité de Gestionnaire de Réseau Publics de Distribution (GRD) dont dépend le Client relatif à l’accès au RPD,
 		dépendant d’une Entreprise locale de distribution (distributeur non nationalisé)
 		qui assure la distribution d'électricité sur un territoire déterminé
-	</li>
-</ul>
+		</li>
+	</ul>
 
 <p><b>Les données de consommation disponibles cochées dans la liste ci-dessous,
 		pour le(s) PDL dont la liste est annexée à la présente autorisation :</b> </p>
@@ -52,11 +42,8 @@
 <label for="vehicle3">
 	la courbe de charge</label>
 
-<p style="margin:-2px">La présente autorisation est nominative, ne peut être cédée et 
-		                est valable et consultable douze mois après la date de signature du présent document.
-</p>
-<p style="margin: -2px">Toute cession, à titre gratuit ou onéreux, de tout ou partie de 
-		                ces données transmises par Enedis à ce tiers en application de la présente autorisation est interdite
+<p style="margin:-2px;line-height: 1em;">La présente autorisation est nominative, ne peut être cédée et est valable et consultable douze mois après la date de signature du présent document.<br>
+	Toute cession, à titre gratuit ou onéreux, de tout ou partie de ces données transmises par Enedis à ce tiers en application de la présente autorisation est interdite
 </p>
 <p style="margin-left: 50px">Fait à {{ client.City }} Le {{ "now"|date("d/m/Y") }}</p>
 <p style="margin-left: 380px;text-decoration: underline" class="underline">signature + cachet commercial du client</p>
@@ -68,11 +55,11 @@
 	{{ client.Telephone }}
 </p>
 
-<h3 style="font-size: 12px;">
+<h3 style="font-size: 12px;padding: 0px">
 	<b style="font-weight: 900">Annexe : Liste des PDL concernés</b>
 </h3>
 
-<table align="center" class="table-striped" style="border: 1px solid black; width: 80%; border-collapse: collapse;">
+<table align="center" class="table-striped" style="border: 1px solid black; width: 80%; border-collapse: collapse;line-height: 1em">
 	<tr style="height:35px;">
 		<td style="border: 1px solid black;width: 50%">PDL1:{{ value.PDL1 }}</td>
 		<td style="border: 1px solid black;width: 50%">PDL11:{{ value.PDL11 }}</td>

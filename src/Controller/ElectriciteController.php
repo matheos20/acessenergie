@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ElectriciteController extends AbstractController
 {
@@ -73,7 +74,8 @@ class ElectriciteController extends AbstractController
     }
 
     /**
-     * @Route("electricite/delete/{id}", name="electricite_delete", methods={"POST"})
+     * @Route("electricite/delete/{id}", name="electricite_delete")
+     *
      */
     public function delete(Request $request, Electricite $electricite): Response
     {

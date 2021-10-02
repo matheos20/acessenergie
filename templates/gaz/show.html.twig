@@ -7,98 +7,64 @@
 <div class="container mt-5">
     <h1 style="margin: -10px;">Gaz</h1>
     <a style="right: 20px;margin: 15px" class="btn btn-success mt-4" href="{{ path('gaz_index') }}">Retour à liste</a>
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="width: 100%">
+        <thead>
+        <tr style="font-size: .7vw;">
+            <th>Raison sociale</th>
+            <th>PCE1</th>
+            <th>PCE2</th>
+            <th>PCE3</th>
+            <th>PCE4</th>
+            <th>PCE5</th>
+            <th>PCE6</th>
+            <th>PCE7</th>
+            <th>PCE8</th>
+            <th>PCE9</th>
+            <th>PCE10</th>
+            <th>PCE11</th>
+            <th>PCE12</th>
+            <th>PCE13</th>
+            <th>PCE14</th>
+            <th>PCE15</th>
+            <th>PCE16</th>
+            <th>PCE17</th>
+            <th>PCE18</th>
+            <th>PCE19</th>
+            <th>PCE20</th>
+            <th style="text-align: center">actions</th>
+        </tr>
+        </thead>
         <tbody>
-            <tr>
-                <th style="width: 50%">Raison sociale</th>
-                <td style="width: 50%">{{ gaz.client.socialReason }}</td>
-            </tr>
-            <tr>
-                <th>PCE1</th>
+
+            <tr style="font-size: .7vw;">
+                <td>{{ gaz.client.socialReason }}</td>
                 <td>{{ gaz.PCE1 }}</td>
-            </tr>
-            <tr>
-                <th>PCE2</th>
                 <td>{{ gaz.PCE2 }}</td>
-            </tr>
-            <tr>
-                <th>PCE3</th>
                 <td>{{ gaz.PCE3 }}</td>
-            </tr>
-            <tr>
-                <th>PCE4</th>
                 <td>{{ gaz.PCE4 }}</td>
-            </tr>
-            <tr>
-                <th>PCE5</th>
                 <td>{{ gaz.PCE5 }}</td>
-            </tr>
-            <tr>
-                <th>PCE6</th>
                 <td>{{ gaz.PCE6 }}</td>
-            </tr>
-            <tr>
-                <th>PCE7</th>
                 <td>{{ gaz.PCE7 }}</td>
-            </tr>
-            <tr>
-                <th>PCE8</th>
                 <td>{{ gaz.PCE8 }}</td>
-            </tr>
-            <tr>
-                <th>PCE9</th>
                 <td>{{ gaz.PCE9 }}</td>
-            </tr>
-            <tr>
-                <th>PCE10</th>
                 <td>{{ gaz.PCE10 }}</td>
-            </tr>
-            <tr>
-                <th>PCE11</th>
                 <td>{{ gaz.PCE11 }}</td>
-            </tr>
-            <tr>
-                <th>PCE12</th>
                 <td>{{ gaz.PCE12 }}</td>
-            </tr>
-            <tr>
-                <th>PCE13</th>
                 <td>{{ gaz.PCE13 }}</td>
-            </tr>
-            <tr>
-                <th>PCE14</th>
                 <td>{{ gaz.PCE14 }}</td>
-            </tr>
-            <tr>
-                <th>PCE15</th>
                 <td>{{ gaz.PCE15 }}</td>
-            </tr>
-            <tr>
-                <th>PCE16</th>
                 <td>{{ gaz.PCE16 }}</td>
-            </tr>
-            <tr>
-                <th>PCE17</th>
                 <td>{{ gaz.PCE17 }}</td>
-            </tr>
-            <tr>
-                <th>PCE18</th>
                 <td>{{ gaz.PCE18 }}</td>
-            </tr>
-            <tr>
-                <th>PCE19</th>
                 <td>{{ gaz.PCE19 }}</td>
-            </tr>
-            <tr>
-                <th>PCE20</th>
                 <td>{{ gaz.PCE20 }}</td>
+                <td style="display: flex">
+                    <a class="btn btn-primary" href="{{ path('gaz_edit', {'id': gaz.id}) }}" style="font-size: 10px;">Editer</a>
+                    <a class="btn btn-danger" href="{{ path('gaz_delete', {'id': gaz.id}) }}" style="font-size: 10px;margin-left: 5px";>Supprimer</a>
+
+                </td>
             </tr>
         </tbody>
     </table>
-
-    <div class="show" style="text-align: center;display: flex;margin-left: 480px;">
-        <a class="btn btn-primary" href="{{ path('gaz_edit', {'id': gaz.id}) }}" style="width: 83px;height: 44px;">Editer</a>
-        {{ include('gaz/_delete_form.html.twig') }}
-    </div>
 </div>
 {% endblock %}

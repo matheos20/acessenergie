@@ -71,9 +71,12 @@
                 <td>{{ electricite.PDL19 }}</td>
                 <td>{{ electricite.PDL20 }}</td>
                <td>
-                    <a href="{{ path('electricite_show', {'id': electricite.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
-                    <a href="{{ path('electricite_edit', {'id': electricite.id}) }}"><i style="color: yellow;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                </td>
+                        <a href="{{ path('electricite_show', {'id': electricite.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a href="{{ path('electricite_edit', {'id': electricite.id}) }}"><i style="color: blue;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                   {% if is_granted('ROLE_ADMIN') %}
+                        <a href="{{ path('electricite_delete', {'id': electricite.id}) }}"><i style="color: red;padding-left:20px" class="fa fa-trash delete" aria-hidden="true"></i></a>
+                   {% endif %}
+               </td>
             </tr>
         {% else %}
             <tr>

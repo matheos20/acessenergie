@@ -11,12 +11,97 @@
     </style>
 <div class="container mt-5">
     <h1>Edit Electricite</h1>
+    <a class="btn btn-success" href="{{ path('electricite_index') }}" style="margin-left: 70px">Retour à liste</a>
     <div class="update mt-4">
+        <form class="row g-3 align-items-center " style="margin-left: 8%;">
+            {{ form_start(form) }}
 
-        <a class="btn btn-success" href="{{ path('electricite_index') }}" style="margin-left: 15px">Retour à liste</a>
-        <div style="margin: 20px">
-        {{ include('electricite/_form.html.twig', {'button_label': 'Editer'}) }}
-        </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL1 </label>
+                {{ form_widget(form.PDL1,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL2</label>
+                {{ form_widget(form.PDL2,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL3</label>
+                {{ form_widget(form.PDL3,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL4</label>
+                {{ form_widget(form.PDL4,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL5</label>
+                {{ form_widget(form.PDL5,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL6</label>
+                {{ form_widget(form.PDL6,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL7</label>
+                {{ form_widget(form.PDL7,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL8</label>
+                {{ form_widget(form.PDL8,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL9</label>
+                {{ form_widget(form.PDL9,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL10</label>
+                {{ form_widget(form.PDL10,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL11</label>
+                {{ form_widget(form.PDL11,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL12</label>
+                {{ form_widget(form.PDL12,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL13</label>
+                {{ form_widget(form.PDL13,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL14</label>
+                {{ form_widget(form.PDL14,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL15</label>
+                {{ form_widget(form.PDL15,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL16</label>
+                {{ form_widget(form.PDL16,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL17</label>
+                {{ form_widget(form.PDL17,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL18</label>
+                {{ form_widget(form.PDL18,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL19</label>
+                {{ form_widget(form.PDL19,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-auto">
+                <label for="exampleFormControlInput1" class="form-label">PDL20</label>
+                {{ form_widget(form.PDL20,{'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="text-center">
+
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+            {{ form_end(form) }}
+        </form>
     </div>
 </div>
 {% endblock %}

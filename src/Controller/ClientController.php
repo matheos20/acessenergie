@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 
 class ClientController extends AbstractController
@@ -130,6 +131,7 @@ class ClientController extends AbstractController
 
     /**
      * @Route("client/{id}/edit", name="client_edit", methods={"GET","POST"})
+     *
      */
     public function edit(Request $request, Client $client): Response
     {
@@ -150,6 +152,7 @@ class ClientController extends AbstractController
 
     /**
      * @Route("client/delete/{id}", name="client_delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Client $client, ElectriciteRepository $electriciteRepository, GazRepository $gazRepository, ElectricitePlus20Repository $electricPlus20, GazPlus20Repository $gazPlus20): Response
     {

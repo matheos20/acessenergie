@@ -2,8 +2,11 @@
 {% block body %}
 
     <link rel="stylesheet" href="{{ asset('css/Navabar.css') }}">
+    <style>
 
+    </style>
     <div class="container">
+        <script src="./assets/js/jquery-3.6.0.js"></script>
             <div class="titre">Inscription</div>
                     <div class="formcontact">
 
@@ -35,11 +38,32 @@
                             <label for="Password1" class="col-sm-4 col-form-label">Confirmer</label>
                             {{form_widget(form.confirm_password,{'label':'confirmation mot de passe','attr':{'placeholder':'repeter votre mot de passe','class':'form-control'}})}}
                     </div>
+
+
                     <div class="form-group m-2" style="text-align: center">
                         <button type="submit" class="btn btn-primary">Inscription</button>
                     </div>
                     {{form_end(form)}}
             </div>
     </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+            $('#clientId').click(function () {
+                console.log('teste');
+                $('#vendeurId').prop('checked', true);
+                // $('#clientId').prop('checked', false);
+            });
+            $('#vendeurId').click(function () {
+                $('#clientId').prop('checked', true);
+                $('#vendeurId').prop('checked', true);
+            });
+        });
+    </script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
 
 {% endblock %}

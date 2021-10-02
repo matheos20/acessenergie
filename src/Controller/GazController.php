@@ -12,14 +12,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-/**
- * @Route("/gaz")
- */
+
 class GazController extends AbstractController
 {
     /**
-     * @Route("/", name="gaz_index", methods={"GET"})
+     * @Route("/gaz", name="gaz_index", methods={"GET"})
      */
     public function index(GazRepository $gazRepository, PaginatorInterface $paginator, Request $request): Response
     {   $recherche = new GazRecherche();
@@ -63,7 +62,7 @@ class GazController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/gaz", name="gaz_show", methods={"GET"})
+     * @Route("gaz/{id}/gaz", name="gaz_show", methods={"GET"})
      */
     public function show(Gaz $gaz): Response
     {
@@ -73,7 +72,7 @@ class GazController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="gaz_edit", methods={"GET","POST"})
+     * @Route("gaz/{id}/edit", name="gaz_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Gaz $gaz): Response
     {
@@ -81,7 +80,10 @@ class GazController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+           // $this->getDoctrine()->getManager()->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($gaz);
+            $entityManager->flush();
 
             return $this->redirectToRoute('gaz_index');
         }
@@ -93,7 +95,8 @@ class GazController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="gaz_delete", methods={"POST"})
+     * @Route("gaz/delete/{id}", name="gaz_delete")
+     * @IsGranted("ROLE_ADMIN")
      */
     public function delete(Request $request, Gaz $gaz): Response
     {

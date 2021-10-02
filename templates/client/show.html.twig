@@ -58,11 +58,10 @@
                 </table>
      <div class="show" style="text-align: center;">
 
-         <a class="btn btn-primary" href="{{ path('client_edit', {'id': client.id}) }}">Editer</a>
-<a class="btn btn-danger" href="{{ path('client_delete', {'id': client.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')">
-	Supprimer
-</a>
-
+            <a class="btn btn-primary" href="{{ path('client_edit', {'id': client.id}) }}">Editer</a>
+         {% if is_granted('ROLE_ADMIN') %}
+            <a class="btn btn-danger" href="{{ path('client_delete', {'id': client.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')">Supprimer</a>
+        {% endif %}
      </div>
 
     </div>

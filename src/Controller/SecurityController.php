@@ -32,13 +32,17 @@ class SecurityController extends AbstractController
         $user->setIsValid(false);
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
-
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
             $user->setIsValid(false);
+
+
             $token = uniqid();
             $user->setTokenToConfirmAccount($token);
+
+
             $manager->persist($user);
             $manager->flush();
             $mailToSendUser = (new Email())

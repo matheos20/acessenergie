@@ -24,12 +24,11 @@ class GazController extends AbstractController
     {   $recherche = new GazRecherche();
         $form = $this->createForm(GazRechercheType::class,$recherche);
         $form->handleRequest($request);
-        if (!empty($recherche->getPCE1())){
-            $gazQuerry = $gazRepository->findByGaz($recherche);
+        $userId = null;
+        if (!$this->isGranted('ROLE_ADMIN')){
+            $userId = $this->getUser()->getId();
         }
-        else{
-            $gazQuerry = $gazRepository->findAll();
-        }
+        $gazQuerry = $gazRepository->findByGaz(empty($recherche->getPCE1()) ? null : $recherche->getPCE1(), $userId);
 
         return $this->render('gaz/index.html.twig', [
             'gazs' => $paginator->paginate($gazQuerry, $request->query->getInt('page',1),20),

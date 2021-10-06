@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Client;
 use App\Entity\Electricite;
 use App\Entity\Gaz;
+use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,19 +22,27 @@ class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
-    public function findBySocialResion(?string $term)
+    public function findBySocialResion(?string $term, ?int $userId = null)
     {
 
         $query = $this->createQueryBuilder('c')
+                      ->leftJoin('c.user', 'u')
                       ->leftJoin(Gaz::class, 'g','WITH', 'g.client = c.id')
-                      ->leftJoin(Electricite::class, 'e', 'WITH','e.client = c.id')
-                      ->where('c.social_reason like :val');
+                      ->leftJoin(Electricite::class, 'e', 'WITH','e.client = c.id');
 
-        for ($i = 1; $i <= 20; $i++) {
-            $query->orWhere("e.PDL$i like :val")->orWhere("g.PCE$i like :val");
+        if ($userId){
+            $query->andWhere('u.id = :userId')->setParameter('userId', $userId);
         }
-        $query->setParameter('val', "%{$term}%")
-              ->orderBy('c.id', 'DESC');
+        $ex = $query->expr()->orX();
+        if (!empty($term)){
+            $ex->add('c.social_reason like :val');
+            for ($i = 1; $i <= 20; $i++) {
+                $ex->add("e.PDL$i like :val");
+                $ex->add("g.PCE$i like :val");
+            }
+            $query->setParameter('val', "%{$term}%")->andWhere($ex);
+        }
+        $query->orderBy('c.id', 'DESC');
 
         return $query;
     }

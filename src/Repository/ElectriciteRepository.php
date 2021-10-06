@@ -83,15 +83,26 @@ class ElectriciteRepository extends ServiceEntityRepository
         return $query->andWhere('c.horodatage IS NOT NULL')->orderBy('c.id', 'DESC')->getQuery();
     }
 
-    public function findByElectricite($recherche)
+    public function findByElectricite($recherche = null, ?int $userId = null )
     {
-        $query = $this->createQueryBuilder('c');
-        for ($i = 1; $i <= 20; $i++)  {
-            $query->orWhere("c.PDL$i like :val");
+        $query = $this->createQueryBuilder('e')
+        ->leftJoin('e.client', 'c')
+        ->leftJoin('c.user', 'u');
+
+        if ($userId) {
+            $query->where('u.id = :userId')->setParameter('userId', $userId);
         }
-        $term = $recherche->getPDL1();
-        return $query->setParameter('val', "%{$term}%")
-            ->orderBy('c.id', 'DESC')
-            ->getQuery();
+        if ($recherche){
+            $ex = $query->expr()->orX();
+            for ($i = 1; $i <= 20; $i++)  {
+                $ex->add("c.PDL$i like :val");
+
+            }
+            $query->andWhere($ex);
+            $query->setParameter('val', "%{$recherche}%");
+        }
+
+        return $query->orderBy('e.id', 'DESC')->getQuery();
+
     }
 }

@@ -158,13 +158,14 @@ form{
                         <th scope="col" class="align-middle"style="width: 10%">Nom du Signataire </th>
                         <th scope="col" class="align-middle"style="width: 10%">Fonction</th>
                         <th scope="col" class="align-middle" style="width: 22%">Adresse mail </th>
+                        <th scope="col" class="align-middle" style="width: 22%">Vendeur</th>
                         <th scope="col" class="align-middle" style="width: 24%">actions</th>
                     </tr>
             </thead>
             <tbody>
             {% for client in clients %}
                     <tr style="font-size: .7vw;">
-
+{#        {{ dump(client) }}#}
                         <td data-label=Raison_sociale>{{ client.socialReason }}</td>
                         <td data-label=Siren>{{ client.mermaid }}</td>
                         <td data-label=Siren>{{ client.telephone }}</td>
@@ -174,12 +175,14 @@ form{
                         <td data-label=Nom_du_Signataire>{{ client.nameOfSignatory }}</td>
                         <td data-label=Fonction>{{ client.function }}</td>
                         <td data-label=Adresse_mail>{{ client.mail }}</td>
+                        <td data-label=Vendeur>{{ client.user.username }}</td>
                         <td data-label=actions>
                                 <a href="{{ path('client_show', {'id': client.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
                                 <a href="{{ path('client_edit', {'id': client.id}) }}"><i style="color: yellow;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                <a href="{{ path('Ajout_demande', {'id': client.id}) }}"><i style="color: blue;padding-left:20px" class="fal fa-paper-plane" aria-hidden="true"></i></a>
                         {% if is_granted('ROLE_ADMIN') %}
                                 <a href="{{ path('client_delete', {'id': client.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i style="color: red;padding-left:20px" class="fa fa-trash delete" aria-hidden="true"></i></a>
-                                <a href="{{ path('Ajout_demande', {'id': client.id}) }}"><i style="color: blue;padding-left:20px" class="fal fa-paper-plane" aria-hidden="true"></i></a>
+
                         {% endif %}
                         {% if client.valider == true  %}
                                 <a ><i style="color: green;padding-left:20px" class="fa fa-check" aria-hidden="true"></i></a>

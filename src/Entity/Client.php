@@ -94,12 +94,18 @@ class Client
      */
     private $horodatage;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="vendeur")
+     */
+    private $user;
+
     public function __construct()
     {
         $this->gaz = new ArrayCollection();
         $this->electricite = new ArrayCollection();
         $this->electricitePlus20s = new ArrayCollection();
         $this->gazPlus20s = new ArrayCollection();
+        $this->vendeur = new ArrayCollection();
        
     }
 
@@ -360,5 +366,16 @@ class Client
         return $this;
     }
 
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
 
 }

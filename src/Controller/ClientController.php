@@ -34,7 +34,13 @@ class ClientController extends AbstractController
         $recherche = new ClientRecherche();
         $form = $this->createForm(ClientRechercheType::class, $recherche);
         $form->handleRequest($request);
-        $searchQuery = $clientRepository->findBySocialResion($recherche->getSocialReason() ? $recherche->getSocialReason() : "");
+        $userId = null;
+
+        if (!$this->isGranted('ROLE_ADMIN')){
+            $userId = $this->getUser()->getId();
+        }
+
+        $searchQuery = $clientRepository->findBySocialResion($recherche->getSocialReason() ? $recherche->getSocialReason() : "", $userId);
 
 
         return $this->render('client/index.html.twig', [
@@ -106,6 +112,7 @@ class ClientController extends AbstractController
         $form = $this->createForm(ClientType::class,$client);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $client->setUser($this->getUser());
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($client);
             $entityManager->flush();

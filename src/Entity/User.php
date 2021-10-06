@@ -69,9 +69,16 @@ class User implements UserInterface
      */
     private $userRoles;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Client::class, mappedBy="user")
+     */
+    private $vendeur;
+
+
     public function __construct()
     {
         $this->userRoles = new ArrayCollection();
+        $this->vendeur = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -204,4 +211,35 @@ class User implements UserInterface
 
         return $this;
     }
+
+    /**
+     * @return Collection|Client[]
+     */
+    public function getVendeur(): Collection
+    {
+        return $this->vendeur;
+    }
+
+    public function addVendeur(Client $vendeur): self
+    {
+        if (!$this->vendeur->contains($vendeur)) {
+            $this->vendeur[] = $vendeur;
+            $vendeur->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVendeur(Client $vendeur): self
+    {
+        if ($this->vendeur->removeElement($vendeur)) {
+            // set the owning side to null (unless already changed)
+            if ($vendeur->getUser() === $this) {
+                $vendeur->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

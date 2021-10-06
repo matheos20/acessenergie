@@ -32,11 +32,11 @@ class ElectriciteController extends AbstractController
         $rechecher = new ElectriciteRecherche();
         $form = $this->createForm(ElectriciteRechercheType::class, $rechecher);
         $form->handleRequest($request);
-        if (!empty($rechecher->getPDL1())) {
-            $electriciteQuerry = $electriciteRepository->findByElectricite($rechecher);
-        } else {
-            $electriciteQuerry = $electriciteRepository->findAll();
+        $userId = null;
+        if (!$this->isGranted('ROLE_ADMIN')){
+            $userId = $this->getUser()->getId();
         }
+            $electriciteQuerry = $electriciteRepository->findByElectricite(empty($rechecher->getPDL1()) ? null : $rechecher->getPDL1(),$userId);
 
         return $this->render('electricite/index.html.twig', [
             'electricites' => $paginator->paginate($electriciteQuerry, $request->query->getInt('page', 1), 20),

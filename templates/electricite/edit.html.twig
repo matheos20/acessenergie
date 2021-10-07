@@ -12,9 +12,9 @@
 <div class="container mt-5">
     <h1>Edit Electricite</h1>
     <a class="btn btn-success" href="{{ path('electricite_index') }}" style="margin-left: 70px">Retour à liste</a>
-    <div class="update mt-4">
-        <form class="row g-3 align-items-center " style="margin-left: 8%;">
-            {{ form_start(form) }}
+    <div class="update mt-4" style="margin-left: 8%">
+
+            {{ form_start(form,{'attr':{'class':'row g-3 align-items-center'}}) }}
 
             <div class="col-auto">
                 <label for="exampleFormControlInput1" class="form-label">PDL1 </label>
@@ -101,7 +101,6 @@
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
             </div>
             {{ form_end(form) }}
-        </form>
     </div>
 </div>
 {% endblock %}

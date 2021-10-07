@@ -12,12 +12,53 @@
 
     <div class="container mt-5">
         <h1>Edit Client</h1>
+        <a class="btn btn-success" href="{{ path('client_index') }}" style="margin-left: 15px">Retour à liste</a>
         <div class="update mt-4">
-            <a class="btn btn-success" href="{{ path('client_index') }}" style="margin-left: 15px">Retour à liste</a>
-            <div style="margin: 20px">
-                {{ include('client/_form.html.twig', {'button_label': 'Editer'}) }}
-            </div>
+            <div class="row g-3 align-items-center">
+                {{ form_start(form) }}
 
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Raison sociale</label>
+                    {{ form_widget(form.social_reason,{'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Siren</label>
+                    {{ form_widget(form.mermaid, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Téléphone</label>
+                    {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Adresse du siège</label>
+                    {{ form_widget(form.address, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Code Postal</label>
+                    {{ form_widget(form.PostalCode, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Ville</label>
+                    {{ form_widget(form.city, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Nom et prenom du Signataire</label>
+                    {{ form_widget(form.name_of_signatory, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Fonction</label>
+                    {{ form_widget(form.function, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Adresse mail</label>
+                    {{ form_widget(form.mail, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="text-center">
+
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                </div>
+                {{ form_end(form) }}
+            </div>
         </div>
     </div>
 

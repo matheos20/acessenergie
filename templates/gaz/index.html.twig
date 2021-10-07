@@ -10,6 +10,7 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+<div class="container mt-5">
     <h1 style="margin: 25px;">Listes Gaz</h1>
     <div>
         {{ form_start(form) }}
@@ -20,60 +21,60 @@
     <table class="table table-bordered" style="width: 100%">
         <thead>
             <tr style="font-size: .7vw;">
-                <th>Raison sociale</th>
-                <th>PCE1</th>
-                <th>PCE2</th>
-                <th>PCE3</th>
-                <th>PCE4</th>
-                <th>PCE5</th>
-                <th>PCE6</th>
-                <th>PCE7</th>
-                <th>PCE8</th>
-                <th>PCE9</th>
-                <th>PCE10</th>
-                <th>PCE11</th>
-                <th>PCE12</th>
-                <th>PCE13</th>
-                <th>PCE14</th>
-                <th>PCE15</th>
-                <th>PCE16</th>
-                <th>PCE17</th>
-                <th>PCE18</th>
-                <th>PCE19</th>
-                <th>PCE20</th>
-                <th>actions</th>
+                <th scope="col" class="align-middle"style="width: 10%">Raison sociale</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE1</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE2</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE3</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE4</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE5</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE6</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE7</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE8</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE9</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE10</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE11</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE12</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE13</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE14</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE15</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE16</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE17</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE18</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE19</th>
+                <th scope="col" class="align-middle"style="width: 10%">PCE20</th>
+                <th scope="col" class="align-middle"style="width: 10%">actions</th>
             </tr>
         </thead>
         <tbody>
         {% for gaz in gazs %}
 
             <tr style="font-size: .7vw;">
-                <td>{{ gaz.client.socialReason }}</td>
-                <td>{{ gaz.PCE1 }}</td>
-                <td>{{ gaz.PCE2 }}</td>
-                <td>{{ gaz.PCE3 }}</td>
-                <td>{{ gaz.PCE4 }}</td>
-                <td>{{ gaz.PCE5 }}</td>
-                <td>{{ gaz.PCE6 }}</td>
-                <td>{{ gaz.PCE7 }}</td>
-                <td>{{ gaz.PCE8 }}</td>
-                <td>{{ gaz.PCE9 }}</td>
-                <td>{{ gaz.PCE10 }}</td>
-                <td>{{ gaz.PCE11 }}</td>
-                <td>{{ gaz.PCE12 }}</td>
-                <td>{{ gaz.PCE13 }}</td>
-                <td>{{ gaz.PCE14 }}</td>
-                <td>{{ gaz.PCE15 }}</td>
-                <td>{{ gaz.PCE16 }}</td>
-                <td>{{ gaz.PCE17 }}</td>
-                <td>{{ gaz.PCE18 }}</td>
-                <td>{{ gaz.PCE19 }}</td>
-                <td>{{ gaz.PCE20 }}</td>
-                <td>
-                        <a href="{{ path('gaz_show', {'id': gaz.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
-                        <a href="{{ path('gaz_edit', {'id': gaz.id}) }}"><i style="color: blue;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <td data-toggle="tooltip" title="{{ gaz.client.socialReason}}">{{ gaz.client.socialReason |slice(0,8)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE1}}">{{ gaz.PCE1 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE2}}">{{ gaz.PCE2 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE3}}">{{ gaz.PCE3 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE4}}">{{ gaz.PCE4 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE5}}">{{ gaz.PCE5 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE6}}">{{ gaz.PCE6 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE7}}">{{ gaz.PCE7 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE8}}">{{ gaz.PCE8 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE9}}">{{ gaz.PCE9 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE10}}">{{ gaz.PCE10 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE11}}">{{ gaz.PCE11 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE12}}">{{ gaz.PCE12 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE13}}">{{ gaz.PCE13 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE14}}">{{ gaz.PCE14 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE15}}">{{ gaz.PCE15 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE16}}">{{ gaz.PCE16 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE17}}">{{ gaz.PCE17 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE18}}">{{ gaz.PCE18 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE19}}">{{ gaz.PCE19 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{gaz.PCE20}}">{{ gaz.PCE20 |slice(0,5)}}...</td>
+                <td style="display: flex">
+                        <a href="{{ path('gaz_show', {'id': gaz.id}) }}"><i style="color: darkgreen;padding-left:5px" class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a href="{{ path('gaz_edit', {'id': gaz.id}) }}"><i style="color: blue;padding-left:10px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                     {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('gaz_delete', {'id': gaz.id}) }}"><i style="color: red;padding-left:20px" class="fa fa-trash delete" aria-hidden="true"></i></a>
+                        <a href="{{ path('gaz_delete', {'id': gaz.id}) }}"><i style="color: red;padding-left:10px" class="fa fa-trash delete" aria-hidden="true"></i></a>
                     {% endif %}
                 </td>
             </tr>
@@ -87,4 +88,12 @@
     <div class="navigation" style="text-align: center ;margin-right: 293px;font-size: .7vw;">
         {{ knp_pagination_render(gazs) }}
     </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 {% endblock %}

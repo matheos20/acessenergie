@@ -165,19 +165,19 @@ form{
             <tbody>
             {% for client in clients %}
                     <tr style="font-size: .7vw;">
-{#        {{ dump(client) }}#}
-                        <td data-label=Raison_sociale>{{ client.socialReason }}</td>
-                        <td data-label=Siren>{{ client.mermaid }}</td>
-                        <td data-label=Siren>{{ client.telephone }}</td>
-                        <td data-label=Adresse_du_siège>{{ client.address }}</td>
-                        <td data-label=Code Postal>{{ client.PostalCode }}</td>
-                        <td data-label=Adresse_du_siège>{{ client.City }}</td>
-                        <td data-label=Nom_du_Signataire>{{ client.nameOfSignatory }}</td>
-                        <td data-label=Fonction>{{ client.function }}</td>
-                        <td data-label=Adresse_mail>{{ client.mail }}</td>
-                        <td data-label=Vendeur>{{ client.user.username }}</td>
+
+                        <td data-label=Raison_sociale data-toggle="tooltip" title="{{client.socialReason}}">{{ client.socialReason |slice(0,8)}}...</td>
+                        <td data-label=Siren data-toggle="tooltip" title="{{client.mermaid}}">{{ client.mermaid |slice(0,8)}}...</td>
+                        <td data-label=Siren data-toggle="tooltip" title="{{client.telephone}}">{{ client.telephone |slice(0,8)}}...</td>
+                        <td data-label=Adresse_du_siège data-toggle="tooltip" title="{{client.address}}">{{ client.address |slice(0,8)}}...</td>
+                        <td data-label=Code Postal data-toggle="tooltip" title="{{client.PostalCode}}">{{ client.PostalCode |slice(0,8)}}...</td>
+                        <td data-label=Adresse_du_siège data-toggle="tooltip" title="{{client.City}}">{{ client.City |slice(0,8)}}...</td>
+                        <td data-label=Nom_du_Signataire data-toggle="tooltip" title="{{client.nameOfSignatory}}">{{ client.nameOfSignatory |slice(0,8)}}...</td>
+                        <td data-label=Fonction data-toggle="tooltip" title="{{client.function}}">{{ client.function |slice(0,8)}}...</td>
+                        <td data-label=Adresse_mail data-toggle="tooltip" title="{{client.mail}}">{{ client.mail |slice(0,8)}}...</td>
+                        <td data-label=Vendeur data-toggle="tooltip" title="{{client.user.username}}">{{ client.user.username |slice(0,8)}}...</td>
                         <td data-label=actions>
-                                <a href="{{ path('client_show', {'id': client.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
+                                <a href="{{ path('client_show', {'id': client.id}) }}"><i style="color: darkgreen;" class="fa fa-eye" aria-hidden="true"></i></a>
                                 <a href="{{ path('client_edit', {'id': client.id}) }}"><i style="color: yellow;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                                 <a href="{{ path('Ajout_demande', {'id': client.id}) }}"><i style="color: blue;padding-left:20px" class="fal fa-paper-plane" aria-hidden="true"></i></a>
                         {% if is_granted('ROLE_ADMIN') %}
@@ -202,6 +202,11 @@ form{
             {{ knp_pagination_render(clients) }}
         </div>
     </div>
-
-
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 {% endblock %}

@@ -10,6 +10,7 @@
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
+<div class="container mt-5">
     <h1 style="margin: 25px">Listes Electricite</h1>
     <div>
         {{ form_start(form) }}
@@ -21,60 +22,60 @@
     <table class="table table-bordered" style="width: 100%">
         <thead>
         <tr style="font-size: .7vw;">
-            <th>Raison sociale</th>
-            <th>PDL1</th>
-            <th>PDL2</th>
-            <th>PDL3</th>
-            <th>PDL4</th>
-            <th>PDL5</th>
-            <th>PDL6</th>
-            <th>PDL7</th>
-            <th>PDL8</th>
-            <th>PDL9</th>
-            <th>PDL10</th>
-            <th>PDL11</th>
-            <th>PDL12</th>
-            <th>PDL13</th>
-            <th>PDL14</th>
-            <th>PDL15</th>
-            <th>PDL16</th>
-            <th>PDL17</th>
-            <th>PDL18</th>
-            <th>PDL19</th>
-            <th>PDL20</th>
-            <th>actions</th>
+            <th scope="col" class="align-middle"style="width: 10%">Raison sociale</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL1</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL2</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL3</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL4</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL5</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL6</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL7</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL8</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL9</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL10</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL11</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL12</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL13</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL14</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL15</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL16</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL17</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL18</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL19</th>
+            <th scope="col" class="align-middle"style="width: 10%">PDL20</th>
+            <th scope="col" class="align-middle"style="width: 10%">actions</th>
         </tr>
         </thead>
         <tbody>
         {% for electricite in electricites %}
 
             <tr style="font-size: .7vw;">
-                <td>{{ electricite.client.socialReason }}</td>
-                <td>{{ electricite.PDL1 }}</td>
-                <td>{{ electricite.PDL2 }}</td>
-                <td>{{ electricite.PDL3 }}</td>
-                <td>{{ electricite.PDL4 }}</td>
-                <td>{{ electricite.PDL5 }}</td>
-                <td>{{ electricite.PDL6 }}</td>
-                <td>{{ electricite.PDL7 }}</td>
-                <td>{{ electricite.PDL8 }}</td>
-                <td>{{ electricite.PDL9 }}</td>
-                <td>{{ electricite.PDL10 }}</td>
-                <td>{{ electricite.PDL11 }}</td>
-                <td>{{ electricite.PDL12 }}</td>
-                <td>{{ electricite.PDL13 }}</td>
-                <td>{{ electricite.PDL14 }}</td>
-                <td>{{ electricite.PDL15 }}</td>
-                <td>{{ electricite.PDL16 }}</td>
-                <td>{{ electricite.PDL17 }}</td>
-                <td>{{ electricite.PDL18 }}</td>
-                <td>{{ electricite.PDL19 }}</td>
-                <td>{{ electricite.PDL20 }}</td>
-               <td>
-                        <a href="{{ path('electricite_show', {'id': electricite.id}) }}"><i style="color: darkgreen;padding-left:20px" class="fa fa-eye" aria-hidden="true"></i></a>
-                        <a href="{{ path('electricite_edit', {'id': electricite.id}) }}"><i style="color: blue;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                <td data-toggle="tooltip" title="{{ electricite.client.socialReason }}">{{ electricite.client.socialReason |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL1}}">{{ electricite.PDL1 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL2}}">{{ electricite.PDL2 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL3}}">{{ electricite.PDL3 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL4}}">{{ electricite.PDL4 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL5}}">{{ electricite.PDL5 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL6}}">{{ electricite.PDL6 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL7}}">{{ electricite.PDL7 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL8}}">{{ electricite.PDL8 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL9}}">{{ electricite.PDL9 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL10}}">{{ electricite.PDL10 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL11}}">{{ electricite.PDL11 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL12}}">{{ electricite.PDL12 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL13}}">{{ electricite.PDL13 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL14}}">{{ electricite.PDL14 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL15}}">{{ electricite.PDL15 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL16}}">{{ electricite.PDL16 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL17}}">{{ electricite.PDL17 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL18}}">{{ electricite.PDL18 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL19}}">{{ electricite.PDL19 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.PDL20}}">{{ electricite.PDL20 |slice(0,5)}}...</td>
+               <td style="display: flex">
+                        <a href="{{ path('electricite_show', {'id': electricite.id}) }}"><i style="color: darkgreen;padding-left:5px" class="fa fa-eye" aria-hidden="true"></i></a>
+                        <a href="{{ path('electricite_edit', {'id': electricite.id}) }}"><i style="color: blue;padding-left:10px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                    {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ path('electricite_delete', {'id': electricite.id}) }}"><i style="color: red;padding-left:20px" class="fa fa-trash delete" aria-hidden="true"></i></a>
+                        <a href="{{ path('electricite_delete', {'id': electricite.id}) }}"><i style="color: red;padding-left:10px" class="fa fa-trash delete" aria-hidden="true"></i></a>
                    {% endif %}
                </td>
             </tr>
@@ -89,4 +90,12 @@
 
         {{ knp_pagination_render(electricites) }}
     </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function(){
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+    </script>
 {% endblock %}

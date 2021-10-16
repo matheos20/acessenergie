@@ -94,10 +94,12 @@ nav a:after {content: none;}
 		      <li><a href="{{ path('security_login') }}">Connexion</a></li>
 		{% else %}
 		      <li><a href="{{ path('client_index') }}">Client</a></li>
+
                 <li><a href="{{ path('gaz_index') }}">PCE</a></li>
                 <li><a href="{{ path('electricite_index') }}">PDL</a></li>
             {% if is_granted('ROLE_ADMIN') %}
                 <li><a href="{{ path('client_consommation') }}">CONSENTEMENT</a></li>
+                <li><a href="{{ path('liste_user') }}">Liste Vendeurs</a></li>
             {% endif %}
 		      <li> <a href="{{ path('security_logout') }}">Deconnexion</a></li>
       	{% endif %}

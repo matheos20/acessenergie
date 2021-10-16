@@ -2,8 +2,13 @@
 
 namespace App\Controller;
 
+use App\Entity\Client;
 use App\Entity\User;
 use App\Form\RegistrationType;
+use App\Form\UserType;
+use App\Repository\ClientRepository;
+use App\Repository\ElectriciteRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -147,5 +152,70 @@ class SecurityController extends AbstractController
     public function logout()
     {
 
+    }
+
+    /**
+     * @Route("/listeUser", name="liste_user")
+     */
+    public function listeUtilisateur(UserRepository $user):response
+    {
+        return $this->render('security/listeUser.html.twig', [
+            'users' => $user->findAll(),
+        ]);
+    }
+
+
+    /**
+     * @Route("user/{id}/edit", name="user_edit")
+     */
+    public function edit(Request $request, User $user): Response
+    {
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+
+        if ($form->isSubmitted()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            return $this->redirectToRoute('liste_user');
+        }
+       // dd($request);
+        return $this->render('security/edit.html.twig', [
+            'users' => $user,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    /**
+     * @Route("user/delete/{id}", name="user_delete")
+     */
+    public function delete(Request $request, User $user ,ClientRepository $clientRepository,ElectriciteRepository $electriciteRepository): Response
+    {
+
+            $clientes = $clientRepository->findBy(['user' => $user->getId()]);
+            $electric = $electriciteRepository->findBy(['client' => $user->getId()]);
+
+            $entityManager = $this->getDoctrine()->getManager();
+
+                foreach ($electric as $electrics) {
+                    $entityManager->remove($electrics);
+
+               }
+
+                foreach ($clientes as $clients) {
+                    $entityManager->remove($clients);
+
+                }
+
+            $entityManager->remove($user);
+            $entityManager->flush();
+           // $entityManager = $this->getDoctrine()->getManager();
+           // $entityManager->remove($user);
+           // $entityManager->flush();
+     
+
+        return $this->redirectToRoute('liste_user');
     }
 }

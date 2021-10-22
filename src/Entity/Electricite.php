@@ -126,7 +126,7 @@ class Electricite
     private $isAlreadyAuthorized;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="electricite")
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="electricite",cascade={"remove"})
      */
     private $client;
 

@@ -23,7 +23,7 @@ class GazPlus20
     private $gazplus20;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="gazPlus20s")
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="gazPlus20s",cascade={"remove"})
      */
     private $client;
 

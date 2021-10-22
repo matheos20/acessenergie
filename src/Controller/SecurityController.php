@@ -168,13 +168,15 @@ class SecurityController extends AbstractController
     /**
      * @Route("user/{id}/edit", name="user_edit")
      */
-    public function edit(Request $request, User $user): Response
+    public function edit(Request $request, User $user, UserPasswordEncoderInterface $encoder): Response
     {
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted()) {
+            $hash = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($hash);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();

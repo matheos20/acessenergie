@@ -134,6 +134,7 @@ class ElectriciteController extends AbstractController
                         $methods[] = $method;
                         $res[] = [
                             'dateNow' => $elec->getHorodatage() ? $elec->getHorodatage()->format('d/m/Y H:i:s')  : '',
+                            'socialReason' => $elec->getClient()->getSocialReason(),
                             'nameOfSignatory' => $elec->getClient()->getNameOfSignatory(),
                             'mail' => $elec->getClient()->getMail(),
                             'address' => $elec->getClient()->getAddress(),
@@ -156,6 +157,7 @@ class ElectriciteController extends AbstractController
                         $methods[] = $method;
                         $res[] = [
                             'dateNow' => $gaz->getHorodatage() ? $gaz->getHorodatage()->format('d/m/Y H:i:s')  : '',
+                            'socialReason' => $gaz->getClient()->getSocialReason(),
                             'nameOfSignatory' => $gaz->getClient()->getNameOfSignatory(),
                             'mail' => $gaz->getClient()->getMail(),
                             'address' => $gaz->getClient()->getAddress(),
@@ -194,26 +196,28 @@ class ElectriciteController extends AbstractController
             $spreadshee = new Spreadsheet();
             $sheet = $spreadshee->getActiveSheet();
             $sheet->setCellValue('A1', 'HORODATAGE');
-            $sheet->setCellValue('B1', 'IDENTITÉ');
-            $sheet->setCellValue('C1', 'ADRESSE MAIL');
-            $sheet->setCellValue('D1', 'ADRESSE PHYSIQUE');
-            $sheet->setCellValue('E1', 'NUMÉRO DE PRM');
-            $sheet->setCellValue('F1', 'AUTORISATION');
-            $sheet->setCellValue('G1', 'DONNÉES TECHNIQUES');
-            $sheet->setCellValue('H1', 'DONNÉES CONTRACTUELLES');
-            $sheet->setCellValue('I1', 'DONNÉES DE MESURE');
+            $sheet->setCellValue('B1','RAISON SOCIAL');
+            $sheet->setCellValue('C1', 'IDENTITÉ');
+            $sheet->setCellValue('D1', 'ADRESSE MAIL');
+            $sheet->setCellValue('E1', 'ADRESSE PHYSIQUE');
+            $sheet->setCellValue('F1', 'NUMÉRO DE PRM');
+            $sheet->setCellValue('G1', 'AUTORISATION');
+            $sheet->setCellValue('H1', 'DONNÉES TECHNIQUES');
+            $sheet->setCellValue('I1', 'DONNÉES CONTRACTUELLES');
+            $sheet->setCellValue('J1', 'DONNÉES DE MESURE');
             $i = 2;
             $datas = $this->formatDataConsommationByTerms($terms, $elecs, $gazs);
             foreach ($datas as $item) {
                 $sheet->setCellValue('A' . $i, $item['dateNow']);
-                $sheet->setCellValue('B' . $i, $item['nameOfSignatory']);
-                $sheet->setCellValue('C' . $i, $item['mail']);
-                $sheet->setCellValue('D' . $i, $item['address']);
-                $sheet->setCellValue('E' . $i, $item['pdl1']);
-                $sheet->setCellValue('F' . $i, 'Oui');
+                $sheet->setCellValue('B' . $i, $item['socialReason']);
+                $sheet->setCellValue('C' . $i, $item['nameOfSignatory']);
+                $sheet->setCellValue('D' . $i, $item['mail']);
+                $sheet->setCellValue('E' . $i, $item['address']);
+                $sheet->setCellValue('F' . $i, $item['pdl1']);
                 $sheet->setCellValue('G' . $i, 'Oui');
                 $sheet->setCellValue('H' . $i, 'Oui');
                 $sheet->setCellValue('I' . $i, 'Oui');
+                $sheet->setCellValue('J' . $i, 'Oui');
                 $i++;
             }
             $writer = new Xlsx($spreadshee);

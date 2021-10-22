@@ -151,14 +151,12 @@ form{
                     <tr style="font-size: .7vw;">
                         <th scope="col" class="align-middle"style="width: 10%">Raison sociale </th>
                         <th scope="col" class="align-middle"style="width: 15%">Siren </th>
-                        <th scope="col" class="align-middle"style="width: 12%">téléphone </th>
-                        <th scope="col" class="align-middle"style="width: 10%">Adresse du siège </th>
-                        <th scope="col" class="align-middle"style="width: 7%">Code postal </th>
-                        <th scope="col" class="align-middle"style="width: 12%">Ville </th>
                         <th scope="col" class="align-middle"style="width: 10%">Nom du Signataire </th>
                         <th scope="col" class="align-middle"style="width: 10%">Fonction</th>
                         <th scope="col" class="align-middle" style="width: 22%">Adresse mail </th>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <th scope="col" class="align-middle" style="width: 22%">Vendeur</th>
+                        {% endif %}
                         <th scope="col" class="align-middle" style="width: 24%">actions</th>
                     </tr>
             </thead>
@@ -168,14 +166,12 @@ form{
 
                         <td data-label=Raison_sociale data-toggle="tooltip" title="{{client.socialReason}}">{{ client.socialReason |slice(0,8)}}...</td>
                         <td data-label=Siren data-toggle="tooltip" title="{{client.mermaid}}">{{ client.mermaid |slice(0,8)}}...</td>
-                        <td data-label=Siren data-toggle="tooltip" title="{{client.telephone}}">{{ client.telephone |slice(0,8)}}...</td>
-                        <td data-label=Adresse_du_siège data-toggle="tooltip" title="{{client.address}}">{{ client.address |slice(0,8)}}...</td>
-                        <td data-label=Code Postal data-toggle="tooltip" title="{{client.PostalCode}}">{{ client.PostalCode |slice(0,8)}}...</td>
-                        <td data-label=Adresse_du_siège data-toggle="tooltip" title="{{client.City}}">{{ client.City |slice(0,8)}}...</td>
                         <td data-label=Nom_du_Signataire data-toggle="tooltip" title="{{client.nameOfSignatory}}">{{ client.nameOfSignatory |slice(0,8)}}...</td>
                         <td data-label=Fonction data-toggle="tooltip" title="{{client.function}}">{{ client.function |slice(0,8)}}...</td>
                         <td data-label=Adresse_mail data-toggle="tooltip" title="{{client.mail}}">{{ client.mail |slice(0,8)}}...</td>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <td data-label=Vendeur data-toggle="tooltip" title="{{client.user.username}}">{{ client.user.username |slice(0,8)}}...</td>
+                        {% endif %}
                         <td data-label=actions>
                                 <a href="{{ path('client_show', {'id': client.id}) }}"><i style="color: darkgreen;" class="fa fa-eye" aria-hidden="true"></i></a>
                                 <a href="{{ path('client_edit', {'id': client.id}) }}"><i style="color: yellow;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>

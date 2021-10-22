@@ -17,6 +17,7 @@ const Consommation =  () => {
                     res += `
                             <tr style="font-size: .7vw;">
                                 <td data-label="Horodatage">${item.dateNow}</td>
+                                <td data-label="Raison Social">${item.socialReason}</td>
                                 <td data-label="Identité">${item.nameOfSignatory}</td>
                                 <td data-label="Adresse mail">${ item.mail }</td>
                                 <td data-label="Adresse physique">${ item.address }</td>

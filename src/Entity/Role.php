@@ -25,7 +25,7 @@ class Role
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="userRoles")
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="userRoles",cascade={"remove"})
      */
     private $users;
 

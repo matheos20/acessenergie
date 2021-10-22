@@ -121,7 +121,7 @@ class Gaz
     private $PCE20;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="gaz")
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="gaz",cascade={"remove"})
      */
     private $client;
 

@@ -47,7 +47,7 @@ class User implements UserInterface
      * @Assert\EqualTo(propertyPath="password", message="vous n'avez pas taper le meme mot de passe")
      */
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255,nullable=true)
      */
     private $name;
 
@@ -65,14 +65,19 @@ class User implements UserInterface
 
 
     /**
-     * @ORM\ManyToMany(targetEntity=Role::class, mappedBy="users")
+     * @ORM\ManyToMany(targetEntity=Role::class, mappedBy="users",cascade={"remove"})
      */
     private $userRoles;
 
     /**
-     * @ORM\OneToMany(targetEntity=Client::class, mappedBy="user")
+     * @ORM\OneToMany(targetEntity=Client::class, mappedBy="user",cascade={"remove"})
      */
     private $vendeur;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $agence;
 
 
     public function __construct()
@@ -238,6 +243,18 @@ class User implements UserInterface
                 $vendeur->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAgence(): ?string
+    {
+        return $this->agence;
+    }
+
+    public function setAgence(string $agence): self
+    {
+        $this->agence = $agence;
 
         return $this;
     }

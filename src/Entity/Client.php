@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
+ *
  */
 class Client
 {
@@ -50,12 +51,12 @@ class Client
     private $mail;
 
     /**
-     * @ORM\OneToMany(targetEntity=Gaz::class, mappedBy="client")
+     * @ORM\OneToMany(targetEntity=Gaz::class, mappedBy="client",cascade={"remove"})
      */
     private $gaz;
 
     /**
-     * @ORM\OneToMany(targetEntity=Electricite::class, mappedBy="client")
+     * @ORM\OneToMany(targetEntity=Electricite::class, mappedBy="client",cascade={"remove"})
      */
     private $electricite;
 
@@ -65,12 +66,12 @@ class Client
     private $valider;
 
     /**
-     * @ORM\OneToMany(targetEntity=ElectricitePlus20::class, mappedBy="client")
+     * @ORM\OneToMany(targetEntity=ElectricitePlus20::class, mappedBy="client",cascade={"remove"})
      */
     private $electricitePlus20s;
 
     /**
-     * @ORM\OneToMany(targetEntity=GazPlus20::class, mappedBy="client")
+     * @ORM\OneToMany(targetEntity=GazPlus20::class, mappedBy="client",cascade={"remove"})
      */
     private $gazPlus20s;
 
@@ -95,7 +96,7 @@ class Client
     private $horodatage;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="vendeur")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="vendeur",cascade={"remove"})
      */
     private $user;
 

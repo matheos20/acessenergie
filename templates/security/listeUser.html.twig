@@ -18,20 +18,23 @@
             <th style="text-align: center;width: 15%">Nom</th>
             <th style="text-align: center;width: 15%">Prenom</th>
             <th style="text-align: center;width: 20%">Email</th>
+            <th style="text-align: center;width: 10%">Mot de passe</th>
             <th style="text-align: center;width: 10%">validation</th>
             <th style="text-align: center;width: 10%">actions</th>
         </tr>
         </thead>
         <tbody>
         {% for user in users %}
+
             <tr style="font-size: .7vw;">
                 <td data-toggle="tooltip" style="text-align: center">{{ user.name |slice(0,5)}}...</td>
                 <td data-toggle="tooltip" style="text-align: center">{{ user.username |slice(0,5)}}...</td>
                 <td data-toggle="tooltip" style="text-align: center">{{ user.email |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" style="text-align: center">{{ user.password }}</td>
                 <td data-toggle="tooltip" style="text-align: center">{{ user.IsValid }}</td>
                 <td style="display: flex;text-align: center">
                     <a href="{{ path('user_edit', {'id': user.id}) }}" ><i style="color: blue;padding-left:20px" class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-                    <a href="{{ path('user_delete', {'id': user.id}) }}" ><i style="color: red;padding-left:55px" class="fa fa-trash delete" aria-hidden="true"></i></a>
+                    <a href="{{ path('user_delete', {'id': user.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')"><i style="color: red;padding-left:55px" class="fa fa-trash delete" aria-hidden="true"></i></a>
 
                 </td>
             </tr>
@@ -50,5 +53,9 @@
         $(document).ready(function(){
             $('[data-toggle="tooltip"]').tooltip();
         });
+
+
+
+
     </script>
 {% endblock %}

@@ -30,6 +30,14 @@
                     {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
                 </div>
                 <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Mot de passe</label>
+                    {{ form_widget(form.password, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Confirme mot de passe</label>
+                    {{ form_widget(form.confirm_password, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
                     {{ form_widget(form.IsValid) }}
                 </div>
                 <div class="text-center">

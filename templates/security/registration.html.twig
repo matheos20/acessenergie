@@ -28,6 +28,13 @@
                             <label for="Email1" class="col-sm-4 col-form-label">Adresse mail</label>
                             {{form_widget(form.email,{'label':'Adresse mail','attr':{'placeholder':'votre Adresse mail...','class':'form-control'}})}}
                         </div>
+
+                        <div class="form-group">
+                            {{ form_errors(form.agence) }}
+                            <label for="Email1" class="col-sm-4 col-form-label">Agence</label>
+                            {{form_widget(form.agence,{'label':'Agence','attr':{'placeholder':'votre Agence...','class':'form-control'}})}}
+                        </div>
+
                         <div class="form-group">
                             {{ form_errors(form.password) }}
                             <label for="Password1" class="col-sm-4 col-form-label">Mot de passe</label>

@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,9 +20,15 @@ class UserType extends AbstractType
             ->add('name',TextType::class,[
                 'required' => false,
             ])
+            ->add('agence')
             ->add('password',PasswordType::class)
             ->add('confirm_password',PasswordType::class)
-            ->add('IsValid')
+            ->add('IsValid', CheckboxType::class,[
+            'label' => 'validation du compte vendeur',
+                'attr' =>[
+                    'class' => 'form-check'
+                ]
+        ])
         ;
     }
 

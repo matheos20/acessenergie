@@ -22,6 +22,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 class ClientController extends AbstractController
@@ -29,11 +30,12 @@ class ClientController extends AbstractController
     /**
      * @Route("/", name="client_index")
      */
-    public function index(ClientRepository $clientRepository, PaginatorInterface $paginator, Request $request): Response
+    public function index(ClientRepository $clientRepository, PaginatorInterface $paginator, Request $request,AuthenticationUtils $authenticationUtils): Response
     {
         $recherche = new ClientRecherche();
         $form = $this->createForm(ClientRechercheType::class, $recherche);
         $form->handleRequest($request);
+        $lastUsername = $authenticationUtils->getLastUsername();
         $userId = null;
 
         if (!$this->isGranted('ROLE_ADMIN')){
@@ -45,7 +47,8 @@ class ClientController extends AbstractController
 
         return $this->render('client/index.html.twig', [
             'clients' => $paginator->paginate($searchQuery, $request->query->getInt('page', 1), 20),
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'last_username' => $lastUsername
         ]);
     }
 

@@ -7,6 +7,9 @@
         form{
             display: flex;
         }
+        td:hover {
+            background-color: yellow;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -50,34 +53,34 @@
     <table class="table table-striped table-bordered table-hover" style="width: 100%">
         <thead>
             <tr style="font-size: .7vw;">
-                <th scope="col" class="align-middle"style="width: 10%">Raison sociale</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE1</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE2</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE3</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE4</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE5</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE6</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE7</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE8</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE9</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE10</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE11</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE12</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE13</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE14</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE15</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE16</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE17</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE18</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE19</th>
-                <th scope="col" class="align-middle"style="width: 10%">PCE20</th>
-                <th scope="col" class="align-middle"style="width: 10%;text-align: center">actions</th>
-            </tr>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">Raison sociale</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE1</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE2</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE3</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE4</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE5</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE6</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE7</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE8</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE9</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE10</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE11</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE12</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE13</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE14</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE15</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE16</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE17</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE18</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE19</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PCE20</th>
+                <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e;text-align: center">actions</th>
+
         </thead>
         <tbody>
         {% for gaz in gazs %}
 
-            <tr style="font-size: .7vw;">
+        <tr style="font-size: .7vw;">
                 <td data-toggle="tooltip" title="{{ gaz.client.socialReason}}">{{ gaz.client.socialReason |slice(0,8)}}...</td>
                 <td data-toggle="tooltip" title="{{gaz.PCE1}}">{{ gaz.PCE1 |slice(0,5)}}...</td>
                 <td data-toggle="tooltip" title="{{gaz.PCE2}}">{{ gaz.PCE2 |slice(0,5)}}...</td>
@@ -100,8 +103,8 @@
                 <td data-toggle="tooltip" title="{{gaz.PCE19}}">{{ gaz.PCE19 |slice(0,5)}}...</td>
                 <td data-toggle="tooltip" title="{{gaz.PCE20}}">{{ gaz.PCE20 |slice(0,5)}}...</td>
                 <td style="display: flex">
-                        <a href="{{ path('gaz_show', {'id': gaz.id}) }}" class="btn btn-info"  style="font-size: .7vw; display: flex"><i class="fa fa-eye"></i>Voir</a>
-                        <a href="{{ path('gaz_edit', {'id': gaz.id}) }}" class="btn btn-secondary"  style="font-size: .7vw; display: flex"><i class='bi bi-pencil'></i>Modifier</a>
+                    <a href="{{ path('gaz_show', {'id': gaz.id}) }}" class="btn btn-info"  style="font-size: .7vw; display: flex"><i class="fa fa-eye"></i>Voir</a>
+                    <a href="{{ path('gaz_edit', {'id': gaz.id}) }}" class="btn btn-secondary"  style="font-size: .7vw; display: flex"><i class='bi bi-pencil'></i>Modifier</a>
                     {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ path('gaz_delete', {'id': gaz.id}) }}" onclick="return confirm('Êtes-vous sûr de vouloir supprimer?')" class="btn btn-danger"  style="font-size: .7vw; display: flex"><i class="bi bi-trash" ></i>Supprimer</a>
                     {% endif %}
@@ -112,7 +115,7 @@
                 <td colspan="22">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
-        </tbody>
+     </tbody>
     </table>
     <div class="navigation" style="text-align: center ;margin-right: 293px;font-size: .7vw;">
         {{ knp_pagination_render(gazs) }}

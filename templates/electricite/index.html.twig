@@ -7,6 +7,9 @@
         form{
             display: flex;
         }
+        td:hover {
+            background-color: yellow;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
@@ -41,41 +44,44 @@
         </div>
     </div>
 
-    <table class="table table-striped table-bordered table-hover" style="width: 100%">
+    <table class="table table-striped table-bordered table-hover" 
+    style="width: 100%;">
+
+
         <thead>
         <tr style="font-size: .7vw;">
-            <th scope="col" class="align-middle"style="width: 10%">Raison sociale</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL1</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL2</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL3</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL4</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL5</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL6</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL7</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL8</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL9</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL10</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL11</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL12</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL13</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL14</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL15</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL16</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL17</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL18</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL19</th>
-            <th scope="col" class="align-middle"style="width: 10%">PDL20</th>
-            <th scope="col" class="align-middle"style="width: 10%;text-align: center">actions</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">Raison sociale</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL1</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL2</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL3</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL4</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL5</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL6</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL7</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL8</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL9</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL10</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL11</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL12</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL13</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL14</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL15</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL16</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL17</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL18</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL19</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e">PDL20</th>
+            <th scope="col" class="align-middle"style="width: 10%;background-color: #95c24e;text-align: center">actions</th>
         </tr>
         </thead>
         <tbody>
         {% for electricite in electricites %}
 
             <tr style="font-size: .7vw;">
-                <td data-toggle="tooltip" title="{{ electricite.client.socialReason }}">{{ electricite.client.socialReason |slice(0,5)}}...</td>
-                <td data-toggle="tooltip" title="{{electricite.PDL1}}">{{ electricite.PDL1 |slice(0,5)}}...</td>
-                <td data-toggle="tooltip" title="{{electricite.PDL2}}">{{ electricite.PDL2 |slice(0,5)}}...</td>
-                <td data-toggle="tooltip" title="{{electricite.PDL3}}">{{ electricite.PDL3 |slice(0,5)}}...</td>
+                <td data-toggle="tooltip" title="{{electricite.client.socialReason}}">{{ electricite.client.socialReason |slice(0,5)}} </td>
+                <td data-toggle="tooltip" title="{{electricite.PDL1}}" >{{ electricite.PDL1 |slice(0,5)}}  </td>
+                <td data-toggle="tooltip" title="{{electricite.PDL2}}" >{{ electricite.PDL2  |slice(0,5)}} </td>
+                <td data-toggle="tooltip" title="{{electricite.PDL3}}" >{{ electricite.PDL3  |slice(0,5)}} ...</td>
                 <td data-toggle="tooltip" title="{{electricite.PDL4}}">{{ electricite.PDL4 |slice(0,5)}}...</td>
                 <td data-toggle="tooltip" title="{{electricite.PDL5}}">{{ electricite.PDL5 |slice(0,5)}}...</td>
                 <td data-toggle="tooltip" title="{{electricite.PDL6}}">{{ electricite.PDL6 |slice(0,5)}}...</td>
@@ -115,9 +121,5 @@
 </div>
 {% endblock %}
 {% block javascripts %}
-    <script>
-        $(document).ready(function(){
-            $('[data-toggle="tooltip"]').tooltip();
-        });
-    </script>
+    
 {% endblock %}
